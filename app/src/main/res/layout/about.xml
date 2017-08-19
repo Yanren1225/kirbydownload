@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical">
+<android.support.design.widget.AppBarLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/mainAppBarLayout1">
+
+		<android.support.v7.widget.Toolbar
+			android:id="@+id/标题栏"
+			app:elevation="4dp"
+			android:layout_height="?attr/actionBarSize"
+			android:layout_width="match_parent"
+			android:background="?attr/colorPrimary"
+			android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+			app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+			app:layout_scrollFlags="scroll|enterAlways|snap"/>
+
+	</android.support.design.widget.AppBarLayout>
+
+	<ImageView
+		android:layout_below="@id/mainAppBarLayout1"
+		android:layout_centerHorizontal="true"
+		android:src="@drawable/ic_launcher"
+		android:layout_width="158dp"
+		android:layout_height="158dp"
+		android:layout_margin="10dp"
+		android:id="@+id/aboutImageView1"/>
+
+	<TextView
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:text="kirby download"
+		android:layout_below="@id/aboutImageView1"
+		android:layout_centerHorizontal="true"
+		android:textSize="18sp"
+		android:id="@+id/aboutTextView1"/>
+
+	<TextView
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:text="星之卡比游戏资源集合地"
+		android:layout_below="@id/aboutTextView1"
+		android:id="@+id/aboutTextView2"
+		android:layout_centerHorizontal="true"
+		android:layout_marginTop="4dp"/>
+
+	<LinearLayout
+		android:layout_height="match_parent"
+		android:layout_width="match_parent"
+		android:orientation="vertical"
+		android:layout_below="@id/aboutTextView2">
+
+		<LinearLayout
+			android:layout_height="0dp"
+			android:layout_width="match_parent"
+			android:orientation="horizontal"
+			android:layout_weight="3">
+
+			<RelativeLayout
+				android:layout_height="match_parent"
+				android:layout_width="wrap_content"
+				android:layout_weight="1">
+
+				<RelativeLayout
+					style="?android:attr/buttonBarButtonStyle"
+					android:background="?attr/selectableItemBackground"
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:layout_centerInParent="true"
+					android:id="@+id/捐赠_支付宝">
+
+					<TextView
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content"
+						android:text="捐赠"
+						android:id="@+id/aboutTextView3"
+						android:layout_centerVertical="true"
+						android:textSize="18sp"/>
+
+					<ImageView
+						android:layout_height="28dp"
+						android:layout_width="28dp"
+						android:src="@drawable/ic_alipay_2_147456"
+						android:layout_toRightOf="@id/aboutTextView3"/>
+
+				</RelativeLayout>
+
+			</RelativeLayout>
+
+			<RelativeLayout
+				android:layout_height="match_parent"
+				android:layout_width="wrap_content"
+				android:layout_weight="1">
+
+				<RelativeLayout
+					style="?android:attr/buttonBarButtonStyle"
+					android:background="?attr/selectableItemBackground"
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:layout_centerInParent="true"
+					android:id="@+id/捐赠_微信">
+
+					<TextView
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content"
+						android:text="捐赠"
+						android:id="@+id/aboutTextView4"
+						android:layout_centerVertical="true"
+						android:textSize="18sp"/>
+
+					<ImageView
+						android:layout_height="28dp"
+						android:layout_width="28dp"
+						android:src="@drawable/ic_wechat_1_147456"
+						android:layout_toRightOf="@id/aboutTextView4"/>
+
+				</RelativeLayout>
+
+			</RelativeLayout>
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_height="0dp"
+			android:layout_width="match_parent"
+			android:orientation="horizontal"
+			android:layout_weight="3">
+
+			<RelativeLayout
+				android:layout_height="match_parent"
+				android:layout_width="wrap_content"
+				android:layout_weight="1">
+
+				<RelativeLayout
+					style="?android:attr/buttonBarButtonStyle"
+					android:background="?attr/selectableItemBackground"
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:layout_centerInParent="true"
+					android:id="@+id/官网">
+
+					<TextView
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content"
+						android:text="官网"
+						android:id="@+id/aboutTextView5"
+						android:layout_centerVertical="true"
+						android:textSize="18sp"/>
+
+					<ImageView
+						android:layout_height="28dp"
+						android:layout_width="28dp"
+						android:src="@drawable/ic_browser_147456"
+						android:layout_toRightOf="@id/aboutTextView5"/>
+
+				</RelativeLayout>
+
+			</RelativeLayout>
+
+			<RelativeLayout
+				android:layout_height="match_parent"
+				android:layout_width="wrap_content"
+				android:layout_weight="1">
+
+				<RelativeLayout
+					style="?android:attr/buttonBarButtonStyle"
+					android:background="?attr/selectableItemBackground"
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:layout_centerInParent="true"
+					android:id="@+id/反馈">
+
+					<TextView
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content"
+						android:text="反馈"
+						android:id="@+id/aboutTextView6"
+						android:layout_centerVertical="true"
+						android:textSize="18sp"/>
+
+					<ImageView
+						android:layout_height="28dp"
+						android:layout_width="28dp"
+						android:src="@drawable/ic_coolapk_147456"
+						android:layout_toRightOf="@id/aboutTextView6"/>
+
+				</RelativeLayout>
+
+			</RelativeLayout>
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_height="0dp"
+			android:layout_width="match_parent"
+			android:orientation="horizontal"
+			android:layout_weight="3">
+
+			<RelativeLayout
+				android:layout_height="match_parent"
+				android:layout_width="wrap_content"
+				android:layout_weight="1">
+
+				<RelativeLayout
+					style="?android:attr/buttonBarButtonStyle"
+					android:background="?attr/selectableItemBackground"
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:layout_centerInParent="true"
+					android:id="@+id/联系">
+
+					<TextView
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content"
+						android:text="联系"
+						android:id="@+id/aboutTextView7"
+						android:layout_centerVertical="true"
+						android:textSize="18sp"/>
+
+					<ImageView
+						android:layout_height="28dp"
+						android:layout_width="28dp"
+						android:src="@drawable/ic_qq_token_1_147456"
+						android:layout_toRightOf="@id/aboutTextView7"/>
+
+				</RelativeLayout>
+
+			</RelativeLayout>
+
+			<RelativeLayout
+				android:layout_height="match_parent"
+				android:layout_width="wrap_content"
+				android:layout_weight="1">
+
+				<RelativeLayout
+					style="?android:attr/buttonBarButtonStyle"
+					android:background="?attr/selectableItemBackground"
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:layout_centerInParent="true"
+					android:id="@+id/交流">
+
+					<TextView
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content"
+						android:text="交流"
+						android:id="@+id/aboutTextView8"
+						android:layout_centerVertical="true"
+						android:textSize="18sp"/>
+
+					<ImageView
+						android:layout_height="28dp"
+						android:layout_width="28dp"
+						android:src="@drawable/ic_qq_7_147456"
+						android:layout_toRightOf="@id/aboutTextView8"/>
+
+				</RelativeLayout>
+
+			</RelativeLayout>
+
+		</LinearLayout>
+
+	</LinearLayout>
+
+</RelativeLayout>
+
