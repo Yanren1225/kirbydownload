@@ -5,7 +5,7 @@ import android.support.v7.app.*;
 import android.view.*;
 import com.kirby.runanjing.*;
 
-public class welcome extends AppCompatActivity
+public class Launcher extends AppCompatActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -23,8 +23,8 @@ public class welcome extends AppCompatActivity
 				}
 				catch (Exception e)
 				{}
-				Intent intent=new Intent(welcome.this, MainActivity.class);
-				intent.setClass(welcome.this, MainActivity.class);
+				Intent intent=new Intent(Launcher.this, MainActivity.class);
+				intent.setClass(Launcher.this, MainActivity.class);
 				startActivity(intent);
 				finish();
 			}

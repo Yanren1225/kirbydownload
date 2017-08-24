@@ -4,14 +4,20 @@ import android.content.*;
 import android.os.*;
 import android.support.design.widget.*;
 import android.support.v4.view.*;
-import android.support.v4.widget.*;
 import android.support.v7.app.*;
 import android.support.v7.widget.*;
 import android.view.*;
+import android.widget.*;
+import cn.bmob.v3.*;
+import cn.bmob.v3.exception.*;
+import cn.bmob.v3.listener.*;
 import com.kirby.runanjing.*;
-import java.util.*;
-import com.kirby.runanjing.untils.*;
 import com.kirby.runanjing.adapter.*;
+import com.kirby.runanjing.untils.*;
+import java.util.*;
+
+import android.support.v7.widget.Toolbar;
+import android.util.*;
 public class MainActivity extends AppCompatActivity
 {
 	private TabLayout mTabLayout;
@@ -19,7 +25,7 @@ public class MainActivity extends AppCompatActivity
 
     private LayoutInflater mInflater;
     private List<String> mTitleList = new ArrayList<>();//页卡标题集合
-    private View view1, view2, view3;//页卡视图
+    private View view1, view2;//页卡视图
     private List<View> mViewList = new ArrayList<>();//页卡视图集合
 	private Console[]主机={
 		new Console("gba", R.drawable.gba),
@@ -49,6 +55,7 @@ public class MainActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+		Bmob.initialize(this, "e39c2e15ca40b358b0dcc933236c1165");
 		SharedPreferences.Editor y=getSharedPreferences("string", MODE_PRIVATE).edit();
 		y.putString("主机名称", "0");
 		y.putString("游戏或模拟器名称", "0");
@@ -63,19 +70,15 @@ public class MainActivity extends AppCompatActivity
 		mInflater = LayoutInflater.from(this);
         view1 = mInflater.inflate(R.layout.viewpager_1, null);
         view2 = mInflater.inflate(R.layout.viewpager_2, null);
-        view3 = mInflater.inflate(R.layout.viewpager_3, null);
 		//添加页卡视图
         mViewList.add(view1);
         mViewList.add(view2);
-        mViewList.add(view3);
 		//添加页卡标题
         mTitleList.add("游戏");
         mTitleList.add("模拟器");
-        mTitleList.add("我");
 		mTabLayout.setTabMode(TabLayout.MODE_FIXED);//设置tab模式，当前为系统默认模式
         mTabLayout.addTab(mTabLayout.newTab().setText(mTitleList.get(0)));//添加tab选项卡
         mTabLayout.addTab(mTabLayout.newTab().setText(mTitleList.get(1)));
-        mTabLayout.addTab(mTabLayout.newTab().setText(mTitleList.get(2)));
 		MyPagerAdapter mAdapter = new MyPagerAdapter(mViewList);
         mViewPager.setAdapter(mAdapter);//给ViewPager设置适配器
         mTabLayout.setupWithViewPager(mViewPager);//将TabLayout和ViewPager关联起来。
@@ -92,6 +95,8 @@ public class MainActivity extends AppCompatActivity
 		r1.setLayoutManager(layoutManager2);
 		adapter2 = new GameAdapter(moniqilist);
 		r1.setAdapter(adapter2);	
+
+
 	}
 	private void init()
 	{
@@ -130,9 +135,23 @@ public class MainActivity extends AppCompatActivity
 	{
 		switch (item.getItemId())
 		{
+			case R.id.login:
+				MyUser u = BmobUser.getCurrentUser(MyUser.class);
+				if (null == u)
+				{
+					Toast.makeText(MainActivity.this, "没有登录信息", Toast.LENGTH_LONG).show();
+					Intent user=new Intent(MainActivity.this, LoginActivity.class);
+					startActivity(user);
+				}
+				else
+				{
+					Intent me=new Intent(MainActivity.this, MessageActivity.class);
+					startActivity(me);
+				}
+				break;
 			case R.id.about:
-				Intent intent=new Intent(MainActivity.this, about.class);
-				startActivity(intent);
+				Intent about=new Intent(MainActivity.this, about.class);
+				startActivity(about);
 				break;
 			default:
 		}
