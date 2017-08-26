@@ -7,6 +7,7 @@ public class MessageBmob extends BmobObject
     private String title;
     private String message;
 	private String nickname;
+	
     public String getTitle()
 	{
         return title;

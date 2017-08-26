@@ -52,7 +52,7 @@ public class GameActivity extends AppCompatActivity
 		FloatingActionButton fab=(FloatingActionButton)findViewById(R.id.download);
 		if (game == "星之卡比 梦之泉DX")
 		{	
-金手指.setVisibility(View.VISIBLE);
+			金手指.setVisibility(View.VISIBLE);
 			fab.setOnClickListener(new View.OnClickListener(){
 					@Override
 					public void onClick(View v)
@@ -421,7 +421,7 @@ public class GameActivity extends AppCompatActivity
 								{
 									Intent web = new Intent();        
 									web.setAction("android.intent.action.VIEW");    
-									Uri content_url = Uri.parse("http://www.jb51.net");   
+									Uri content_url = Uri.parse("https://eyun.baidu.com/s/3qYAoXGC");   
 									web.setData(content_url);  
 									startActivity(web); 					
 								}
@@ -1137,7 +1137,7 @@ public class GameActivity extends AppCompatActivity
 							AlertDialog.Builder(GameActivity.this)
 							.setTitle(game)
 							.setMessage("咱这里只给你汉化版(o｀ε´o)")
-							.setPositiveButton("日版", new
+							.setPositiveButton("汉化", new
 							DialogInterface.OnClickListener()
 							{
 								@Override
@@ -1227,7 +1227,7 @@ public class GameActivity extends AppCompatActivity
 							AlertDialog.Builder(GameActivity.this)
 							.setTitle(game)
 							.setMessage("这东西我推荐去官网下载，不过，我还是给你一个吧o(´^｀)o")
-							.setPositiveButton("汉化版", new
+							.setPositiveButton("英文版", new
 							DialogInterface.OnClickListener()
 							{
 								@Override
@@ -1260,7 +1260,7 @@ public class GameActivity extends AppCompatActivity
 				}
 			);
 		}
-		if (game == "GB&GBC模拟器\nMy OldBoy")
+		if (game == "GB&GBC模拟器\nMy OldBoy!")
 		{
 			toolbar.setTitle(game);
 			fab.setOnClickListener(new View.OnClickListener(){
@@ -1271,7 +1271,7 @@ public class GameActivity extends AppCompatActivity
 							AlertDialog.Builder(GameActivity.this)
 							.setTitle(game)
 							.setMessage("咱这里只给你汉化版(o｀ε´o)")
-							.setPositiveButton("日版", new
+							.setPositiveButton("汉化", new
 							DialogInterface.OnClickListener()
 							{
 								@Override
@@ -1301,7 +1301,7 @@ public class GameActivity extends AppCompatActivity
 							AlertDialog.Builder(GameActivity.this)
 							.setTitle(game)
 							.setMessage("咱这里只给你汉化版(o｀ε´o)")
-							.setPositiveButton("日版", new
+							.setPositiveButton("汉化", new
 							DialogInterface.OnClickListener()
 							{
 								@Override

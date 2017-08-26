@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical">
+
+	<EditText
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:ems="10"
+		android:hint="用户名（注册以后不可更改）"
+		android:id="@+id/注册_用户名"
+		android:inputType="text"/>
+
+	<EditText
+		android:layout_height="wrap_content"
+		android:inputType="textEmailAddress"
+		android:layout_width="match_parent"
+		android:ems="10"
+		android:hint="邮箱（用于找回密码）"
+		android:id="@+id/邮箱"/>
+
+	<EditText
+		android:layout_height="wrap_content"
+		android:inputType="textPassword"
+		android:layout_width="match_parent"
+		android:ems="10"
+		android:hint="密码（支持数字和字母）"
+		android:id="@+id/注册_密码"/>
+
+	<EditText
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:ems="10"
+		android:hint="重复密码"
+		android:id="@+id/重复密码"
+		android:inputType="textPassword"/>
+
+</LinearLayout>
+

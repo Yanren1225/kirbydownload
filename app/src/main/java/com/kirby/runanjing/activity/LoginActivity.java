@@ -23,7 +23,7 @@ public class LoginActivity extends AppCompatActivity
         setContentView(R.layout.login_layout);
 		Toolbar toolbar=(Toolbar)findViewById(R.id.标题栏);
 		setSupportActionBar(toolbar);
-
+		
 		//bmob		
 		//初始化
 		Bmob.initialize(this, "e39c2e15ca40b358b0dcc933236c1165");
@@ -32,9 +32,7 @@ public class LoginActivity extends AppCompatActivity
 		Button 忘记密码=(Button)findViewById(R.id.忘记密码);
 		final EditText 登录_用户名=(EditText)findViewById(R.id.登录_用户名);
 		final EditText 登录_密码=(EditText)findViewById(R.id.登录_密码);
-
 		登录.setOnClickListener(new View.OnClickListener(){
-
 				@Override
 				public void onClick(View v)
 				{
@@ -46,7 +44,7 @@ public class LoginActivity extends AppCompatActivity
 					}
 					else
 					{
-						MyUser bu2 = new MyUser();
+						final MyUser bu2 = new MyUser();
 						bu2.setUsername(editText_用户名);
 						bu2.setPassword(editText_密码);
 						bu2.login(new SaveListener<BmobUser>() {
@@ -56,9 +54,9 @@ public class LoginActivity extends AppCompatActivity
 								{
 									if (e == null)
 									{
-										Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
-										Intent me=new Intent(LoginActivity.this, MessageActivity.class);
-										startActivity(me);
+											Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+											Intent me=new Intent(LoginActivity.this, MessageActivity.class);
+											startActivity(me);				
 									}
 									else
 									{
@@ -75,7 +73,7 @@ public class LoginActivity extends AppCompatActivity
 				public void onClick(View v)
 				{
 					LayoutInflater inflater = getLayoutInflater();
-					final View 注册_layout = inflater.inflate(R.layout.dialog, null);
+					final View 注册_layout = inflater.inflate(R.layout.dialog_register, null);
 					new AlertDialog.Builder(LoginActivity.this)
 						.setTitle("注册")
 						.setView(注册_layout)

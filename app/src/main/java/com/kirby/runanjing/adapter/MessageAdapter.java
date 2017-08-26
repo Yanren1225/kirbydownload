@@ -19,7 +19,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 		TextView 标题;
 		TextView 内容;
 		TextView 时间;
-		TextView id;
+
 		public ViewHolder(View view)
 		{
 			super(view);
@@ -28,7 +28,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 			标题 = (TextView)view.findViewById(R.id.标题);
 			内容 = (TextView)view.findViewById(R.id.内容);
 			时间 = (TextView)view.findViewById(R.id.时间);
-			id = (TextView)view.findViewById(R.id.id);	
 		}
 	}
 	public MessageAdapter(List<Mess>messlist)
@@ -54,7 +53,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 		holder.标题.setText(mess.getTitle());
 		holder.内容.setText(mess.getMessage());
 		holder.时间.setText(mess.getTime());
-		holder.id.setText(mess.getId());
 	}
 
 	@Override

@@ -7,14 +7,12 @@ public class Mess
 	private String title;
 	private String message;
 	private String time;
-	private String id;
-	public Mess(String name, String title, String message, String time, String id)
+	public Mess(String name, String title, String message, String time)
 	{
 		this.name = name;
 		this.title = title;
 		this.time = time;
 		this.message = message;
-		this.id = id;
 	}
 	public String getName()
 	{
@@ -31,9 +29,5 @@ public class Mess
 	public String getMessage()
 	{
 		return message;
-	}
-	public String getId()
-	{
-		return id;
 	}
 }

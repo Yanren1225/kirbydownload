@@ -1,6 +1,7 @@
 package com.kirby.runanjing.activity;
 
 import android.app.*;
+import android.graphics.*;
 import android.os.*;
 import android.support.design.widget.*;
 import android.support.v4.widget.*;
@@ -16,7 +17,11 @@ import com.kirby.runanjing.*;
 import com.kirby.runanjing.adapter.*;
 import com.kirby.runanjing.untils.*;
 import java.util.*;
-import android.graphics.*;
+
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.Toolbar;
+import android.content.*;
+
 
 public class MessageActivity extends AppCompatActivity
 {
@@ -27,14 +32,20 @@ public class MessageActivity extends AppCompatActivity
 	private MessageAdapter adapter;
 
 	private RecyclerView re;
+
+	private String email;
+
+	private String id;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.message_layout);
+		Toolbar toolbar=(Toolbar)findViewById(R.id.标题栏);
+		setSupportActionBar(toolbar);
 		Bmob.initialize(this, "e39c2e15ca40b358b0dcc933236c1165");
 		getMessage();
-	re=(RecyclerView)findViewById(R.id.留言);
+	    re = (RecyclerView)findViewById(R.id.留言);
 		GridLayoutManager layoutManager=new GridLayoutManager(this, 1);
 		re.setLayoutManager(layoutManager);
 		adapter = new MessageAdapter(messlist);	
@@ -46,11 +57,11 @@ public class MessageActivity extends AppCompatActivity
 				public void onRefresh()
 				{
 					getMessage();
-					refreshMessage();
 				}
 			});
 		MyUser u = BmobUser.getCurrentUser(MyUser.class);
 		name = u.getUsername();
+		toolbar.setSubtitle(name);
 		FloatingActionButton 编写=(FloatingActionButton)findViewById(R.id.FAB_编写);
 		编写.setOnClickListener(new View.OnClickListener(){
 
@@ -96,7 +107,7 @@ public class MessageActivity extends AppCompatActivity
 															@Override
 															public void onRefresh()
 															{
-																refreshMessage();
+															getMessage();
 															}
 														});
 													Toast.makeText(MessageActivity.this, "发送成功：" + objectId, Toast.LENGTH_SHORT).show();
@@ -119,6 +130,7 @@ public class MessageActivity extends AppCompatActivity
 	{
 		messlist.clear();
 		BmobQuery<MessageBmob> query=new BmobQuery<MessageBmob>();
+		query.order("-createdAt");
 		query.findObjects(new FindListener<MessageBmob>() {
 				@Override
 				public void done(List<MessageBmob> list, BmobException e)
@@ -147,33 +159,188 @@ public class MessageActivity extends AppCompatActivity
 			{
                 case 0:
                     List<MessageBmob> list= (List<MessageBmob>)msg.obj;
-					//Toast.makeText(MessageActivity.this, "查询成功：共" + list.size() + "条数据。", Toast.LENGTH_SHORT).show();
 					for (MessageBmob m : list)
 					{
 						String 用户名=m.getNickname();
 						String 标题=m.getTitle();
 						String 内容=m.getMessage();
-						String id=m.getObjectId();
 						String 时间=m.getCreatedAt();
-						Mess mess=new Mess(用户名, 标题, 内容, 时间, id);
+						Mess mess=new Mess(用户名, 标题, 内容, 时间);
 						messlist.add(mess);
-						Toast.makeText(MessageActivity.this, "" + messlist, Toast.LENGTH_SHORT).show();
 						re.setAdapter(adapter);
-					}
-					
+					}			
+					刷新.setRefreshing(false);
                     break;
             }
         }
     };
-	private void refreshMessage()
+	public boolean onCreateOptionsMenu(Menu menu)
 	{
-		new Thread(new Runnable() {
-				public void run()
-				{		
-					adapter.notifyDataSetChanged();
-						刷新.setRefreshing(false);
-				}			
-			}).start();
+        getMenuInflater().inflate(R.menu.toolbar2, menu);
+        return true;
+    }
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item)
+	{
+		switch (item.getItemId())
+		{
+			case R.id.account:
+				final MyUser u = BmobUser.getCurrentUser(MyUser.class);
+				name = u.getUsername();
+				email = u.getEmail();
+				id = u.getObjectId();
+				LayoutInflater inflater = getLayoutInflater();
+				final View user_layout = inflater.inflate(R.layout.userdia_layout, null);
+				TextView 用户名_User=(TextView)user_layout.findViewById(R.id.用户名_user);
+				TextView 邮箱_User=(TextView)user_layout.findViewById(R.id.邮箱_user);
+				用户名_User.setText("用户名:" + name);
+				邮箱_User.setText("邮箱:" + email);
+				new AlertDialog.Builder(MessageActivity.this)
+					.setTitle("用户信息")
+					.setView(user_layout)
+					.setPositiveButton("修改邮箱", new
+					DialogInterface.OnClickListener()
+					{
+						@Override
+						public void onClick(DialogInterface dialog, int which)
+						{
+							LayoutInflater lay_1 = getLayoutInflater();
+							final View modification_email_layout = lay_1.inflate(R.layout.dialog_modification_email, null);
+							new AlertDialog.Builder(MessageActivity.this)
+								.setTitle("修改邮箱(成功后需要重新登录)")
+								.setView(modification_email_layout) 
+								.setPositiveButton("确定", new
+								DialogInterface.OnClickListener()
+								{
+									@Override
+									public void onClick(DialogInterface dialog, int which)
+									{
+										EditText 修改邮箱_原邮箱=(EditText)modification_email_layout.findViewById(R.id.修改邮箱_原邮箱);
+										EditText 修改邮箱_新邮箱=(EditText)modification_email_layout.findViewById(R.id.修改邮箱_新邮箱);
+										String edit_原邮箱=修改邮箱_原邮箱.getText().toString();
+										String edit_新邮箱=修改邮箱_新邮箱.getText().toString();
+										if (edit_原邮箱.isEmpty() || edit_新邮箱.isEmpty())
+										{
+											Toast.makeText(MessageActivity.this, "不能为空！", Toast.LENGTH_SHORT).show();
+										}
+										else
+										{
+											if (email.equals(edit_原邮箱))
+											{
+												MyUser 邮箱=new MyUser();
+												邮箱.setEmail(edit_新邮箱);
+												邮箱.update(id, new UpdateListener() {
+
+														@Override
+														public void done(BmobException e)
+														{
+															if (e == null)
+															{
+																Toast.makeText(MessageActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
+																u.logOut();
+																Intent 修改邮箱=new Intent(MessageActivity.this, LoginActivity.class);
+																startActivity(修改邮箱);
+															}
+															else
+															{
+																Toast.makeText(MessageActivity.this, "修改失败：" + e.getMessage(), Toast.LENGTH_SHORT).show();
+															}
+														}
+
+													});
+											}
+											else
+											{
+												Toast.makeText(MessageActivity.this, "原邮箱出错", Toast.LENGTH_SHORT).show();
+											}
+										}
+									}
+								}
+							)					
+								.setNegativeButton("取消", null)
+								.show();
+						}
+					}
+				)
+					.setNegativeButton("修改密码", new DialogInterface.OnClickListener()
+					{
+						@Override
+						public void onClick(DialogInterface dialog, int which)
+						{
+							LayoutInflater lay_2 = getLayoutInflater();
+							final View modification_password_layout = lay_2.inflate(R.layout.dialog_modification_password, null);
+							new AlertDialog.Builder(MessageActivity.this)
+								.setTitle("修改密码(成功后需要重新登录)")
+								.setView(modification_password_layout) 
+								.setPositiveButton("确定", new
+								DialogInterface.OnClickListener()
+								{
+
+									private int text;
+									@Override
+									public void onClick(DialogInterface dialog, int which)
+									{
+										EditText 修改密码_原密码=(EditText)modification_password_layout.findViewById(R.id.修改密码_原密码);
+										EditText 修改密码_新密码=(EditText)modification_password_layout.findViewById(R.id.修改密码_新密码);
+										EditText 修改密码_验证=(EditText)modification_password_layout.findViewById(R.id.修改密码_验证);
+										String edit_原密码=修改密码_原密码.getText().toString();
+										String edit_新密码=修改密码_新密码.getText().toString();
+										String edit_验证=修改密码_验证.getText().toString();
+										if (edit_原密码.isEmpty() || edit_新密码.isEmpty() || edit_验证.isEmpty())
+										{
+											Toast.makeText(MessageActivity.this, "不能为空！", Toast.LENGTH_SHORT).show();
+										}
+										else
+										{
+											if (edit_新密码.equals(edit_验证))
+											{
+												final MyUser pas = new MyUser();
+												pas.updateCurrentUserPassword(edit_原密码, edit_新密码, new UpdateListener(){
+														@Override
+														public void done(BmobException e)
+														{
+															if (e == null)
+															{
+																Toast.makeText(MessageActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
+																u.logOut();
+																Intent 修改密码=new Intent(MessageActivity.this, LoginActivity.class);
+																startActivity(修改密码);
+															}
+															else
+															{
+																Toast.makeText(MessageActivity.this, "修改失败：" + e.getMessage(), Toast.LENGTH_SHORT).show();
+															}
+														}
+													});
+											}
+											else
+											{
+												Toast.makeText(MessageActivity.this, "两次输入的新密码不同", Toast.LENGTH_SHORT).show();
+											}
+										}
+									}
+								}
+							)					
+								.setNegativeButton("取消", null)
+								.show();
+						}
+					}
+				)
+					.setNeutralButton("账号登出", new DialogInterface.OnClickListener()
+					{
+						@Override
+						public void onClick(DialogInterface dialog, int which)
+						{
+							u.logOut();
+							Toast.makeText(MessageActivity.this, "登出成功", Toast.LENGTH_SHORT).show();
+							Intent 登出=new Intent(MessageActivity.this, MainActivity.class);
+							startActivity(登出);
+						}
+					}
+				).show();
+				break;
+			default:
+		}
+		return true;
 	}
-	
 }
