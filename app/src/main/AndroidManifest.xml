@@ -27,7 +27,7 @@
 			android:name=".activity.GameActivity" 
 			android:theme="@style/GameActivityTheme"/>
 		<activity
-			android:name=".activity.about"
+			android:name=".activity.AboutActivity"
 			android:label="关于"/>
 		<activity
 			android:name=".activity.JszActivity"

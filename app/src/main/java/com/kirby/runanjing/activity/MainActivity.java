@@ -55,16 +55,19 @@ public class MainActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+		//初始化bmob
 		Bmob.initialize(this, "e39c2e15ca40b358b0dcc933236c1165");
+		//跳转GameListActivity要用的数据
 		SharedPreferences.Editor y=getSharedPreferences("string", MODE_PRIVATE).edit();
 		y.putString("主机名称", "0");
 		y.putString("游戏或模拟器名称", "0");
 		y.apply();
-
+		//配置toolbar
 		final Toolbar toolbar=(Toolbar)findViewById(R.id.标题栏);
 		setSupportActionBar(toolbar);
-		init();	
-		init2();
+		init();	//主机列表
+		init2();//模拟器列表
+		//实例化viewpager需要的东西
 		mViewPager = (ViewPager) findViewById(R.id.viewpager);
         mTabLayout = (TabLayout) findViewById(R.id.tabLayout);
 		mInflater = LayoutInflater.from(this);
@@ -83,24 +86,24 @@ public class MainActivity extends AppCompatActivity
         mViewPager.setAdapter(mAdapter);//给ViewPager设置适配器
         mTabLayout.setupWithViewPager(mViewPager);//将TabLayout和ViewPager关联起来。
         mTabLayout.setTabsFromPagerAdapter(mAdapter);//给Tabs设置适配器
+		//主机列表和模拟器列表需要的
 		RecyclerView r = (RecyclerView) view1.findViewById(R.id.主机列表); 
 		RecyclerView r1 = (RecyclerView) view2.findViewById(R.id.模拟器列表);
-		//final RecyclerView r=(RecyclerView)findViewById(R.id.主机列表);
+		//主机列表配置
 		GridLayoutManager layoutManager=new GridLayoutManager(this, 1);
 		r.setLayoutManager(layoutManager);
 		adapter = new ConsoleAdapter(consolelist);
-		r.setAdapter(adapter);	
-
+		r.setAdapter(adapter);
+		//模拟器列表配置
 		GridLayoutManager layoutManager2=new GridLayoutManager(this, 1);
 		r1.setLayoutManager(layoutManager2);
 		adapter2 = new GameAdapter(moniqilist);
 		r1.setAdapter(adapter2);	
-
-
 	}
 	private void init()
 	{
-		int index = 0;
+		int index = 0;//定义数值
+		//遍历
 		while (index < 主机.length)
 		{       	
 			consolelist.add(主机[index++]);
@@ -108,7 +111,8 @@ public class MainActivity extends AppCompatActivity
 	}
 	private void init2()
 	{
-		int in = 0;
+		int in = 0;//定义数值
+		//遍历
 		while (in < 模拟器.length)
 		{       	
 			moniqilist.add(模拟器[in++]);
@@ -116,7 +120,7 @@ public class MainActivity extends AppCompatActivity
 	}
 
 	@Override
-	protected void onDestroy()
+	protected void onDestroy()//在退出程序时恢复数据
 	{	
 		super.onDestroy();
 		SharedPreferences.Editor y=getSharedPreferences("string", MODE_PRIVATE).edit();
@@ -124,39 +128,44 @@ public class MainActivity extends AppCompatActivity
 		y.putString("游戏或模拟器名称", "0");
 		y.apply();
     }
-
+	//初始化toolbar菜单
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
         getMenuInflater().inflate(R.menu.toolbar, menu);
         return true;
     }
 	@Override
+	//获取toolbar菜单id执行事件
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
 		switch (item.getItemId())
 		{
 			case R.id.login:
-				MyUser u = BmobUser.getCurrentUser(MyUser.class);
+				MyUser u = BmobUser.getCurrentUser(MyUser.class);//检验用户数据是否存在
 				if (null == u)
 				{
+					//不存在
 					Toast.makeText(MainActivity.this, "没有登录信息", Toast.LENGTH_LONG).show();
 					Intent user=new Intent(MainActivity.this, LoginActivity.class);
 					startActivity(user);
 				}
 				else
 				{
+					//存在
 					Intent me=new Intent(MainActivity.this, MessageActivity.class);
 					startActivity(me);
 				}
 				break;
 			case R.id.about:
-				Intent about=new Intent(MainActivity.this, about.class);
+				//跳转AboutActivity
+				Intent about=new Intent(MainActivity.this, AboutActivity.class);
 				startActivity(about);
 				break;
 			default:
 		}
 		return true;
 	}
+	//viewpager适配器
 	class MyPagerAdapter extends PagerAdapter
 	{
         private List<View> mViewList;

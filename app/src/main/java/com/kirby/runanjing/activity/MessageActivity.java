@@ -28,46 +28,48 @@ public class MessageActivity extends AppCompatActivity
 	private SwipeRefreshLayout 刷新;
 	private List<Mess> messlist = new ArrayList<>();
 	private String name;
-
 	private MessageAdapter adapter;
-
 	private RecyclerView re;
-
 	private String email;
-
 	private String id;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.message_layout);
+		//配置toolbar
 		Toolbar toolbar=(Toolbar)findViewById(R.id.标题栏);
 		setSupportActionBar(toolbar);
+		//初始化Bmob
 		Bmob.initialize(this, "e39c2e15ca40b358b0dcc933236c1165");
+		//使用Bmob从服务器获取数据
 		getMessage();
-	    re = (RecyclerView)findViewById(R.id.留言);
+	    //设置显示留言的列表
+		re = (RecyclerView)findViewById(R.id.留言);
 		GridLayoutManager layoutManager=new GridLayoutManager(this, 1);
 		re.setLayoutManager(layoutManager);
 		adapter = new MessageAdapter(messlist);	
+		//刷新数据
 		刷新 = (SwipeRefreshLayout)findViewById(R.id.刷新);
 		刷新.setColorSchemeColors(Color.BLUE, Color.RED, Color.YELLOW);
-		//刷新.setRefreshing(true);
 		刷新.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener(){
 				@Override
 				public void onRefresh()
 				{
+					//刷新
 					getMessage();
 				}
 			});
+		//使用BmobUser类获取部分用户数据
 		MyUser u = BmobUser.getCurrentUser(MyUser.class);
 		name = u.getUsername();
 		toolbar.setSubtitle(name);
 		FloatingActionButton 编写=(FloatingActionButton)findViewById(R.id.FAB_编写);
 		编写.setOnClickListener(new View.OnClickListener(){
-
 				@Override
 				public void onClick(View v)
 				{
+					//实例化布局
 					final Dialog fullscreenDialog = new Dialog(MessageActivity.this, R.style.DialogFullscreen);
 					fullscreenDialog.setContentView(R.layout.dialog_fullscreen);
 					ImageView 关闭 = (ImageView) fullscreenDialog.findViewById(R.id.关闭);
@@ -82,17 +84,20 @@ public class MessageActivity extends AppCompatActivity
 					发送.setOnClickListener(new View.OnClickListener() {
 							@Override
 							public void onClick(View v)
-							{		
+							{	
+							//获取字符串转化为string数据
 								EditText 标题=(EditText)fullscreenDialog.findViewById(R.id.标题_编辑);
 								EditText 内容=(EditText)fullscreenDialog.findViewById(R.id.内容_编辑);
 								String edit_标题=标题.getText().toString();
 								String edit_内容=内容.getText().toString();
+								//判断是否为空
 								if (edit_标题.isEmpty() || edit_内容.isEmpty())
 								{
 									Toast.makeText(MessageActivity.this, "内容或标题不能为空！", Toast.LENGTH_SHORT).show();
 								}
 								else
 								{
+									//自定义MessBmob发送留言
 									MessageBmob mess = new MessageBmob();
 									mess.setTitle(edit_标题);
 									mess.setMessage(edit_内容);
@@ -128,9 +133,10 @@ public class MessageActivity extends AppCompatActivity
 	}
 	private void getMessage()
 	{
-		messlist.clear();
+		messlist.clear();//清空列表
+		//使用BmobQuery获取留言数据
 		BmobQuery<MessageBmob> query=new BmobQuery<MessageBmob>();
-		query.order("-createdAt");
+		query.order("-createdAt");//时间降序排列
 		query.findObjects(new FindListener<MessageBmob>() {
 				@Override
 				public void done(List<MessageBmob> list, BmobException e)
@@ -161,14 +167,18 @@ public class MessageActivity extends AppCompatActivity
                     List<MessageBmob> list= (List<MessageBmob>)msg.obj;
 					for (MessageBmob m : list)
 					{
+						//从获取的数据中提取需要的数据
 						String 用户名=m.getNickname();
 						String 标题=m.getTitle();
 						String 内容=m.getMessage();
 						String 时间=m.getCreatedAt();
 						Mess mess=new Mess(用户名, 标题, 内容, 时间);
+						//将查询到的数据依次添加到列表
 						messlist.add(mess);
+						//设置适配器
 						re.setAdapter(adapter);
 					}			
+					//刷新回调
 					刷新.setRefreshing(false);
                     break;
             }

@@ -18,18 +18,20 @@ public class GameListActivity extends AppCompatActivity
     {
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.gamelist_layout);
+		//配置toolbar
 		Toolbar toolbar=(Toolbar)findViewById(R.id.标题栏);
 		setSupportActionBar(toolbar);
-		
+		//配置列表
 		RecyclerView r=(RecyclerView)findViewById(R.id.主机列表);
 		GridLayoutManager layoutManager=new GridLayoutManager(this, 1);
 		r.setLayoutManager(layoutManager);
 		adapter = new GameAdapter(gamelist);
 		r.setAdapter(adapter);
-		
+		//获取数据
 		SharedPreferences console=getSharedPreferences("string", Context.MODE_WORLD_READABLE);
 		String game= console.getString("主机名称", "");
 		toolbar.setSubtitle(game);
+		//判断数据然后处理列表
 		if (game == "gba")
 		{	
 			Console[] 游戏 = {

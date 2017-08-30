@@ -22,19 +22,22 @@ public class GameActivity extends AppCompatActivity
 	{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_layout);
-
+		//得到从GameListActivity和MainActivity的数据
         Intent intent = getIntent();
         String GameName = intent.getStringExtra(GAME_NAME);
         int GameImageId = intent.getIntExtra(GAME_IMAGE_ID, 0);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+      //配置toolbar
+		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.gameactivitylayoutCollapsingToolbarLayout);
         ImageView ImageView = (ImageView) findViewById(R.id.gameactivitylayoutImageView);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null)
+      //设置返回按钮
+		if (actionBar != null)
 		{
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+		//进入JszActivity
 		RelativeLayout 金手指=(RelativeLayout)findViewById(R.id.金手指);
 		金手指.setOnClickListener(new View.OnClickListener(){
 				@Override
@@ -50,6 +53,7 @@ public class GameActivity extends AppCompatActivity
 		SharedPreferences console=getSharedPreferences("string", Context.MODE_WORLD_READABLE);
 		final String game= console.getString("游戏或模拟器名称", "");
 		FloatingActionButton fab=(FloatingActionButton)findViewById(R.id.download);
+		//判断game数据并处理点击事件
 		if (game == "星之卡比 梦之泉DX")
 		{	
 			金手指.setVisibility(View.VISIBLE);

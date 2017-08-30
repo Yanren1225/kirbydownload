@@ -11,7 +11,7 @@ import com.kirby.runanjing.*;
 
 import android.support.v7.widget.Toolbar;
 
-public class about extends AppCompatActivity
+public class AboutActivity extends AppCompatActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)
