@@ -32,19 +32,68 @@
 		<android.support.v7.widget.RecyclerView
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:id="@+id/留言"
-			/>
-		
+			android:id="@+id/留言"/>
+
 	</android.support.v4.widget.SwipeRefreshLayout>
 
-	<android.support.design.widget.FloatingActionButton
-		android:id="@+id/FAB_编写"
-		android:src="@drawable/pencil"
-		android:layout_height="wrap_content"
-		android:layout_width="wrap_content"
-		android:layout_margin="16dp"
-		android:layout_alignParentBottom="true"
-		android:layout_alignParentRight="true"/>
+	<RelativeLayout
+		android:layout_height="224dp"
+		android:layout_width="match_parent"
+		android:background="#EEEEEE"
+		android:elevation="8dp"
+		android:visibility="gone"
+		android:id="@+id/edit">
 
+		<EditText
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:hint="内容（100字）"
+			android:maxLength="200"
+			android:id="@+id/内容_编辑"/>
+
+		<ImageView
+			android:clickable="true"
+			android:padding="4dp"
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:src="@drawable/send"
+			android:id="@+id/发送"
+			android:layout_gravity="right|center_vertical"
+			android:layout_marginRight="12dp"
+			android:layout_alignParentRight="true"
+			android:layout_centerVertical="true"
+			android:layout_alignParentBottom="true"/>
+
+	</RelativeLayout>
+	<com.truizlop.fabreveallayout.FABRevealLayout
+		android:id="@+id/fab_reveal_layout"
+		android:layout_width="match_parent"
+		android:layout_height="224dp"
+		android:layout_alignParentBottom="true"
+		android:layout_alignParentRight="true"
+		android:layout_alignParentEnd="true">
+
+		<android.support.design.widget.FloatingActionButton
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			app:backgroundTint="#2196F3"/>
+
+		<RelativeLayout
+			android:id="@+id/main_view"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+
+		</RelativeLayout>
+
+		<RelativeLayout
+			android:id="@+id/secondary_view"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:background="#2196F3">
+
+		</RelativeLayout>
+
+	</com.truizlop.fabreveallayout.FABRevealLayout>
+	
 </RelativeLayout>
 

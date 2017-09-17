@@ -1,6 +1,8 @@
 package com.kirby.runanjing.activity;
 
+import android.animation.*;
 import android.app.*;
+import android.content.*;
 import android.graphics.*;
 import android.os.*;
 import android.support.design.widget.*;
@@ -9,6 +11,7 @@ import android.support.v7.app.*;
 import android.support.v7.widget.*;
 import android.util.*;
 import android.view.*;
+import android.view.inputmethod.*;
 import android.widget.*;
 import cn.bmob.v3.*;
 import cn.bmob.v3.exception.*;
@@ -18,10 +21,8 @@ import com.kirby.runanjing.adapter.*;
 import com.kirby.runanjing.untils.*;
 import java.util.*;
 
-import android.support.v7.app.AlertDialog;
+import android.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
-import android.content.*;
-
 
 public class MessageActivity extends AppCompatActivity
 {
@@ -32,6 +33,12 @@ public class MessageActivity extends AppCompatActivity
 	private RecyclerView re;
 	private String email;
 	private String id;
+
+	private FloatingActionButton 编写;
+
+	private RelativeLayout edit;
+
+	private EditText edittext;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -46,8 +53,9 @@ public class MessageActivity extends AppCompatActivity
 		getMessage();
 	    //设置显示留言的列表
 		re = (RecyclerView)findViewById(R.id.留言);
-		GridLayoutManager layoutManager=new GridLayoutManager(this, 1);
-		re.setLayoutManager(layoutManager);
+		StaggeredGridLayoutManager stagger=new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+		//GridLayoutManager layoutManager=new GridLayoutManager(this, 1);
+		re.setLayoutManager(stagger);
 		adapter = new MessageAdapter(messlist);	
 		//刷新数据
 		刷新 = (SwipeRefreshLayout)findViewById(R.id.刷新);
@@ -64,42 +72,43 @@ public class MessageActivity extends AppCompatActivity
 		MyUser u = BmobUser.getCurrentUser(MyUser.class);
 		name = u.getUsername();
 		toolbar.setSubtitle(name);
-		FloatingActionButton 编写=(FloatingActionButton)findViewById(R.id.FAB_编写);
+	//	编写 = (FloatingActionButton)findViewById(R.id.fab_reveal_layout);
 		编写.setOnClickListener(new View.OnClickListener(){
+				private boolean 状态_;
+
+				private RelativeLayout edit;
 				@Override
-				public void onClick(View v)
-				{
-					//实例化布局
-					final Dialog fullscreenDialog = new Dialog(MessageActivity.this, R.style.DialogFullscreen);
-					fullscreenDialog.setContentView(R.layout.dialog_fullscreen);
-					ImageView 关闭 = (ImageView) fullscreenDialog.findViewById(R.id.关闭);
-					ImageView 发送=(ImageView) fullscreenDialog.findViewById(R.id.发送);
-					关闭.setOnClickListener(new View.OnClickListener() {
-							@Override
-							public void onClick(View v)
-							{
-								fullscreenDialog.dismiss();
-							}
-						});
+				public void onClick(View v)			
+				{       
+					//处理发送
+					SharedPreferences 状态=getSharedPreferences("boolean", Context.MODE_WORLD_READABLE);
+					状态_ = 状态.getBoolean("send_状态", false);
+					if (状态_ == false)
+					{
+						openSend();
+					}
+					else
+					{
+						closeSend();
+					}
+					ImageView 发送=(ImageView) findViewById(R.id.发送);
 					发送.setOnClickListener(new View.OnClickListener() {
 							@Override
 							public void onClick(View v)
 							{	
-							//获取字符串转化为string数据
-								EditText 标题=(EditText)fullscreenDialog.findViewById(R.id.标题_编辑);
-								EditText 内容=(EditText)fullscreenDialog.findViewById(R.id.内容_编辑);
-								String edit_标题=标题.getText().toString();
+								closeSend();
+								//获取字符串转化为string数据
+								EditText 内容=(EditText)findViewById(R.id.内容_编辑);
 								String edit_内容=内容.getText().toString();
 								//判断是否为空
-								if (edit_标题.isEmpty() || edit_内容.isEmpty())
+								if (edit_内容.isEmpty())
 								{
-									Toast.makeText(MessageActivity.this, "内容或标题不能为空！", Toast.LENGTH_SHORT).show();
+									Toast.makeText(MessageActivity.this, "内容不能为空！", Toast.LENGTH_SHORT).show();
 								}
 								else
 								{
 									//自定义MessBmob发送留言
 									MessageBmob mess = new MessageBmob();
-									mess.setTitle(edit_标题);
 									mess.setMessage(edit_内容);
 									mess.setNickname(name);
 									mess.save(new SaveListener<String>() {
@@ -107,14 +116,8 @@ public class MessageActivity extends AppCompatActivity
 											public void done(String objectId, BmobException e)
 											{
 												if (e == null)
-												{
-													刷新.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener(){
-															@Override
-															public void onRefresh()
-															{
-															getMessage();
-															}
-														});
+												{			
+													getMessage();
 													Toast.makeText(MessageActivity.this, "发送成功：" + objectId, Toast.LENGTH_SHORT).show();
 												}
 												else
@@ -124,13 +127,48 @@ public class MessageActivity extends AppCompatActivity
 											}
 										});
 								}
-								fullscreenDialog.dismiss();
 							}
 						});
-					fullscreenDialog.show();
 				}
 			});
 	}
+	private void openSend()
+	{
+	    edit = (RelativeLayout)findViewById(R.id.edit);
+		ObjectAnimator animator = ObjectAnimator.ofFloat(edit, "alpha", 0f, 1f);
+		animator.setDuration(500);//时间0.5s
+		edit.setVisibility(View.VISIBLE);
+		ObjectAnimator animator2 = ObjectAnimator.ofFloat(编写, "rotation", 0f, 230f);
+		animator2.setDuration(500);
+		AnimatorSet set = new AnimatorSet();
+		set.play(animator).with(animator2);
+		set.start();
+		SharedPreferences.Editor y=getSharedPreferences("boolean", MODE_PRIVATE).edit().putBoolean("send_状态", true);
+		y.apply();
+		edittext = (EditText)findViewById(R.id.内容_编辑);
+	    edittext.setFocusable(true);  
+		edittext.setFocusableInTouchMode(true);  
+		edittext.requestFocus();  
+		InputMethodManager inputManager =  
+			(InputMethodManager)edittext.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);  
+		inputManager.showSoftInput(edittext, 0);  
+	}
+	private void closeSend()
+	{
+		ObjectAnimator animator = ObjectAnimator.ofFloat(edit, "alpha", 1f, 0f);
+		animator.setDuration(500);//时间0.5s
+		edit.setVisibility(View.GONE);
+		ObjectAnimator animator2 = ObjectAnimator.ofFloat(编写, "rotation", 230f, 0f);
+		animator2.setDuration(500);
+		AnimatorSet set = new AnimatorSet();
+		set.play(animator).with(animator2);
+		set.start();
+		SharedPreferences.Editor y=getSharedPreferences("boolean", MODE_PRIVATE).edit().putBoolean("send_状态", false);
+		y.apply();
+		InputMethodManager inputManager =  
+			(InputMethodManager)edittext.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);  
+		inputManager.hideSoftInputFromInputMethod(edittext.getWindowToken(), 0);
+	}		
 	private void getMessage()
 	{
 		messlist.clear();//清空列表
@@ -169,10 +207,9 @@ public class MessageActivity extends AppCompatActivity
 					{
 						//从获取的数据中提取需要的数据
 						String 用户名=m.getNickname();
-						String 标题=m.getTitle();
 						String 内容=m.getMessage();
 						String 时间=m.getCreatedAt();
-						Mess mess=new Mess(用户名, 标题, 内容, 时间);
+						Mess mess=new Mess(用户名, 内容, 时间);
 						//将查询到的数据依次添加到列表
 						messlist.add(mess);
 						//设置适配器
@@ -184,6 +221,13 @@ public class MessageActivity extends AppCompatActivity
             }
         }
     };
+	@Override
+	protected void onDestroy()//在退出程序时恢复数据
+	{	
+		super.onDestroy();
+		SharedPreferences.Editor y=getSharedPreferences("boolean", MODE_PRIVATE).edit().putBoolean("send_状态", false);
+		y.apply();
+    }
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
         getMenuInflater().inflate(R.menu.toolbar2, menu);
@@ -199,15 +243,9 @@ public class MessageActivity extends AppCompatActivity
 				name = u.getUsername();
 				email = u.getEmail();
 				id = u.getObjectId();
-				LayoutInflater inflater = getLayoutInflater();
-				final View user_layout = inflater.inflate(R.layout.userdia_layout, null);
-				TextView 用户名_User=(TextView)user_layout.findViewById(R.id.用户名_user);
-				TextView 邮箱_User=(TextView)user_layout.findViewById(R.id.邮箱_user);
-				用户名_User.setText("用户名:" + name);
-				邮箱_User.setText("邮箱:" + email);
 				new AlertDialog.Builder(MessageActivity.this)
 					.setTitle("用户信息")
-					.setView(user_layout)
+					.setMessage("用户名:" + name + "\n邮箱:" + email)
 					.setPositiveButton("修改邮箱", new
 					DialogInterface.OnClickListener()
 					{

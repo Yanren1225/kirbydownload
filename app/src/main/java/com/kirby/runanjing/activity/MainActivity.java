@@ -18,6 +18,7 @@ import java.util.*;
 
 import android.support.v7.widget.Toolbar;
 import android.util.*;
+import android.content.pm.*;
 public class MainActivity extends AppCompatActivity
 {
 	private TabLayout mTabLayout;
@@ -50,6 +51,9 @@ public class MainActivity extends AppCompatActivity
 		new Console("FC模拟器\nNES.emu", R.drawable.moniqi_fc),
 	}; 
 	private GameAdapter adapter2;
+
+	
+	private long firstTime;
 	@Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -58,10 +62,7 @@ public class MainActivity extends AppCompatActivity
 		//初始化bmob
 		Bmob.initialize(this, "e39c2e15ca40b358b0dcc933236c1165");
 		//跳转GameListActivity要用的数据
-		SharedPreferences.Editor y=getSharedPreferences("string", MODE_PRIVATE).edit();
-		y.putString("主机名称", "0");
-		y.putString("游戏或模拟器名称", "0");
-		y.apply();
+		setApply();
 		//配置toolbar
 		final Toolbar toolbar=(Toolbar)findViewById(R.id.标题栏);
 		setSupportActionBar(toolbar);
@@ -100,6 +101,8 @@ public class MainActivity extends AppCompatActivity
 		adapter2 = new GameAdapter(moniqilist);
 		r1.setAdapter(adapter2);	
 	}
+
+
 	private void init()
 	{
 		int index = 0;//定义数值
@@ -118,7 +121,13 @@ public class MainActivity extends AppCompatActivity
 			moniqilist.add(模拟器[in++]);
 		}
 	}
-
+	private void setApply()
+	{
+		SharedPreferences.Editor y=getSharedPreferences("string", MODE_PRIVATE).edit();
+		y.putString("主机名称", "0");
+		y.putString("游戏或模拟器名称", "0");
+		y.apply();
+	}
 	@Override
 	protected void onDestroy()//在退出程序时恢复数据
 	{	
@@ -128,6 +137,17 @@ public class MainActivity extends AppCompatActivity
 		y.putString("游戏或模拟器名称", "0");
 		y.apply();
     }
+	//双击
+	@Override
+    public void onBackPressed() {
+        long secondTime = System.currentTimeMillis();
+        if (secondTime - firstTime > 2000) {
+			Snackbar.make(mTabLayout, "再按一次退出程序", Snackbar.LENGTH_SHORT).show();
+           firstTime = secondTime;
+        } else {
+            System.exit(0);
+        }
+		}
 	//初始化toolbar菜单
 	public boolean onCreateOptionsMenu(Menu menu)
 	{

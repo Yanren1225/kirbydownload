@@ -5,7 +5,8 @@
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
 	android:orientation="vertical">
-<android.support.design.widget.AppBarLayout
+
+	<android.support.design.widget.AppBarLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:id="@+id/mainAppBarLayout1">
@@ -212,12 +213,12 @@
 					android:layout_height="wrap_content"
 					android:layout_width="wrap_content"
 					android:layout_centerInParent="true"
-					android:id="@+id/联系">
+					android:id="@+id/交流">
 
 					<TextView
 						android:layout_height="wrap_content"
 						android:layout_width="wrap_content"
-						android:text="联系"
+						android:text="交流"
 						android:id="@+id/aboutTextView7"
 						android:layout_centerVertical="true"
 						android:textSize="18sp"/>
@@ -243,12 +244,12 @@
 					android:layout_height="wrap_content"
 					android:layout_width="wrap_content"
 					android:layout_centerInParent="true"
-					android:id="@+id/交流">
+					android:id="@+id/开源">
 
 					<TextView
 						android:layout_height="wrap_content"
 						android:layout_width="wrap_content"
-						android:text="交流"
+						android:text="开源"
 						android:id="@+id/aboutTextView8"
 						android:layout_centerVertical="true"
 						android:textSize="18sp"/>
@@ -256,7 +257,7 @@
 					<ImageView
 						android:layout_height="28dp"
 						android:layout_width="28dp"
-						android:src="@drawable/ic_qq_7_147456"
+						android:src="@drawable/ic_github"
 						android:layout_toRightOf="@id/aboutTextView8"/>
 
 				</RelativeLayout>

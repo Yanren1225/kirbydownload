@@ -8,13 +8,4 @@
 	
 	<style name="GameActivityTheme" parent="AppTheme">
     </style>
-	
-	<style name="DialogFullscreen" parent="@android:style/Theme.Material.Light.DialogWhenLarge">
-		<item name="colorPrimary">#2196F3</item>	
-		<item name="colorPrimaryDark">#2196F3</item>
-		<item name="colorAccent">#2196F3</item>	
-		<item name="android:windowNoTitle">true</item>
-        <item name="android:statusBarColor">#2196F3</item>
-        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
-    </style>
 </resources>

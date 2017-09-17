@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">kirby download</string>
+	<string name="menu_label">测试</string>
+	<string name="menu_toast">测试</string>
 </resources>

@@ -25,8 +25,8 @@ public class AboutActivity extends AppCompatActivity
 		RelativeLayout 捐赠_支付宝=(RelativeLayout)findViewById(R.id.捐赠_支付宝);
 		RelativeLayout 官网=(RelativeLayout)findViewById(R.id.官网);
 		RelativeLayout 反馈=(RelativeLayout)findViewById(R.id.反馈);
-		RelativeLayout 联系=(RelativeLayout)findViewById(R.id.联系);
 		RelativeLayout 交流=(RelativeLayout)findViewById(R.id.交流);
+		RelativeLayout 开源=(RelativeLayout)findViewById(R.id.开源);
 
 		捐赠_微信.setOnClickListener(new View.OnClickListener(){
 				@Override
@@ -68,21 +68,22 @@ public class AboutActivity extends AppCompatActivity
 				}
 			}
 		);
-		联系.setOnClickListener(new View.OnClickListener(){
-				@Override
-				public void onClick(View v)
-				{
-					String urlQQ = "mqqwpa://im/chat?chat_type=wpa&uin=2323355219&version=1";
-					startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(urlQQ)));
-				}
-			}
-		);
 		交流.setOnClickListener(new View.OnClickListener(){
 				@Override
 				public void onClick(View v)
 				{
 					String key="6j76WE8N9l378jnsWzmmUDv5HohOteHu";
 					joinQQGroup(key);
+				}
+			}
+		);
+		开源.setOnClickListener(new View.OnClickListener(){
+				@Override
+				public void onClick(View v)
+				{
+					Intent intent=new Intent ("android.intent.action.VIEW");
+					intent .setData(Uri.parse("https://github.com/nihaocun/kirbydownload"));
+					startActivity(intent);
 				}
 			}
 		);
