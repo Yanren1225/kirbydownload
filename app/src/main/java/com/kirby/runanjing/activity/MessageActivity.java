@@ -72,7 +72,7 @@ public class MessageActivity extends AppCompatActivity
 		MyUser u = BmobUser.getCurrentUser(MyUser.class);
 		name = u.getUsername();
 		toolbar.setSubtitle(name);
-	//	编写 = (FloatingActionButton)findViewById(R.id.fab_reveal_layout);
+		编写 = (FloatingActionButton)findViewById(R.id.FAB_编辑);
 		编写.setOnClickListener(new View.OnClickListener(){
 				private boolean 状态_;
 
@@ -136,10 +136,10 @@ public class MessageActivity extends AppCompatActivity
 	{
 	    edit = (RelativeLayout)findViewById(R.id.edit);
 		ObjectAnimator animator = ObjectAnimator.ofFloat(edit, "alpha", 0f, 1f);
-		animator.setDuration(500);//时间0.5s
+		animator.setDuration(300);//时间0.5s
 		edit.setVisibility(View.VISIBLE);
-		ObjectAnimator animator2 = ObjectAnimator.ofFloat(编写, "rotation", 0f, 230f);
-		animator2.setDuration(500);
+		ObjectAnimator animator2 = ObjectAnimator.ofFloat(编写, "rotation", 0f, 135f);
+		animator2.setDuration(300);
 		AnimatorSet set = new AnimatorSet();
 		set.play(animator).with(animator2);
 		set.start();
@@ -156,10 +156,10 @@ public class MessageActivity extends AppCompatActivity
 	private void closeSend()
 	{
 		ObjectAnimator animator = ObjectAnimator.ofFloat(edit, "alpha", 1f, 0f);
-		animator.setDuration(500);//时间0.5s
+		animator.setDuration(300);//时间0.5s
 		edit.setVisibility(View.GONE);
-		ObjectAnimator animator2 = ObjectAnimator.ofFloat(编写, "rotation", 230f, 0f);
-		animator2.setDuration(500);
+		ObjectAnimator animator2 = ObjectAnimator.ofFloat(编写, "rotation", 135f, 0f);
+		animator2.setDuration(300);
 		AnimatorSet set = new AnimatorSet();
 		set.play(animator).with(animator2);
 		set.start();
