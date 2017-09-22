@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity
 
     private LayoutInflater mInflater;
     private List<String> mTitleList = new ArrayList<>();//页卡标题集合
-    private View view1, view2;//页卡视图
+    private View view1, view2 ,view3;//页卡视图
     private List<View> mViewList = new ArrayList<>();//页卡视图集合
 	private Console[]主机={
 		new Console("gba", R.drawable.gba),
@@ -74,15 +74,19 @@ public class MainActivity extends AppCompatActivity
 		mInflater = LayoutInflater.from(this);
         view1 = mInflater.inflate(R.layout.viewpager_1, null);
         view2 = mInflater.inflate(R.layout.viewpager_2, null);
+		view3 = mInflater.inflate(R.layout.viewpager_3,null);
 		//添加页卡视图
         mViewList.add(view1);
         mViewList.add(view2);
+		mViewList.add(view3);
 		//添加页卡标题
         mTitleList.add("游戏");
         mTitleList.add("模拟器");
+		mTitleList.add("视频");
 		mTabLayout.setTabMode(TabLayout.MODE_FIXED);//设置tab模式，当前为系统默认模式
         mTabLayout.addTab(mTabLayout.newTab().setText(mTitleList.get(0)));//添加tab选项卡
         mTabLayout.addTab(mTabLayout.newTab().setText(mTitleList.get(1)));
+		mTabLayout.addTab(mTabLayout.newTab().setText(mTitleList.get(2)));
 		MyPagerAdapter mAdapter = new MyPagerAdapter(mViewList);
         mViewPager.setAdapter(mAdapter);//给ViewPager设置适配器
         mTabLayout.setupWithViewPager(mViewPager);//将TabLayout和ViewPager关联起来。
