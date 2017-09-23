@@ -52,12 +52,13 @@ public class MainActivity extends AppCompatActivity
 	}; 
 	private GameAdapter adapter2;
 
-	
+
 	private long firstTime;
 	@Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+		Theme.setClassTheme(this);
         setContentView(R.layout.main);
 		//初始化bmob
 		Bmob.initialize(this, "e39c2e15ca40b358b0dcc933236c1165");
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity
 		mInflater = LayoutInflater.from(this);
         view1 = mInflater.inflate(R.layout.viewpager_1, null);
         view2 = mInflater.inflate(R.layout.viewpager_2, null);
-		view3 = mInflater.inflate(R.layout.viewpager_3,null);
+		view3 = mInflater.inflate(R.layout.viewpager_3, null);
 		//添加页卡视图
         mViewList.add(view1);
         mViewList.add(view2);
@@ -103,10 +104,30 @@ public class MainActivity extends AppCompatActivity
 		GridLayoutManager layoutManager2=new GridLayoutManager(this, 1);
 		r1.setLayoutManager(layoutManager2);
 		adapter2 = new GameAdapter(moniqilist);
-		r1.setAdapter(adapter2);	
+		r1.setAdapter(adapter2);
+		Button q=(Button)view3.findViewById(R.id.蓝色);
+		Button t=(Button)view3.findViewById(R.id.红色);
+		q.setOnClickListener(new View.OnClickListener(){
+
+				@Override
+				public void onClick(View p1)
+				{
+					// TODO: Implement this method
+					Theme.setTheme(MainActivity.this, 0);
+					open();
+				}
+			});
+		t.setOnClickListener(new View.OnClickListener(){
+
+				@Override
+				public void onClick(View p1)
+				{
+					// TODO: Implement this method
+					Theme.setTheme(MainActivity.this, 1);
+					open();
+				}
+			});
 	}
-
-
 	private void init()
 	{
 		int index = 0;//定义数值
@@ -143,15 +164,28 @@ public class MainActivity extends AppCompatActivity
     }
 	//双击
 	@Override
-    public void onBackPressed() {
+    public void onBackPressed()
+	{
         long secondTime = System.currentTimeMillis();
-        if (secondTime - firstTime > 2000) {
+        if (secondTime - firstTime > 2000)
+		{
 			Snackbar.make(mTabLayout, "再按一次退出程序", Snackbar.LENGTH_SHORT).show();
-           firstTime = secondTime;
-        } else {
+			firstTime = secondTime;
+        }
+		else
+		{
             System.exit(0);
         }
-		}
+	}
+	public void open()
+	{
+		Intent intent = getIntent();
+		overridePendingTransition(0, 0);//假装没退出过...
+		intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+		finish();
+		overridePendingTransition(0, 0);
+		startActivity(intent);
+	}
 	//初始化toolbar菜单
 	public boolean onCreateOptionsMenu(Menu menu)
 	{

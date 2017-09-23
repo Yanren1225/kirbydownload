@@ -77,20 +77,13 @@ public class MessageActivity extends AppCompatActivity
 				private boolean 状态_;
 
 				private RelativeLayout edit;
+
+				private boolean send;
 				@Override
 				public void onClick(View v)			
-				{       
+				{
 					//处理发送
-					SharedPreferences 状态=getSharedPreferences("boolean", Context.MODE_WORLD_READABLE);
-					状态_ = 状态.getBoolean("send_状态", false);
-					if (状态_ == false)
-					{
-						openSend();
-					}
-					else
-					{
-						closeSend();
-					}
+					openSend();
 					ImageView 发送=(ImageView) findViewById(R.id.发送);
 					发送.setOnClickListener(new View.OnClickListener() {
 							@Override
@@ -143,8 +136,6 @@ public class MessageActivity extends AppCompatActivity
 		AnimatorSet set = new AnimatorSet();
 		set.play(animator).with(animator2);
 		set.start();
-		SharedPreferences.Editor y=getSharedPreferences("boolean", MODE_PRIVATE).edit().putBoolean("send_状态", true);
-		y.apply();
 		edittext = (EditText)findViewById(R.id.内容_编辑);
 	    edittext.setFocusable(true);  
 		edittext.setFocusableInTouchMode(true);  
@@ -163,8 +154,6 @@ public class MessageActivity extends AppCompatActivity
 		AnimatorSet set = new AnimatorSet();
 		set.play(animator).with(animator2);
 		set.start();
-		SharedPreferences.Editor y=getSharedPreferences("boolean", MODE_PRIVATE).edit().putBoolean("send_状态", false);
-		y.apply();
 		InputMethodManager inputManager =  
 			(InputMethodManager)edittext.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);  
 		inputManager.hideSoftInputFromInputMethod(edittext.getWindowToken(), 0);

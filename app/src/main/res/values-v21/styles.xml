@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">		
+	
+    <style name="BuleTheme" parent="Theme.AppCompat.Light.NoActionBar">		
 		<item name="colorPrimary">#2196F3</item>	
 		<item name="colorPrimaryDark">#1976D2</item>
 		<item name="colorAccent">#2196F3</item>	
 	</style>
-	
-	<style name="GameActivityTheme" parent="AppTheme">
-        <item name="android:statusBarColor">@android:color/transparent</item>
-    </style>
+
+	<style name="RedTheme" parent="Theme.AppCompat.Light.NoActionBar">		
+		<item name="colorPrimary">#F44336</item>	
+		<item name="colorPrimaryDark">#D32F2F</item>
+		<item name="colorAccent">#F44336</item>	
+	</style>
 </resources>

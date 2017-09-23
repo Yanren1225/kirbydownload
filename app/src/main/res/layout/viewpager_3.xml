@@ -9,8 +9,14 @@
 	<Button
 		android:layout_height="wrap_content"
 		android:layout_width="wrap_content"
-		android:text="提交"
-		android:id="@+id/提交"/>
+		android:text="蓝色"
+		android:id="@+id/蓝色"/>
+
+	<Button
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:text="红色"
+		android:id="@+id/红色"/>
 
 </LinearLayout>
 
