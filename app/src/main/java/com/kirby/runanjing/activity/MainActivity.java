@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity
 		new Console("fc", R.drawable.fc)};
 	private List<Console> consolelist=new ArrayList<>();
 	private List<Console> moniqilist=new ArrayList<>();
+	private List<Video> videolist=new ArrayList<>();
 	private ConsoleAdapter adapter;
 	//给模拟器准备的
 	private Console[] 模拟器 = {
@@ -51,8 +52,7 @@ public class MainActivity extends AppCompatActivity
 		new Console("FC模拟器\nNES.emu", R.drawable.moniqi_fc),
 	}; 
 	private GameAdapter adapter2;
-
-
+	private VideoAdapter adapter3;
 	private long firstTime;
 	@Override
     protected void onCreate(Bundle savedInstanceState)
@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity
 		setSupportActionBar(toolbar);
 		init();	//主机列表
 		init2();//模拟器列表
+		init3();//视频列表
 		//实例化viewpager需要的东西
 		mViewPager = (ViewPager) findViewById(R.id.viewpager);
         mTabLayout = (TabLayout) findViewById(R.id.tabLayout);
@@ -95,6 +96,7 @@ public class MainActivity extends AppCompatActivity
 		//主机列表和模拟器列表需要的
 		RecyclerView r = (RecyclerView) view1.findViewById(R.id.主机列表); 
 		RecyclerView r1 = (RecyclerView) view2.findViewById(R.id.模拟器列表);
+		RecyclerView r2=(RecyclerView) view3.findViewById(R.id.视频列表);
 		//主机列表配置
 		GridLayoutManager layoutManager=new GridLayoutManager(this, 1);
 		r.setLayoutManager(layoutManager);
@@ -105,28 +107,11 @@ public class MainActivity extends AppCompatActivity
 		r1.setLayoutManager(layoutManager2);
 		adapter2 = new GameAdapter(moniqilist);
 		r1.setAdapter(adapter2);
-		Button q=(Button)view3.findViewById(R.id.蓝色);
-		Button t=(Button)view3.findViewById(R.id.红色);
-		q.setOnClickListener(new View.OnClickListener(){
-
-				@Override
-				public void onClick(View p1)
-				{
-					// TODO: Implement this method
-					Theme.setTheme(MainActivity.this, 0);
-					open();
-				}
-			});
-		t.setOnClickListener(new View.OnClickListener(){
-
-				@Override
-				public void onClick(View p1)
-				{
-					// TODO: Implement this method
-					Theme.setTheme(MainActivity.this, 1);
-					open();
-				}
-			});
+		//视频列表配置
+		GridLayoutManager layoutManager3=new GridLayoutManager(this, 1);
+		r2.setLayoutManager(layoutManager3);
+		adapter3 = new VideoAdapter(videolist);
+		r2.setAdapter(adapter3);
 	}
 	private void init()
 	{
@@ -145,6 +130,10 @@ public class MainActivity extends AppCompatActivity
 		{       	
 			moniqilist.add(模拟器[in++]);
 		}
+	}
+	private void init3()
+	{
+
 	}
 	private void setApply()
 	{
@@ -177,6 +166,13 @@ public class MainActivity extends AppCompatActivity
             System.exit(0);
         }
 	}
+	public void setCustomTheme(int i){
+		Theme.setTheme(MainActivity.this, i);
+		SharedPreferences.Editor y=getSharedPreferences("customtheme", MODE_PRIVATE).edit();
+		y.putInt("id", i);
+		y.apply();
+		open();
+	}
 	public void open()
 	{
 		Intent intent = getIntent();
@@ -198,6 +194,23 @@ public class MainActivity extends AppCompatActivity
 	{
 		switch (item.getItemId())
 		{
+			case R.id.theme:
+				SharedPreferences c=getSharedPreferences("customtheme", Context.MODE_WORLD_READABLE);
+				int itemSelected=c.getInt("id",0);
+				String[] singleChoiceItems = {"蓝","红"};
+                new AlertDialog.Builder(MainActivity.this)
+					.setTitle("主题")
+					.setSingleChoiceItems(singleChoiceItems, itemSelected, new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialogInterface, int i)
+						{
+							setCustomTheme(i);
+							dialogInterface.dismiss();
+						}
+					})
+					.setNegativeButton("取消", null)
+					.show();
+				break;
 			case R.id.login:
 				MyUser u = BmobUser.getCurrentUser(MyUser.class);//检验用户数据是否存在
 				if (null == u)

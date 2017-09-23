@@ -1,6 +1,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
+	<item
+        android:id="@+id/theme"
+		android:icon="@drawable/theme"
+        android:title="主题"
+		app:showAsAction="always"/>
+	<item
 		android:id="@+id/login"
 		android:icon="@drawable/login"
         android:title="登录"

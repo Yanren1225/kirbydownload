@@ -1,36 +1,34 @@
 package com.kirby.runanjing.adapter;
-import android.widget.*;
-import com.kirby.runanjing.untils.*;
-import android.content.*;
-import java.util.*;
-import android.view.*;
-import com.kirby.runanjing.*;
-import android.support.v7.widget.*;
 
-public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder>
+
+import android.content.*;
+import android.support.v7.widget.*;
+import android.view.*;
+import android.widget.*;
+import com.kirby.runanjing.*;
+import com.kirby.runanjing.adapter.*;
+import com.kirby.runanjing.untils.*;
+import java.util.*;
+
+public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder>
 {
 	private Context mContext;
-	private List<Mess> mMesslist;
+	private List<Video> mVideolist;
 
 	static class ViewHolder extends RecyclerView.ViewHolder
 	{
 		CardView cardview;
 		TextView 用户名;
-		TextView 内容;
-		TextView 时间;
-
 		public ViewHolder(View view)
 		{
 			super(view);
 			cardview = (CardView)view.findViewById(R.id.cardview);
 			用户名 = (TextView)view.findViewById(R.id.用户名);
-			内容 = (TextView)view.findViewById(R.id.内容);
-			时间 = (TextView)view.findViewById(R.id.时间);
 		}
 	}
-	public MessageAdapter(List<Mess>messlist)
+	public VideoAdapter(List<Video>videolist)
 	{
-		mMesslist = messlist;
+		mVideolist = videolist;
 	}
 	@Override
 	public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
@@ -46,15 +44,13 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 	@Override
 	public void onBindViewHolder(ViewHolder holder, int position)
 	{
-		Mess mess=mMesslist.get(position);
+		Video mess=mVideolist.get(position);
 		holder.用户名.setText(mess.getName());
-		holder.内容.setText(mess.getMessage());
-		holder.时间.setText(mess.getTime());
 	}
 
 	@Override
 	public int getItemCount()
 	{
-		return mMesslist.size();
+		return mVideolist.size();
 	}
 }
