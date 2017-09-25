@@ -10,6 +10,7 @@ import android.widget.*;
 import com.kirby.runanjing.*;
 
 import android.support.v7.widget.Toolbar;
+import com.kirby.runanjing.untils.*;
 
 public class AboutActivity extends AppCompatActivity
 {
@@ -17,7 +18,8 @@ public class AboutActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
 		super.onCreate(savedInstanceState);
-        setContentView(R.layout.about);
+        Theme.setClassTheme(this);
+		setContentView(R.layout.about);
 		Toolbar toolbar=(Toolbar)findViewById(R.id.标题栏);
 		setSupportActionBar(toolbar);
 		//实例化
@@ -81,8 +83,7 @@ public class AboutActivity extends AppCompatActivity
 				@Override
 				public void onClick(View v)
 				{
-					Intent intent=new Intent ("android.intent.action.VIEW");
-					intent .setData(Uri.parse("https://github.com/nihaocun/kirbydownload"));
+					Intent intent=new Intent(AboutActivity.this,GithubActivity.class);
 					startActivity(intent);
 				}
 			}

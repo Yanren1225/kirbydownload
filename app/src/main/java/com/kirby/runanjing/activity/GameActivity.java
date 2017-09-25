@@ -12,6 +12,7 @@ import com.bumptech.glide.*;
 import com.kirby.runanjing.*;
 
 import android.support.v7.widget.Toolbar;
+import com.kirby.runanjing.untils.*;
 
 public class GameActivity extends AppCompatActivity
 {
@@ -21,7 +22,8 @@ public class GameActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
 	{
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.game_layout);
+        Theme.setClassTheme(this);
+		setContentView(R.layout.game_layout);
 		//得到从GameListActivity和MainActivity的数据
         Intent intent = getIntent();
         String GameName = intent.getStringExtra(GAME_NAME);

@@ -1,44 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:layout_height="wrap_content"
-	android:layout_width="match_parent"
-	app:elevation="5dp"
-	app:cardCornerRadius="4dp"
-	android:id="@+id/cardview"
-	android:layout_margin="5dp">
-
 <RelativeLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_height="wrap_content"
-	android:layout_width="match_parent">
+	android:layout_width="match_parent"
+	android:layout_margin="8dp"
+	android:background="#FFFFFF">
+
+	<TextView
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:text="用户名"
+		android:id="@+id/用户名"
+		android:layout_margin="8dp"
+		android:textSize="16sp"/>
+
+	<TextView
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:text="时间"
+		android:layout_margin="8dp"
+		android:id="@+id/时间"
+		android:layout_toRightOf="@id/用户名"
+		android:textSize="10sp"/>
 
 	<TextView
 		android:layout_height="wrap_content"
 		android:layout_width="wrap_content"
 		android:text="内容"
 		android:id="@+id/内容"
-		android:layout_centerHorizontal="true"
-		android:layout_margin="8dp"/>
-
-	<TextView
-		android:layout_height="wrap_content"
-		android:layout_width="wrap_content"
-		android:text="用户名"
-		android:layout_below="@id/内容"
-		android:id="@+id/用户名"
-		android:layout_margin="8dp"/>
-
-	<TextView
-		android:layout_height="wrap_content"
-		android:layout_width="wrap_content"
-		android:text="时间"
-		android:layout_below="@id/用户名"
 		android:layout_margin="8dp"
-		android:id="@+id/时间"
-		android:layout_alignParentRight="true"/>
+		android:layout_below="@id/用户名"
+		android:textSize="16sp"/>
 
 </RelativeLayout>
-</android.support.v7.widget.CardView>
+

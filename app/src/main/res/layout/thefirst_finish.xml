@@ -51,7 +51,6 @@
 			android:background="#E4E7E9">
 
 			<Button
-				android:background="?android:attr/selectableItemBackgroundBorderless"
 				style="?android:attr/buttonBarButtonStyle"
 				android:layout_height="wrap_content"
 				android:layout_width="wrap_content"

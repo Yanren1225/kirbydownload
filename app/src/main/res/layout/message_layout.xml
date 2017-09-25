@@ -36,36 +36,6 @@
 
 	</android.support.v4.widget.SwipeRefreshLayout>
 
-	<RelativeLayout
-		android:layout_height="224dp"
-		android:layout_width="match_parent"
-		android:background="#EEEEEE"
-		android:elevation="8dp"
-		android:visibility="gone"
-		android:id="@+id/edit">
-
-		<EditText
-			android:layout_height="wrap_content"
-			android:layout_width="match_parent"
-			android:hint="内容（100字）"
-			android:maxLength="200"
-			android:id="@+id/内容_编辑"/>
-
-		<ImageView
-			android:clickable="true"
-			android:padding="4dp"
-			android:layout_height="wrap_content"
-			android:layout_width="wrap_content"
-			android:src="@drawable/send"
-			android:id="@+id/发送"
-			android:layout_gravity="right|center_vertical"
-			android:layout_marginRight="12dp"
-			android:layout_alignParentRight="true"
-			android:layout_centerVertical="true"
-			android:layout_alignParentBottom="true"/>
-
-	</RelativeLayout>
-
 	<android.support.design.widget.FloatingActionButton
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
@@ -74,6 +44,12 @@
 		android:layout_alignParentRight="true"
 		android:id="@+id/FAB_编辑"
 		android:layout_margin="16dp"/>
+
+	<ProgressBar
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:layout_centerInParent="true"
+		android:id="@+id/mess_刷新"/>
 
 </RelativeLayout>
 

@@ -1,6 +1,8 @@
 package com.kirby.runanjing.activity;
 
 import android.content.*;
+import android.graphics.*;
+import android.graphics.drawable.*;
 import android.os.*;
 import android.support.design.widget.*;
 import android.support.v4.view.*;
@@ -9,16 +11,14 @@ import android.support.v7.widget.*;
 import android.view.*;
 import android.widget.*;
 import cn.bmob.v3.*;
-import cn.bmob.v3.exception.*;
-import cn.bmob.v3.listener.*;
+import com.getkeepsafe.taptargetview.*;
 import com.kirby.runanjing.*;
 import com.kirby.runanjing.adapter.*;
 import com.kirby.runanjing.untils.*;
 import java.util.*;
 
 import android.support.v7.widget.Toolbar;
-import android.util.*;
-import android.content.pm.*;
+import com.kirby.runanjing.R;
 public class MainActivity extends AppCompatActivity
 {
 	private TabLayout mTabLayout;

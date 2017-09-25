@@ -25,7 +25,8 @@ public class JszActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.jsz_activity);
+		Theme.setClassTheme(this);
+		setContentView(R.layout.jsz_activity);
 		//配置toolbar
 		final Toolbar toolbar=(Toolbar)findViewById(R.id.标题栏);
 		setSupportActionBar(toolbar);

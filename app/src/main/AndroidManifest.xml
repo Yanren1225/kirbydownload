@@ -37,8 +37,8 @@
 			android:name=".activity.MessageActivity"
 			android:label="闲聊"/>
 		<activity
-			android:name=".activity.UserActivity"
-			android:label="用户详情"/>
+			android:name=".activity.GithubActivity"
+			android:label="开源相关"/>
 		<activity
 			android:name=".thefirst.WelcomeActivity"/>
 		<activity

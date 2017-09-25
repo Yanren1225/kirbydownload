@@ -7,6 +7,7 @@ import com.kirby.runanjing.*;
 import android.content.pm.*;
 import android.widget.*;
 import com.kirby.runanjing.thefirst.*;
+import com.kirby.runanjing.untils.*;
 
 public class Launcher extends AppCompatActivity
 {
@@ -20,7 +21,7 @@ public class Launcher extends AppCompatActivity
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 							 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		super.onCreate(savedInstanceState);
-        setContentView(R.layout.welcome);
+		setContentView(R.layout.welcome);
 		new Thread(){
 			public void run()
 			{

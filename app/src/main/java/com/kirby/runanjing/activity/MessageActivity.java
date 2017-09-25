@@ -1,7 +1,5 @@
 package com.kirby.runanjing.activity;
 
-import android.animation.*;
-import android.app.*;
 import android.content.*;
 import android.graphics.*;
 import android.os.*;
@@ -11,18 +9,19 @@ import android.support.v7.app.*;
 import android.support.v7.widget.*;
 import android.util.*;
 import android.view.*;
-import android.view.inputmethod.*;
 import android.widget.*;
 import cn.bmob.v3.*;
+import cn.bmob.v3.b.*;
 import cn.bmob.v3.exception.*;
 import cn.bmob.v3.listener.*;
 import com.kirby.runanjing.*;
+import com.kirby.runanjing.activity.*;
 import com.kirby.runanjing.adapter.*;
 import com.kirby.runanjing.untils.*;
 import java.util.*;
 
-import android.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import com.kirby.runanjing.fragment.*;
 
 public class MessageActivity extends AppCompatActivity
 {
@@ -33,17 +32,13 @@ public class MessageActivity extends AppCompatActivity
 	private RecyclerView re;
 	private String email;
 	private String id;
-
 	private FloatingActionButton 编写;
-
-	private RelativeLayout edit;
-
-	private EditText edittext;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.message_layout);
+        Theme.setClassTheme(this);
+		setContentView(R.layout.message_layout);
 		//配置toolbar
 		Toolbar toolbar=(Toolbar)findViewById(R.id.标题栏);
 		setSupportActionBar(toolbar);
@@ -53,9 +48,9 @@ public class MessageActivity extends AppCompatActivity
 		getMessage();
 	    //设置显示留言的列表
 		re = (RecyclerView)findViewById(R.id.留言);
-		StaggeredGridLayoutManager stagger=new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-		//GridLayoutManager layoutManager=new GridLayoutManager(this, 1);
-		re.setLayoutManager(stagger);
+		//StaggeredGridLayoutManager stagger=new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+		GridLayoutManager layoutManager=new GridLayoutManager(this, 1);
+		re.setLayoutManager(layoutManager);
 		adapter = new MessageAdapter(messlist);	
 		//刷新数据
 		刷新 = (SwipeRefreshLayout)findViewById(R.id.刷新);
@@ -79,19 +74,25 @@ public class MessageActivity extends AppCompatActivity
 				private RelativeLayout edit;
 
 				private boolean send;
+
+				private SampleFabFragment dialogFrag;
+
 				@Override
 				public void onClick(View v)			
 				{
 					//处理发送
-					openSend();
-					ImageView 发送=(ImageView) findViewById(R.id.发送);
+					dialogFrag = SampleFabFragment.newInstance();
+					dialogFrag.setParentFab(编写);
+					dialogFrag.show(getSupportFragmentManager(), dialogFrag.getTag());
+					final View contentView = View.inflate(MessageActivity.this, R.layout.filter_sample_view, null);
+					ImageView 发送=(ImageView)contentView.findViewById(R.id.发送);
 					发送.setOnClickListener(new View.OnClickListener() {
 							@Override
 							public void onClick(View v)
 							{	
-								closeSend();
+							    dialogFrag.closeFilter("closed");
 								//获取字符串转化为string数据
-								EditText 内容=(EditText)findViewById(R.id.内容_编辑);
+								EditText 内容=(EditText)contentView.findViewById(R.id.内容_编辑);
 								String edit_内容=内容.getText().toString();
 								//判断是否为空
 								if (edit_内容.isEmpty())
@@ -99,7 +100,7 @@ public class MessageActivity extends AppCompatActivity
 									Toast.makeText(MessageActivity.this, "内容不能为空！", Toast.LENGTH_SHORT).show();
 								}
 								else
-								{
+								{								
 									//自定义MessBmob发送留言
 									MessageBmob mess = new MessageBmob();
 									mess.setMessage(edit_内容);
@@ -125,7 +126,7 @@ public class MessageActivity extends AppCompatActivity
 				}
 			});
 	}
-	private void openSend()
+	/*private void openSend()
 	{
 	    edit = (RelativeLayout)findViewById(R.id.edit);
 		ObjectAnimator animator = ObjectAnimator.ofFloat(edit, "alpha", 0f, 1f);
@@ -157,8 +158,9 @@ public class MessageActivity extends AppCompatActivity
 		InputMethodManager inputManager =  
 			(InputMethodManager)edittext.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);  
 		inputManager.hideSoftInputFromInputMethod(edittext.getWindowToken(), 0);
-	}		
-	private void getMessage()
+	}		*/
+	
+	private void  getMessage()
 	{
 		messlist.clear();//清空列表
 		//使用BmobQuery获取留言数据
@@ -197,7 +199,8 @@ public class MessageActivity extends AppCompatActivity
 						//从获取的数据中提取需要的数据
 						String 用户名=m.getNickname();
 						String 内容=m.getMessage();
-						String 时间=m.getCreatedAt();
+						String 时间_=m.getCreatedAt();
+						String 时间 = 时间_.substring(0,16);
 						Mess mess=new Mess(用户名, 内容, 时间);
 						//将查询到的数据依次添加到列表
 						messlist.add(mess);
@@ -205,6 +208,8 @@ public class MessageActivity extends AppCompatActivity
 						re.setAdapter(adapter);
 					}			
 					//刷新回调
+					ProgressBar p=(ProgressBar)findViewById(R.id.mess_刷新);
+					p.setVisibility(View.GONE);
 					刷新.setRefreshing(false);
                     break;
             }
@@ -381,3 +386,4 @@ public class MessageActivity extends AppCompatActivity
 		return true;
 	}
 }
+

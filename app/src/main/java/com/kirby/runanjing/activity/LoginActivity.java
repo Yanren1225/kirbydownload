@@ -20,7 +20,8 @@ public class LoginActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
 		super.onCreate(savedInstanceState);
-        setContentView(R.layout.login_layout);
+        Theme.setClassTheme(this);
+		setContentView(R.layout.login_layout);
 		Toolbar toolbar=(Toolbar)findViewById(R.id.标题栏);
 		setSupportActionBar(toolbar);
 		

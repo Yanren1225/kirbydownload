@@ -17,7 +17,8 @@ public class GameListActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
 		super.onCreate(savedInstanceState);
-        setContentView(R.layout.gamelist_layout);
+        Theme.setClassTheme(this);
+		setContentView(R.layout.gamelist_layout);
 		//配置toolbar
 		Toolbar toolbar=(Toolbar)findViewById(R.id.标题栏);
 		setSupportActionBar(toolbar);
