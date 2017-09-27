@@ -26,7 +26,7 @@
 	<ImageView
 		android:layout_below="@id/mainAppBarLayout1"
 		android:layout_centerHorizontal="true"
-		android:src="@drawable/ic_launcher"
+		android:src="@mipmap/ic_launcher"
 		android:layout_width="158dp"
 		android:layout_height="158dp"
 		android:layout_margin="10dp"

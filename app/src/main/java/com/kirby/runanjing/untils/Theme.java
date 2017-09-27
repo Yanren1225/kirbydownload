@@ -30,6 +30,27 @@ public class Theme
 			case 1:
 				context.setTheme(R.style.RedTheme);
 				break;
+			case 2:
+				context.setTheme(R.style.PinkTheme);
+				break;
+			case 3:
+				context.setTheme(R.style.LindigoTheme);
+				break;
+			case 4:
+				context.setTheme(R.style.TealTheme);
+				break;
+			case 5:
+				context.setTheme(R.style.GreenTheme);
+				break;
+			case 6:
+				context.setTheme(R.style.OrangeTheme);
+				break;
+			case 7:
+				context.setTheme(R.style.BrownTheme);
+				break;
+			case 8:
+				context.setTheme(R.style.BlueGreyTheme);
+				break;
 		}
 	}
 }

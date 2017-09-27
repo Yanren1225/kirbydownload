@@ -11,7 +11,6 @@ import android.support.v7.widget.*;
 import android.view.*;
 import android.widget.*;
 import cn.bmob.v3.*;
-import com.getkeepsafe.taptargetview.*;
 import com.kirby.runanjing.*;
 import com.kirby.runanjing.adapter.*;
 import com.kirby.runanjing.untils.*;
@@ -19,6 +18,7 @@ import java.util.*;
 
 import android.support.v7.widget.Toolbar;
 import com.kirby.runanjing.R;
+import android.content.pm.*;
 public class MainActivity extends AppCompatActivity
 {
 	private TabLayout mTabLayout;
@@ -197,7 +197,7 @@ public class MainActivity extends AppCompatActivity
 			case R.id.theme:
 				SharedPreferences c=getSharedPreferences("customtheme", Context.MODE_WORLD_READABLE);
 				int itemSelected=c.getInt("id",0);
-				String[] singleChoiceItems = {"蓝","红"};
+				String[] singleChoiceItems = {"蓝","红","粉","靛蓝","鸭绿","绿","橙","棕","蓝灰"};
                 new AlertDialog.Builder(MainActivity.this)
 					.setTitle("主题")
 					.setSingleChoiceItems(singleChoiceItems, itemSelected, new DialogInterface.OnClickListener() {
@@ -276,7 +276,6 @@ public class MainActivity extends AppCompatActivity
 		{
             return mTitleList.get(position);//页卡标题
         }
-
     }
 }
 

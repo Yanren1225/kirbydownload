@@ -11,19 +11,19 @@ import android.util.*;
 import android.view.*;
 import android.widget.*;
 import cn.bmob.v3.*;
-import cn.bmob.v3.b.*;
 import cn.bmob.v3.exception.*;
 import cn.bmob.v3.listener.*;
+import com.allattentionhere.fabulousfilter.*;
 import com.kirby.runanjing.*;
-import com.kirby.runanjing.activity.*;
 import com.kirby.runanjing.adapter.*;
+import com.kirby.runanjing.fragment.*;
 import com.kirby.runanjing.untils.*;
 import java.util.*;
 
 import android.support.v7.widget.Toolbar;
-import com.kirby.runanjing.fragment.*;
+import com.kirby.runanjing.R;
 
-public class MessageActivity extends AppCompatActivity
+public class MessageActivity extends AppCompatActivity implements AAH_FabulousFragment.AnimationListener 
 {
 	private SwipeRefreshLayout 刷新;
 	private List<Mess> messlist = new ArrayList<>();
@@ -69,60 +69,13 @@ public class MessageActivity extends AppCompatActivity
 		toolbar.setSubtitle(name);
 		编写 = (FloatingActionButton)findViewById(R.id.FAB_编辑);
 		编写.setOnClickListener(new View.OnClickListener(){
-				private boolean 状态_;
-
-				private RelativeLayout edit;
-
-				private boolean send;
-
-				private SampleFabFragment dialogFrag;
-
 				@Override
 				public void onClick(View v)			
 				{
 					//处理发送
-					dialogFrag = SampleFabFragment.newInstance();
+					SampleFabFragment dialogFrag = SampleFabFragment.newInstance();
 					dialogFrag.setParentFab(编写);
-					dialogFrag.show(getSupportFragmentManager(), dialogFrag.getTag());
-					final View contentView = View.inflate(MessageActivity.this, R.layout.filter_sample_view, null);
-					ImageView 发送=(ImageView)contentView.findViewById(R.id.发送);
-					发送.setOnClickListener(new View.OnClickListener() {
-							@Override
-							public void onClick(View v)
-							{	
-							    dialogFrag.closeFilter("closed");
-								//获取字符串转化为string数据
-								EditText 内容=(EditText)contentView.findViewById(R.id.内容_编辑);
-								String edit_内容=内容.getText().toString();
-								//判断是否为空
-								if (edit_内容.isEmpty())
-								{
-									Toast.makeText(MessageActivity.this, "内容不能为空！", Toast.LENGTH_SHORT).show();
-								}
-								else
-								{								
-									//自定义MessBmob发送留言
-									MessageBmob mess = new MessageBmob();
-									mess.setMessage(edit_内容);
-									mess.setNickname(name);
-									mess.save(new SaveListener<String>() {
-											@Override
-											public void done(String objectId, BmobException e)
-											{
-												if (e == null)
-												{			
-													getMessage();
-													Toast.makeText(MessageActivity.this, "发送成功：" + objectId, Toast.LENGTH_SHORT).show();
-												}
-												else
-												{
-													Toast.makeText(MessageActivity.this, "发送失败：" + e.getMessage(), Toast.LENGTH_SHORT).show();
-												}
-											}
-										});
-								}
-							}
-						});
+					dialogFrag.show(getSupportFragmentManager(), dialogFrag.getTag());				
 				}
 			});
 	}
@@ -159,7 +112,6 @@ public class MessageActivity extends AppCompatActivity
 			(InputMethodManager)edittext.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);  
 		inputManager.hideSoftInputFromInputMethod(edittext.getWindowToken(), 0);
 	}		*/
-	
 	private void  getMessage()
 	{
 		messlist.clear();//清空列表
@@ -215,18 +167,55 @@ public class MessageActivity extends AppCompatActivity
             }
         }
     };
-	@Override
-	protected void onDestroy()//在退出程序时恢复数据
-	{	
-		super.onDestroy();
-		SharedPreferences.Editor y=getSharedPreferences("boolean", MODE_PRIVATE).edit().putBoolean("send_状态", false);
-		y.apply();
-    }
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
         getMenuInflater().inflate(R.menu.toolbar2, menu);
         return true;
     }
+	@Override
+	public void onOpenAnimationStart()
+	{
+		// TODO: Implement this method
+	}
+
+	@Override
+	public void onOpenAnimationEnd()
+	{
+		// TODO: Implement this method
+	}
+
+	@Override
+	public void onCloseAnimationStart()
+	{
+		SharedPreferences console=getSharedPreferences("string", Context.MODE_WORLD_READABLE);
+		String edit_内容= console.getString("Message", "");
+			//自定义MessBmob发送留言
+			MessageBmob mess = new MessageBmob();
+			mess.setMessage(edit_内容);
+			mess.setNickname(name);
+			mess.save(new SaveListener<String>() {
+					@Override
+					public void done(String objectId, BmobException e)
+					{
+						if (e == null)
+						{			
+							getMessage();
+							Toast.makeText(MessageActivity.this, "发送成功：" + objectId, Toast.LENGTH_SHORT).show();
+						}
+						else
+						{
+							Toast.makeText(MessageActivity.this, "发送失败：" + e.getMessage(), Toast.LENGTH_SHORT).show();
+						}
+					}
+				});
+	}
+
+	@Override
+	public void onCloseAnimationEnd()
+	{
+	    
+	}
+	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{

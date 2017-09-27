@@ -7,7 +7,7 @@
 	android:gravity="center">
 
 	<ImageView
-		android:src="@drawable/ic_launcher"
+		android:src="@mipmap/ic_launcher"
 		android:layout_height="158dp"
 		android:layout_width="158dp"/>
 

@@ -36,6 +36,7 @@ public class Launcher extends AppCompatActivity
 			}
 		}.start();
 	}
+	
 	private void theFirst()
 	{
 		SharedPreferences 状态=getSharedPreferences("boolean", Context.MODE_WORLD_READABLE);
