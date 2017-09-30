@@ -6,11 +6,6 @@
         android:title="主题"
 		app:showAsAction="always"/>
 	<item
-		android:id="@+id/login"
-		android:icon="@drawable/login"
-        android:title="登录"
-		app:showAsAction="always"/>
-	<item
         android:id="@+id/about"
 		android:icon="@drawable/circle"
         android:title="关于"

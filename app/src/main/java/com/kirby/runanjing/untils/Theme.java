@@ -31,7 +31,7 @@ public class Theme
 				context.setTheme(R.style.RedTheme);
 				break;
 			case 2:
-				context.setTheme(R.style.PinkTheme);
+				context.setTheme(R.style.PurpleTheme);
 				break;
 			case 3:
 				context.setTheme(R.style.LindigoTheme);

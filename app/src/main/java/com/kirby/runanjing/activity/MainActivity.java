@@ -19,6 +19,7 @@ import java.util.*;
 import android.support.v7.widget.Toolbar;
 import com.kirby.runanjing.R;
 import android.content.pm.*;
+import android.support.v4.widget.*;
 public class MainActivity extends AppCompatActivity
 {
 	private TabLayout mTabLayout;
@@ -54,10 +55,18 @@ public class MainActivity extends AppCompatActivity
 	private GameAdapter adapter2;
 	private VideoAdapter adapter3;
 	private long firstTime;
+	private NavigationView navView;
+	private DrawerLayout drawerLayout;
 	@Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+		if (Build.VERSION.SDK_INT >= 21)
+		{
+			View decorView=getWindow().getDecorView();
+			decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+			getWindow().setStatusBarColor(Color.TRANSPARENT);
+		}
 		Theme.setClassTheme(this);
         setContentView(R.layout.main);
 		//初始化bmob
@@ -70,6 +79,51 @@ public class MainActivity extends AppCompatActivity
 		init();	//主机列表
 		init2();//模拟器列表
 		init3();//视频列表
+		getUser();//验证账户
+		//侧滑
+		drawerLayout = (DrawerLayout)findViewById(R.id.drawer_main);
+		navView = (NavigationView)findViewById(R.id.nav_view);
+		ActionBar actionBar=getSupportActionBar();
+		if (actionBar != null)
+		{
+			actionBar.setDisplayHomeAsUpEnabled(true);
+			actionBar.setHomeAsUpIndicator(R.drawable.menu);
+		}
+		navView.setCheckedItem(R.id.game);
+		navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener(){
+
+				@Override
+				public boolean onNavigationItemSelected(MenuItem item)
+				{
+					drawerLayout.closeDrawers();
+					switch (item.getItemId())
+					{
+						case R.id.game:
+							break;
+						case R.id.mess:
+							MyUser u = BmobUser.getCurrentUser(MyUser.class);//检验用户数据是否存在
+							if (null == u)
+							{
+								//不存在
+								Toast.makeText(MainActivity.this, "没有登录信息", Toast.LENGTH_LONG).show();
+								Intent user=new Intent(MainActivity.this, LoginActivity.class);
+								startActivity(user);
+							}
+							else
+							{
+								//存在
+								Intent me=new Intent(MainActivity.this, MessageActivity.class);
+								startActivity(me);
+							}					
+							break;
+						case R.id.video:
+							break;
+						case R.id.tech:
+							break;
+					}
+					return true;
+				}
+			});
 		//实例化viewpager需要的东西
 		mViewPager = (ViewPager) findViewById(R.id.viewpager);
         mTabLayout = (TabLayout) findViewById(R.id.tabLayout);
@@ -112,6 +166,26 @@ public class MainActivity extends AppCompatActivity
 		r2.setLayoutManager(layoutManager3);
 		adapter3 = new VideoAdapter(videolist);
 		r2.setAdapter(adapter3);
+	}
+
+	private void getUser()
+	{
+		LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
+		View nav_view=inflater.inflate(R.layout.nav_header, null);
+		MyUser u = BmobUser.getCurrentUser(MyUser.class);//检验用户数据是否存在
+		if (null == u)
+		{
+			RelativeLayout ok=(RelativeLayout)nav_view.findViewById(R.id.ok);
+			ok.setVisibility(View.GONE);
+		}
+		else
+		{
+			Toast.makeText(MainActivity.this,u.getUsername(),Toast.LENGTH_SHORT).show();
+			RelativeLayout notok=(RelativeLayout)nav_view.findViewById(R.id.notok);
+			TextView user_name=(TextView)nav_view.findViewById(R.id.user_name);
+			notok.setVisibility(View.GONE);
+			user_name.setText(u.getUsername());
+		}
 	}
 	private void init()
 	{
@@ -166,7 +240,8 @@ public class MainActivity extends AppCompatActivity
             System.exit(0);
         }
 	}
-	public void setCustomTheme(int i){
+	public void setCustomTheme(int i)
+	{
 		Theme.setTheme(MainActivity.this, i);
 		SharedPreferences.Editor y=getSharedPreferences("customtheme", MODE_PRIVATE).edit();
 		y.putInt("id", i);
@@ -176,10 +251,10 @@ public class MainActivity extends AppCompatActivity
 	public void open()
 	{
 		Intent intent = getIntent();
-		overridePendingTransition(0, 0);//假装没退出过...
+		overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);//假装没退出过...
 		intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 		finish();
-		overridePendingTransition(0, 0);
+		overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 		startActivity(intent);
 	}
 	//初始化toolbar菜单
@@ -194,10 +269,13 @@ public class MainActivity extends AppCompatActivity
 	{
 		switch (item.getItemId())
 		{
+			case android.R.id.home:
+				drawerLayout.openDrawer(GravityCompat.START);
+				break;
 			case R.id.theme:
 				SharedPreferences c=getSharedPreferences("customtheme", Context.MODE_WORLD_READABLE);
-				int itemSelected=c.getInt("id",0);
-				String[] singleChoiceItems = {"蓝","红","粉","靛蓝","鸭绿","绿","橙","棕","蓝灰"};
+				int itemSelected=c.getInt("id", 0);
+				String[] singleChoiceItems = {"知乎蓝","姨妈红","基佬紫","颐堤蓝","水鸭青","酷安绿","伊藤橙","古铜棕","低调灰"};
                 new AlertDialog.Builder(MainActivity.this)
 					.setTitle("主题")
 					.setSingleChoiceItems(singleChoiceItems, itemSelected, new DialogInterface.OnClickListener() {
@@ -210,22 +288,6 @@ public class MainActivity extends AppCompatActivity
 					})
 					.setNegativeButton("取消", null)
 					.show();
-				break;
-			case R.id.login:
-				MyUser u = BmobUser.getCurrentUser(MyUser.class);//检验用户数据是否存在
-				if (null == u)
-				{
-					//不存在
-					Toast.makeText(MainActivity.this, "没有登录信息", Toast.LENGTH_LONG).show();
-					Intent user=new Intent(MainActivity.this, LoginActivity.class);
-					startActivity(user);
-				}
-				else
-				{
-					//存在
-					Intent me=new Intent(MainActivity.this, MessageActivity.class);
-					startActivity(me);
-				}
 				break;
 			case R.id.about:
 				//跳转AboutActivity
