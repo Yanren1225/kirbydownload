@@ -20,6 +20,8 @@ import android.support.v7.widget.Toolbar;
 import com.kirby.runanjing.R;
 import android.content.pm.*;
 import android.support.v4.widget.*;
+import com.kirby.runanjing.fragment.*;
+import android.support.v4.app.*;
 public class MainActivity extends AppCompatActivity
 {
 	private TabLayout mTabLayout;
@@ -76,9 +78,7 @@ public class MainActivity extends AppCompatActivity
 		//配置toolbar
 		final Toolbar toolbar=(Toolbar)findViewById(R.id.标题栏);
 		setSupportActionBar(toolbar);
-		init();	//主机列表
-		init2();//模拟器列表
-		init3();//视频列表
+		replaceFragment(new MainGameFragment());
 		getUser();//验证账户
 		//侧滑
 		drawerLayout = (DrawerLayout)findViewById(R.id.drawer_main);
@@ -124,50 +124,14 @@ public class MainActivity extends AppCompatActivity
 					return true;
 				}
 			});
-		//实例化viewpager需要的东西
-		mViewPager = (ViewPager) findViewById(R.id.viewpager);
-        mTabLayout = (TabLayout) findViewById(R.id.tabLayout);
-		mInflater = LayoutInflater.from(this);
-        view1 = mInflater.inflate(R.layout.viewpager_1, null);
-        view2 = mInflater.inflate(R.layout.viewpager_2, null);
-		view3 = mInflater.inflate(R.layout.viewpager_3, null);
-		//添加页卡视图
-        mViewList.add(view1);
-        mViewList.add(view2);
-		mViewList.add(view3);
-		//添加页卡标题
-        mTitleList.add("游戏");
-        mTitleList.add("模拟器");
-		mTitleList.add("视频");
-		mTabLayout.setTabMode(TabLayout.MODE_FIXED);//设置tab模式，当前为系统默认模式
-        mTabLayout.addTab(mTabLayout.newTab().setText(mTitleList.get(0)));//添加tab选项卡
-        mTabLayout.addTab(mTabLayout.newTab().setText(mTitleList.get(1)));
-		mTabLayout.addTab(mTabLayout.newTab().setText(mTitleList.get(2)));
-		MyPagerAdapter mAdapter = new MyPagerAdapter(mViewList);
-        mViewPager.setAdapter(mAdapter);//给ViewPager设置适配器
-        mTabLayout.setupWithViewPager(mViewPager);//将TabLayout和ViewPager关联起来。
-        mTabLayout.setTabsFromPagerAdapter(mAdapter);//给Tabs设置适配器
-		//主机列表和模拟器列表需要的
-		RecyclerView r = (RecyclerView) view1.findViewById(R.id.主机列表); 
-		RecyclerView r1 = (RecyclerView) view2.findViewById(R.id.模拟器列表);
-		RecyclerView r2=(RecyclerView) view3.findViewById(R.id.视频列表);
-		//主机列表配置
-		GridLayoutManager layoutManager=new GridLayoutManager(this, 1);
-		r.setLayoutManager(layoutManager);
-		adapter = new ConsoleAdapter(consolelist);
-		r.setAdapter(adapter);
-		//模拟器列表配置
-		GridLayoutManager layoutManager2=new GridLayoutManager(this, 1);
-		r1.setLayoutManager(layoutManager2);
-		adapter2 = new GameAdapter(moniqilist);
-		r1.setAdapter(adapter2);
-		//视频列表配置
-		GridLayoutManager layoutManager3=new GridLayoutManager(this, 1);
-		r2.setLayoutManager(layoutManager3);
-		adapter3 = new VideoAdapter(videolist);
-		r2.setAdapter(adapter3);
 	}
-
+	private void replaceFragment(Fragment fragment)
+	{
+		FragmentManager fragmentManager=getSupportFragmentManager();
+		FragmentTransaction transaction=fragmentManager.beginTransaction();
+		transaction.replace(R.id.main_fragment, fragment);
+		transaction.commit();
+	}
 	private void getUser()
 	{
 		LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
@@ -180,34 +144,12 @@ public class MainActivity extends AppCompatActivity
 		}
 		else
 		{
-			Toast.makeText(MainActivity.this,u.getUsername(),Toast.LENGTH_SHORT).show();
+			Toast.makeText(MainActivity.this, u.getUsername(), Toast.LENGTH_SHORT).show();
 			RelativeLayout notok=(RelativeLayout)nav_view.findViewById(R.id.notok);
 			TextView user_name=(TextView)nav_view.findViewById(R.id.user_name);
 			notok.setVisibility(View.GONE);
 			user_name.setText(u.getUsername());
 		}
-	}
-	private void init()
-	{
-		int index = 0;//定义数值
-		//遍历
-		while (index < 主机.length)
-		{       	
-			consolelist.add(主机[index++]);
-		}
-	}
-	private void init2()
-	{
-		int in = 0;//定义数值
-		//遍历
-		while (in < 模拟器.length)
-		{       	
-			moniqilist.add(模拟器[in++]);
-		}
-	}
-	private void init3()
-	{
-
 	}
 	private void setApply()
 	{
@@ -298,46 +240,6 @@ public class MainActivity extends AppCompatActivity
 		}
 		return true;
 	}
-	//viewpager适配器
-	class MyPagerAdapter extends PagerAdapter
-	{
-        private List<View> mViewList;
-
-        public MyPagerAdapter(List<View> mViewList)
-		{
-            this.mViewList = mViewList;
-        }
-
-        @Override
-        public int getCount()
-		{
-            return mViewList.size();//页卡数
-        }
-
-        @Override
-        public boolean isViewFromObject(View view, Object object)
-		{
-            return view == object;//官方推荐写法
-        }
-
-        @Override
-        public Object instantiateItem(ViewGroup container, int position)
-		{
-            container.addView(mViewList.get(position));//添加页卡
-            return mViewList.get(position);
-        }
-
-        @Override
-        public void destroyItem(ViewGroup container, int position, Object object)
-		{
-            container.removeView(mViewList.get(position));//删除页卡
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position)
-		{
-            return mTitleList.get(position);//页卡标题
-        }
-    }
+	
 }
 
