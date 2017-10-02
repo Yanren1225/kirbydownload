@@ -6,11 +6,5 @@
 		<item
 			android:id="@+id/mess"
 			android:title="闲聊"/>
-		<item
-			android:id="@+id/video"
-			android:title="视频"/>
-		<item
-			android:id="@+id/tech"
-			android:title="教程"/>
     </group>
 </menu>

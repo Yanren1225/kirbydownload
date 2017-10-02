@@ -18,7 +18,6 @@
 
 			<android.support.v7.widget.Toolbar
 				android:id="@+id/标题栏"
-				app:elevation="4dp"
 				android:layout_height="?attr/actionBarSize"
 				android:layout_width="match_parent"
 				android:background="?attr/colorPrimary"
@@ -43,7 +42,6 @@
 		android:layout_width="match_parent"
 		android:layout_gravity="start"
 		app:menu="@menu/nav_menu"
-		app:headerLayout="@layout/nav_header"
 		android:fitsSystemWindows="true"/>
 
 </android.support.v4.widget.DrawerLayout>

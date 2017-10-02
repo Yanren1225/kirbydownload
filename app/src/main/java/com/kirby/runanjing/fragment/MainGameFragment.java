@@ -17,15 +17,13 @@ public class MainGameFragment extends Fragment
 	private TabLayout mTabLayout;
 	private LayoutInflater mInflater;
 	private List<String> mTitleList = new ArrayList<>();//页卡标题集合
-    private View view1, view2 ,view3;//页卡视图
+    private View view1, view2 ;//页卡视图
     private List<View> mViewList = new ArrayList<>();
 	private List<Console> consolelist=new ArrayList<>();
 	private List<Console> moniqilist=new ArrayList<>();
-	private List<Video> videolist=new ArrayList<>();
 	private ConsoleAdapter adapter;
 	private GameAdapter adapter2;
-	private VideoAdapter adapter3;//页卡视图集合
-	private Console[]主机={
+    private Console[]主机={
 		new Console("gba", R.drawable.gba),
 		new Console("sfc", R.drawable.sfc),
 		new Console("n64", R.drawable.n64),
@@ -60,19 +58,15 @@ public class MainGameFragment extends Fragment
 		mInflater = LayoutInflater.from(getActivity());
         view1 = mInflater.inflate(R.layout.viewpager_1, null);
         view2 = mInflater.inflate(R.layout.viewpager_2, null);
-		view3 = mInflater.inflate(R.layout.viewpager_3, null);
-		//添加页卡视图
+    	//添加页卡视图
         mViewList.add(view1);
         mViewList.add(view2);
-		mViewList.add(view3);
 		//添加页卡标题
         mTitleList.add("游戏");
         mTitleList.add("模拟器");
-		mTitleList.add("视频");
 		mTabLayout.setTabMode(TabLayout.MODE_FIXED);//设置tab模式，当前为系统默认模式
         mTabLayout.addTab(mTabLayout.newTab().setText(mTitleList.get(0)));//添加tab选项卡
         mTabLayout.addTab(mTabLayout.newTab().setText(mTitleList.get(1)));
-		mTabLayout.addTab(mTabLayout.newTab().setText(mTitleList.get(2)));
 		MyPagerAdapter mAdapter = new MyPagerAdapter(mViewList);
         mViewPager.setAdapter(mAdapter);//给ViewPager设置适配器
         mTabLayout.setupWithViewPager(mViewPager);//将TabLayout和ViewPager关联起来。
@@ -80,7 +74,6 @@ public class MainGameFragment extends Fragment
 		//主机列表和模拟器列表需要的
 		RecyclerView r = (RecyclerView) view1.findViewById(R.id.主机列表); 
 		RecyclerView r1 = (RecyclerView) view2.findViewById(R.id.模拟器列表);
-		RecyclerView r2=(RecyclerView) view3.findViewById(R.id.视频列表);
 		//主机列表配置
 		GridLayoutManager layoutManager=new GridLayoutManager(getActivity(), 1);
 		r.setLayoutManager(layoutManager);
@@ -91,11 +84,6 @@ public class MainGameFragment extends Fragment
 		r1.setLayoutManager(layoutManager2);
 		adapter2 = new GameAdapter(moniqilist);
 		r1.setAdapter(adapter2);
-		//视频列表配置
-		GridLayoutManager layoutManager3=new GridLayoutManager(getActivity(), 1);
-		r2.setLayoutManager(layoutManager3);
-		adapter3 = new VideoAdapter(videolist);
-		r2.setAdapter(adapter3);
 		init();
 		init2();
 	}

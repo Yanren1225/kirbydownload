@@ -17,15 +17,15 @@ public class ConsoleAdapter extends RecyclerView.Adapter<ConsoleAdapter.ViewHold
 	{
         LinearLayout LinearLayout;
 		CardView cardView;
-        ImageView fruitImage;
-        TextView fruitName;
+        ImageView consoleImage;
+        TextView consoleName;
         public ViewHolder(View view)
 		{
             super(view);
 			LinearLayout = (LinearLayout)view.findViewById(R.id.LinearLayout);
             cardView = (CardView) view.findViewById(R.id.cardview);
-            fruitImage = (ImageView) view.findViewById(R.id.console_image);
-            fruitName = (TextView) view.findViewById(R.id.console_text);
+			consoleImage = (ImageView) view.findViewById(R.id.console_image);
+            consoleName = (TextView) view.findViewById(R.id.console_text);
         }
     }
 
@@ -51,10 +51,10 @@ public class ConsoleAdapter extends RecyclerView.Adapter<ConsoleAdapter.ViewHold
 					Intent in=new Intent(mContext, GameListActivity.class);
 					String  input=console.getName().toString();	
 					mContext.startActivity(in);
-					SharedPreferences.Editor t=mContext.getSharedPreferences("string",0).edit();
-				t.putString("主机名称",input);
-				t.apply();
-					}
+					SharedPreferences.Editor t=mContext.getSharedPreferences("string", 0).edit();
+					t.putString("主机名称", input);
+					t.apply();
+				}
 			}
 		);
 		return holder;
@@ -63,9 +63,9 @@ public class ConsoleAdapter extends RecyclerView.Adapter<ConsoleAdapter.ViewHold
     @Override
     public void onBindViewHolder(ViewHolder holder, int position)
 	{
-        Console fr = mConsoleList.get(position);
-        holder.fruitName.setText(fr.getName());
-        Glide.with(mContext).load(fr.getImageId()).into(holder.fruitImage);
+        Console co = mConsoleList.get(position);
+        holder.consoleName.setText(co.getName());
+        Glide.with(mContext).load(co.getImageId()).into(holder.consoleImage);
     }
 
     @Override

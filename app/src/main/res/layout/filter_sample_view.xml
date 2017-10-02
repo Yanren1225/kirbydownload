@@ -26,13 +26,17 @@
 			android:layout_marginRight="12dp"
 			android:layout_alignParentRight="true"
 			android:layout_alignParentTop="true"/>
+
 		<TextView
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
-			android:text="Text"
-			android:layout_toLeftOf="@id/发送"
-			android:layout_above="@id/内容_编辑"/>
-		
+			android:text="写点什么吧վ'ᴗ' ի"
+			android:layout_above="@id/内容_编辑"
+			android:layout_centerHorizontal="true"
+			android:layout_alignParentTop="true"
+			android:textSize="18sp"
+			android:layout_marginTop="4dp"/>
+
 		<EditText
 			android:layout_below="@id/发送"
 			android:layout_height="wrap_content"
@@ -48,7 +52,6 @@
 			android:layout_alignParentBottom="true"
 			android:layout_centerHorizontal="true"/>
 
-		
 	</RelativeLayout>
 
 </com.allattentionhere.fabulousfilter.AAH_FilterView>

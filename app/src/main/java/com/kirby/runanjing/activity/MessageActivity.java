@@ -79,39 +79,6 @@ public class MessageActivity extends AppCompatActivity implements AAH_FabulousFr
 				}
 			});
 	}
-	/*private void openSend()
-	{
-	    edit = (RelativeLayout)findViewById(R.id.edit);
-		ObjectAnimator animator = ObjectAnimator.ofFloat(edit, "alpha", 0f, 1f);
-		animator.setDuration(300);//时间0.5s
-		edit.setVisibility(View.VISIBLE);
-		ObjectAnimator animator2 = ObjectAnimator.ofFloat(编写, "rotation", 0f, 135f);
-		animator2.setDuration(300);
-		AnimatorSet set = new AnimatorSet();
-		set.play(animator).with(animator2);
-		set.start();
-		edittext = (EditText)findViewById(R.id.内容_编辑);
-	    edittext.setFocusable(true);  
-		edittext.setFocusableInTouchMode(true);  
-		edittext.requestFocus();  
-		InputMethodManager inputManager =  
-			(InputMethodManager)edittext.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);  
-		inputManager.showSoftInput(edittext, 0);  
-	}
-	private void closeSend()
-	{
-		ObjectAnimator animator = ObjectAnimator.ofFloat(edit, "alpha", 1f, 0f);
-		animator.setDuration(300);//时间0.5s
-		edit.setVisibility(View.GONE);
-		ObjectAnimator animator2 = ObjectAnimator.ofFloat(编写, "rotation", 135f, 0f);
-		animator2.setDuration(300);
-		AnimatorSet set = new AnimatorSet();
-		set.play(animator).with(animator2);
-		set.start();
-		InputMethodManager inputManager =  
-			(InputMethodManager)edittext.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);  
-		inputManager.hideSoftInputFromInputMethod(edittext.getWindowToken(), 0);
-	}		*/
 	private void  getMessage()
 	{
 		messlist.clear();//清空列表

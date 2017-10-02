@@ -23,8 +23,7 @@ public class LoginActivity extends AppCompatActivity
         Theme.setClassTheme(this);
 		setContentView(R.layout.login_layout);
 		Toolbar toolbar=(Toolbar)findViewById(R.id.标题栏);
-		setSupportActionBar(toolbar);
-		
+		setSupportActionBar(toolbar);	
 		//bmob		
 		//初始化
 		Bmob.initialize(this, "e39c2e15ca40b358b0dcc933236c1165");
@@ -58,8 +57,8 @@ public class LoginActivity extends AppCompatActivity
 								{
 									if (e == null)
 									{
-											Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
-											Intent me=new Intent(LoginActivity.this, MessageActivity.class);
+											Toast.makeText(LoginActivity.this, "登录成功,请重启程序", Toast.LENGTH_SHORT).show();
+											Intent me=new Intent(LoginActivity.this, MainActivity.class);
 											startActivity(me);			
 											finish();
 									}

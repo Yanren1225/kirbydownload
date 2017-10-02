@@ -9,7 +9,6 @@
 	<RelativeLayout
 		android:layout_height="match_parent"
 		android:layout_width="match_parent"
-		android:padding="40dp"
 		android:id="@+id/ok">
 
 		<TextView
@@ -18,7 +17,9 @@
 			android:text="你好:"
 			android:textColor="#FFFFFF"
 			android:textSize="35sp"
-			android:id="@+id/welcome_text"/>
+			android:id="@+id/welcome_text"
+			android:layout_marginTop="35dp"
+			android:layout_marginLeft="20dp"/>
 
 		<TextView
 			android:layout_height="wrap_content"
@@ -29,6 +30,16 @@
 			android:textColor="#FFFFFF"
 			android:textSize="25sp"
 			android:layout_below="@id/welcome_text"/>
+
+		<Button
+			style="?android:attr/buttonBarButtonStyle"
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:text="用户详情"
+			android:layout_alignParentBottom="true"
+			android:layout_alignParentRight="true"
+			android:id="@+id/user"
+			android:textColor="#FFFFFF"/>
 
 	</RelativeLayout>
 
@@ -53,7 +64,8 @@
 			android:text="登陆/注册"
 			android:layout_below="@id/navlayoutTextView1"
 			android:layout_centerHorizontal="true"
-			android:id="@+id/login"/>
+			android:id="@+id/login"
+			android:textColor="#FFFFFF"/>
 
 	</RelativeLayout>
 
