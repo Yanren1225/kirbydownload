@@ -2,7 +2,7 @@
     <group android:checkableBehavior="single">
 		<item
 			android:id="@+id/game"
-		    android:title="资源"/>
+			android:title="资源"/>
 		<item
 			android:id="@+id/jsz"
 			android:title="金手指"/>

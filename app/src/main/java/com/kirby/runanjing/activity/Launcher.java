@@ -8,8 +8,6 @@ import android.content.pm.*;
 import android.widget.*;
 import com.kirby.runanjing.thefirst.*;
 import com.kirby.runanjing.untils.*;
-import android.app.*;
-import android.transition.*;
 
 public class Launcher extends AppCompatActivity
 {
@@ -38,7 +36,7 @@ public class Launcher extends AppCompatActivity
 			}
 		}.start();
 	}
-
+	
 	private void theFirst()
 	{
 		SharedPreferences 状态=getSharedPreferences("boolean", Context.MODE_WORLD_READABLE);
@@ -51,12 +49,11 @@ public class Launcher extends AppCompatActivity
 			startActivity(intent);
 			finish();
 		}
-		else
-		{
+		else{
 			//跳转
 			Intent intent=new Intent(Launcher.this, MainActivity.class);
 			intent.setClass(Launcher.this, MainActivity.class);
-		    startActivity(intent);
+			startActivity(intent);
 			finish();
 		}
 	}

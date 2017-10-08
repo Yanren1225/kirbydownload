@@ -9,10 +9,10 @@ import android.support.v4.view.*;
 import android.support.v4.widget.*;
 import android.support.v7.app.*;
 import android.support.v7.widget.*;
-import android.transition.*;
 import android.view.*;
 import android.widget.*;
 import cn.bmob.v3.*;
+import cn.bmob.v3.b.*;
 import cn.bmob.v3.exception.*;
 import cn.bmob.v3.listener.*;
 import com.allattentionhere.fabulousfilter.*;
@@ -24,6 +24,8 @@ import android.support.v7.widget.Toolbar;
 import com.kirby.runanjing.R;
 public class MainActivity extends AppCompatActivity implements AAH_FabulousFragment.AnimationListener 
 {
+	private TabLayout mTabLayout;
+    private long firstTime;
 	private NavigationView navView;
 	private DrawerLayout drawerLayout;
 	private String name;
@@ -59,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 		toolbar.setSubtitle("资源");
 		replaceFragment(new MainGameFragment());
 		//使用BmobUser类获取部分用户数据
-		 u = BmobUser.getCurrentUser(MyUser.class);
+		u = BmobUser.getCurrentUser(MyUser.class);
 		//侧滑
 		drawerLayout = (DrawerLayout)findViewById(R.id.drawer_main);
 		navView = (NavigationView)findViewById(R.id.nav_view);
@@ -84,12 +86,12 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 							replaceFragment(new MainGameFragment());
 							break;
 							case R.id.jsz:
-							toolbar.setSubtitle("金手指");
+								toolbar.setSubtitle("金手指");
 							replaceFragment(new MainJszFragment());
 							break;
-						case R.id.mess:				
-								toolbar.setSubtitle("闲聊");
-								replaceFragment(new MainMessFragment());			
+						case R.id.mess:
+							toolbar.setSubtitle("闲聊");
+							replaceFragment(new MainMessFragment());			
 							break;
 					}
 					return true;
@@ -101,12 +103,13 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 	{
 		View navview_header = navView.inflateHeaderView(R.layout.nav_header);
         //ImageView user_pic = (ImageView) drawview.findViewById(R.id.imageViewIcon);		
-		ok=(RelativeLayout)navview_header.findViewById(R.id.ok);
+		ok = (RelativeLayout)navview_header.findViewById(R.id.ok);
 		notok = (RelativeLayout)navview_header.findViewById(R.id.notok);
 		user_name = (TextView)navview_header.findViewById(R.id.user_name);
-		user=(Button)navview_header.findViewById(R.id.user);
-		login=(Button)navview_header.findViewById(R.id.login);
+		user = (Button)navview_header.findViewById(R.id.user);
+		login = (Button)navview_header.findViewById(R.id.login);
 		user.setOnClickListener(new View.OnClickListener(){
+
 				@Override
 				public void onClick(View p1)
 				{
@@ -118,8 +121,9 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 				public void onClick(View p1)
 				{
 					drawerLayout.closeDrawers();
-					toolbar.setSubtitle("登录/注册");
 					replaceFragment(new MainLoginFragment());
+					//Intent me=new Intent(MainActivity.this, LoginActivity.class);
+					//startActivity(me);	
 				}
 			});
 		if (null == u)
@@ -140,14 +144,6 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 		transaction.replace(R.id.main_fragment, fragment);
 		transaction.commit();
 	}
-	public void otherReplaceFragment(Fragment fragment)
-	{
-		FragmentManager fragmentManager=getSupportFragmentManager();
-		FragmentTransaction transaction=fragmentManager.beginTransaction();
-		transaction.replace(R.id.main_fragment, fragment);
-		transaction.addToBackStack(null);
-		transaction.commit();
-	}
 	private void setApply()
 	{
 		SharedPreferences.Editor y=getSharedPreferences("string", MODE_PRIVATE).edit();
@@ -164,6 +160,7 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 		y.putString("游戏或模拟器名称", "0");
 		y.apply();
     }
+	
 	public void setCustomTheme(int i)
 	{
 		Theme.setTheme(MainActivity.this, i);
@@ -231,7 +228,8 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 	{
 		// TODO: Implement this method
 	}
-	private void initUser(){
+	private void initUser()
+	{
 		name = u.getUsername();
 		email = u.getEmail();
 		id = u.getObjectId();
@@ -278,7 +276,8 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 													{
 														Toast.makeText(MainActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
 														u.logOut();
-														open();
+														Intent 修改邮箱=new Intent(MainActivity.this, LoginActivity.class);
+														startActivity(修改邮箱);
 													}
 													else
 													{
@@ -342,7 +341,8 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 													{
 														Toast.makeText(MainActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
 														u.logOut();
-														open();
+														Intent 修改密码=new Intent(MainActivity.this, LoginActivity.class);
+														startActivity(修改密码);
 													}
 													else
 													{
@@ -413,7 +413,7 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 	}
 	public void showDownloadDialog(String gamename)
 	{
-		
+
 	}
 }
 

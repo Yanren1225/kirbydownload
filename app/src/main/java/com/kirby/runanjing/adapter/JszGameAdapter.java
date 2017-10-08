@@ -50,11 +50,11 @@ public class JszGameAdapter extends RecyclerView.Adapter<JszGameAdapter.ViewHold
 				{
 					int position=holder.getAdapterPosition();
 					Console console=mJszGameList.get(position);
-					//Intent in=new Intent(mContext, JszActivity.class);
+					Intent in=new Intent(mContext, JszActivity.class);
 					String  input=console.getName().toString();	
 					MainActivity m=new MainActivity();
-					m.otherReplaceFragment(new JszFragment());
-					//mContext.startActivity(in);
+					//m.otherReplaceFragment(new JszFragment());
+					mContext.startActivity(in);
 					SharedPreferences.Editor t=mContext.getSharedPreferences("string", 0).edit();
 					t.putString("金手指_游戏", input);
 					t.apply();
