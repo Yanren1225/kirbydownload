@@ -1112,7 +1112,7 @@ public class GameActivity extends AppCompatActivity
 						AlertDialog.Builder dialog = new
 							AlertDialog.Builder(GameActivity.this)
 							.setTitle(game)
-							.setMessage("咱这里只给你汉化版(o｀ε´o)")
+							.setMessage("咱这里只给你汉化版( •̀∀•́ )")
 							.setPositiveButton("汉化", new
 							DialogInterface.OnClickListener()
 							{

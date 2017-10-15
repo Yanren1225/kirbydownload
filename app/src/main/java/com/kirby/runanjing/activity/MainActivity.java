@@ -2,6 +2,7 @@ package com.kirby.runanjing.activity;
 
 import android.content.*;
 import android.graphics.*;
+import android.net.*;
 import android.os.*;
 import android.support.design.widget.*;
 import android.support.v4.app.*;
@@ -12,7 +13,6 @@ import android.support.v7.widget.*;
 import android.view.*;
 import android.widget.*;
 import cn.bmob.v3.*;
-import cn.bmob.v3.b.*;
 import cn.bmob.v3.exception.*;
 import cn.bmob.v3.listener.*;
 import com.allattentionhere.fabulousfilter.*;
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 		//跳转GameListActivity要用的数据
 		setApply();	
 		//配置toolbar
-		toolbar=(Toolbar)findViewById(R.id.标题栏);
+		toolbar = (Toolbar)findViewById(R.id.标题栏);
 		setSupportActionBar(toolbar);
 		toolbar.setSubtitle("资源");
 		replaceFragment(new MainGameFragment());
@@ -85,8 +85,8 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 							toolbar.setSubtitle("资源");
 							replaceFragment(new MainGameFragment());
 							break;
-							case R.id.jsz:
-								toolbar.setSubtitle("金手指");
+						case R.id.jsz:
+							toolbar.setSubtitle("金手指");
 							replaceFragment(new MainJszFragment());
 							break;
 						case R.id.mess:
@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 		y.putString("游戏或模拟器名称", "0");
 		y.apply();
     }
-	
+
 	public void setCustomTheme(int i)
 	{
 		Theme.setTheme(MainActivity.this, i);
@@ -411,9 +411,144 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 		}
 		return true;	
 	}
-	public void showDownloadDialog(String gamename)
+	public void theDownload(Context con, String game_name)
 	{
+		switch (game_name)
+		{
+			case "星之卡比 梦之泉DX":
+				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "", "", "");
+				break;
+			case "星之卡比 镜之大迷宫":
+				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "", "", "");
+				break;
+			case "星之卡比 3":
+				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "", "", "");
+				break;
+			case "星之卡比 超豪华版":
+				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "", "", "");
+				break;
+			case "星之卡比 卡比梦幻都":
+				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "", "", "");
+				break;
+			case "[仅美国]星之卡比 卡比魔方气泡":
+				showDownloadDialog(con, game_name, "[限定]仅存在美版", "美版" , null ,  null, "", "", "");
+				break;
+			case "[仅日本]星之卡比 卡比宝石星DX":
+				showDownloadDialog(con, game_name, "[限定]仅存在日版", "日版", null, null, "", "", "");
+				break;
+			case "星之卡比 64":
+				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "", "", "");
+				break;
+			case "星之卡比 飞天赛车":
+				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "", "", "");
+				break;
+			case "星之卡比 重返梦幻岛":
+				showDownloadDialog(con, game_name, "[注意有单/多文件之分]\n请选择你需要的版本", "日版", "美版", "汉化", "", "", "");
+				break;
+			case "星之卡比 毛线卡比":
+				showDownloadDialog(con, game_name, "[注意有单/多文件之分]\n请选择你需要的版本", "日版", "美版", "汉化", "", "", "");
+				break;
+			case "星之卡比 触摸卡比":
+				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "", "", "");
+				break;
+			case "星之卡比 超究豪华版":
+				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "", "", "");
+				break;
+			case "星之卡比 呐喊团":
+				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "", "", "");
+				break;
+			case "星之卡比 集合！卡比":
+				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "", "", "");
+				break;
+			case "星之卡比 1":
+				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "", "", "");
+				break;
+			case "星之卡比 2":
+				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "", "", "");
+				break;
+			case "星之卡比 卡比宝石星":
+				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "", "", "");
+				break;
+			case "星之卡比 卡比打砖块":
+				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "", "", "");
+				break;
+			case "星之卡比 卡比弹珠台":
+				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "", "", "");
+				break;
+			case "星之卡比 滚滚卡比":
+				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "", "", "");
+				break;
+			case "星之卡比 梦之泉物语":
+				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "", "", "");
+				break;
+			case "GBA模拟器\nMy Boy!":
+				showDownloadDialog(con, game_name, "咱这里只给你汉化版( •̀∀•́ )", "汉化", null, null, "", "", "");
+				break;
+			case "SFC模拟器\nSnes9x EX+":
+				showDownloadDialog(con, game_name, "咱这里只给你汉化版( •̀∀•́ )", "汉化", null, null, "", "", "");
+				break;
+			case "N64模拟器\nTendo64":
+				showDownloadDialog(con, game_name, "咱这里只给你汉化版( •̀∀•́ )", "汉化", null, null, "", "", "");
+				break;
+			case "NGC&WII模拟器\nDolphin":
+				showDownloadDialog(con, game_name, "咱这里只给你汉化版( •̀∀•́ )", "汉化", null, null, "", "", "");
+				break;
+			case "GB&GBC模拟器\nMy OldBoy!":
+				showDownloadDialog(con, game_name, "咱这里只给你汉化版( •̀∀•́ )", "汉化", null, null, "", "", "");
+				break;
+			case "FC模拟器\nNES.emu":
+				showDownloadDialog(con, game_name, "咱这里只给你汉化版( •̀∀•́ )", "汉化", null, null, "", "", "");
+				break;
+		}
+	}
+	public void showDownloadDialog(Context con, String name, String mess, String pos, String neg, String neu, final String pos_url, final String neg_url, final String neu_url)
+	{
+		AlertDialog.Builder dialog = new
+			AlertDialog.Builder(con)
+			.setTitle(name)
+			.setMessage(mess)
+			.setPositiveButton(pos, new
+			DialogInterface.OnClickListener()
+			{
+				@Override
+				public void onClick(DialogInterface dialog, int which)
+				{
+					Intent web = new Intent();        
+					web.setAction("android.intent.action.VIEW");    
+					Uri content_url = Uri.parse(pos_url);   
+					web.setData(content_url);  
+					startActivity(web);
+				}
+			}
+		)
+			.setNegativeButton(neg, new DialogInterface.OnClickListener()
+			{
+				@Override
 
+				public void onClick(DialogInterface dialog, int which)
+				{
+					Intent web = new Intent();        
+					web.setAction("android.intent.action.VIEW");    
+					Uri content_url = Uri.parse(neg_url);   
+					web.setData(content_url);  
+					startActivity(web);  							
+				}
+			}
+		)
+			.setNeutralButton(neu, new DialogInterface.OnClickListener()
+			{
+				@Override
+				public void onClick(DialogInterface dialog, int which)
+				{
+					Intent web = new Intent();        
+					web.setAction("android.intent.action.VIEW");    
+					Uri content_url = Uri.parse(neu_url);   
+					web.setData(content_url);  
+					startActivity(web);  			
+				}
+			}
+		);
+		dialog.show();
 	}
 }
 
