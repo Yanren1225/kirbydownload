@@ -1,4 +1,4 @@
-package com.kirby.runanjing.fragment;
+package com.kirby.runanjing.fragment.main;
 
 import android.graphics.*;
 import android.os.*;
@@ -19,6 +19,7 @@ import com.kirby.runanjing.adapter.*;
 import com.kirby.runanjing.fragment.*;
 import com.kirby.runanjing.untils.*;
 import java.util.*;
+import com.kirby.runanjing.fragment.fab.*;
 
 public class MainMessFragment extends Fragment
 {
@@ -69,7 +70,7 @@ public class MainMessFragment extends Fragment
 				public void onClick(View v)			
 				{
 					//处理发送
-					SampleFabFragment dialogFrag = SampleFabFragment.newInstance();
+					SendFabFragment dialogFrag = SendFabFragment.newInstance();
 					dialogFrag.setParentFab(编写);
 					dialogFrag.show(m.getSupportFragmentManager(), dialogFrag.getTag());
 				}

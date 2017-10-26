@@ -1,4 +1,4 @@
-package com.kirby.runanjing.fragment;
+package com.kirby.runanjing.fragment.main;
 
 import android.os.*;
 import android.support.v4.app.*;

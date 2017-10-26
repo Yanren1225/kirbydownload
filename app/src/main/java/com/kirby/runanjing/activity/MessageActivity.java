@@ -22,6 +22,7 @@ import java.util.*;
 
 import android.support.v7.widget.Toolbar;
 import com.kirby.runanjing.R;
+import com.kirby.runanjing.fragment.fab.*;
 
 public class MessageActivity extends AppCompatActivity implements AAH_FabulousFragment.AnimationListener 
 {
@@ -73,7 +74,7 @@ public class MessageActivity extends AppCompatActivity implements AAH_FabulousFr
 				public void onClick(View v)			
 				{
 					//处理发送
-					SampleFabFragment dialogFrag = SampleFabFragment.newInstance();
+					SendFabFragment dialogFrag = SendFabFragment.newInstance();
 					dialogFrag.setParentFab(编写);
 					dialogFrag.show(getSupportFragmentManager(), dialogFrag.getTag());				
 				}

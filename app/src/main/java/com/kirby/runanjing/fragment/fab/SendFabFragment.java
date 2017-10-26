@@ -1,4 +1,4 @@
-package com.kirby.runanjing.fragment;
+package com.kirby.runanjing.fragment.fab;
 
 import android.app.*;
 import android.view.*;
@@ -11,10 +11,10 @@ import com.kirby.runanjing.activity.*;
 import android.content.*;
 import android.content.SharedPreferences.*;
 
-public class SampleFabFragment extends AAH_FabulousFragment
+public class SendFabFragment extends AAH_FabulousFragment
  {
-    public static SampleFabFragment newInstance() {
-        SampleFabFragment f = new SampleFabFragment();
+    public static SendFabFragment newInstance() {
+        SendFabFragment f = new SendFabFragment();
         return f;
     }
     @Override
