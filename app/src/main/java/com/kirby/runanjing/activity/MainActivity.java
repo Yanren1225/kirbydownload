@@ -417,7 +417,7 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 		switch (game_name)
 		{
 			case "星之卡比 梦之泉DX":
-				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "", "", "");
+				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "https://eyun.baidu.com/s/3kURIBIZ", "", "");
 				break;
 			case "星之卡比 镜之大迷宫":
 				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "", "", "");
@@ -502,7 +502,7 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 				break;
 		}
 	}
-	public void showDownloadDialog(Context con, String name, String mess, String pos, String neg, String neu, final String pos_url, final String neg_url, final String neu_url)
+	public void showDownloadDialog(final Context con, String name, String mess, String pos, String neg, String neu, final String pos_url, final String neg_url, final String neu_url)
 	{
 		AlertDialog.Builder dialog = new
 			AlertDialog.Builder(con)
@@ -518,7 +518,7 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 					web.setAction("android.intent.action.VIEW");    
 					Uri content_url = Uri.parse(pos_url);   
 					web.setData(content_url);  
-					startActivity(web);
+					con.startActivity(web);  			
 				}
 			}
 		)
@@ -532,7 +532,7 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 					web.setAction("android.intent.action.VIEW");    
 					Uri content_url = Uri.parse(neg_url);   
 					web.setData(content_url);  
-					startActivity(web);  							
+					con.startActivity(web);  							
 				}
 			}
 		)
@@ -545,7 +545,7 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 					web.setAction("android.intent.action.VIEW");    
 					Uri content_url = Uri.parse(neu_url);   
 					web.setData(content_url);  
-					startActivity(web);  			
+					con.startActivity(web);  			
 				}
 			}
 		);

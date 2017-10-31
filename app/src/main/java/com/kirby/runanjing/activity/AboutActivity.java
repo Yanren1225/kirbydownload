@@ -3,13 +3,11 @@ package com.kirby.runanjing.activity;
 import android.content.*;
 import android.net.*;
 import android.os.*;
+import android.support.v4.app.*;
 import android.support.v7.app.*;
 import android.support.v7.widget.*;
-import android.view.*;
-import android.widget.*;
 import com.kirby.runanjing.*;
-
-import android.support.v7.widget.Toolbar;
+import com.kirby.runanjing.fragment.preference.*;
 import com.kirby.runanjing.untils.*;
 
 public class AboutActivity extends AppCompatActivity
@@ -22,7 +20,9 @@ public class AboutActivity extends AppCompatActivity
 		setContentView(R.layout.about);
 		Toolbar toolbar=(Toolbar)findViewById(R.id.标题栏);
 		setSupportActionBar(toolbar);
-		//实例化
+		getFragmentManager().beginTransaction().replace(R.id.about_fragment, new AboutPreferenceFragment()).commit();
+	}
+		/*实例化
 		RelativeLayout 捐赠_微信=(RelativeLayout)findViewById(R.id.捐赠_微信);
 		RelativeLayout 捐赠_支付宝=(RelativeLayout)findViewById(R.id.捐赠_支付宝);
 		RelativeLayout 官网=(RelativeLayout)findViewById(R.id.官网);
@@ -88,7 +88,7 @@ public class AboutActivity extends AppCompatActivity
 				}
 			}
 		);
-	}
+	}*/
 	/****************
 	 *
 	 * 发起添加群流程。群号：kirby download(519661207) 的 key 为： 6j76WE8N9l378jnsWzmmUDv5HohOteHu
