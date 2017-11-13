@@ -417,70 +417,70 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 		switch (game_name)
 		{
 			case "星之卡比 梦之泉DX":
-				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "https://eyun.baidu.com/s/3kURIBIZ", "", "");
+				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "https://eyun.baidu.com/s/3kURIBIZ", "https://eyun.baidu.com/s/3o86TXDS", "https://eyun.baidu.com/s/3dF22BWP");
 				break;
 			case "星之卡比 镜之大迷宫":
-				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "", "", "");
+				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "https://eyun.baidu.com/s/3hs7Mjsg", "https://eyun.baidu.com/s/3c5qBl8", "https://eyun.baidu.com/s/3i5t6Z3J");
 				break;
 			case "星之卡比 3":
-				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "", "", "");
+				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "https://eyun.baidu.com/s/3pKTD8EZ", "https://eyun.baidu.com/s/3gfwui2n", "");
 				break;
 			case "星之卡比 超豪华版":
-				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "", "", "");
+				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "https://eyun.baidu.com/s/3qXEc4Xm", "https://eyun.baidu.com/s/3nu8IVpv", "");
 				break;
 			case "星之卡比 卡比梦幻都":
-				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "", "", "");
+				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "https://eyun.baidu.com/s/3hsvCjfI", "https://eyun.baidu.com/s/3jHCmNps", "");
 				break;
 			case "[仅美国]星之卡比 卡比魔方气泡":
-				showDownloadDialog(con, game_name, "[限定]仅存在美版", "美版" , null ,  null, "", "", "");
+				showDownloadDialog(con, game_name, "[限定]仅存在美版", "美版" , null ,  null, "https://eyun.baidu.com/s/3eSuusSi", "", "");
 				break;
 			case "[仅日本]星之卡比 卡比宝石星DX":
-				showDownloadDialog(con, game_name, "[限定]仅存在日版", "日版", null, null, "", "", "");
+				showDownloadDialog(con, game_name, "[限定]仅存在日版", "日版", null, null, "https://eyun.baidu.com/s/3kVDhaS3", "", "");
 				break;
 			case "星之卡比 64":
-				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "", "", "");
+				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "https://eyun.baidu.com/s/3jHPKdMY", "https://eyun.baidu.com/s/3jHPKdMY", "");
 				break;
 			case "星之卡比 飞天赛车":
-				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "", "", "");
+				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "https://eyun.baidu.com/s/3qYAoXGC", "", "");
 				break;
 			case "星之卡比 重返梦幻岛":
-				showDownloadDialog(con, game_name, "[注意有单/多文件之分]\n请选择你需要的版本", "日版", "美版", "汉化", "", "", "");
+				showDownloadDialog(con, game_name, "[注意有单/多文件之分]\n请选择你需要的版本", "日版（单）", "美版（多）", "汉化（多）", "https://eyun.baidu.com/s/3skEbla1", "https://eyun.baidu.com/s/3gf5Oxe7", "https://eyun.baidu.com/s/3gfqpuin");
 				break;
 			case "星之卡比 毛线卡比":
-				showDownloadDialog(con, game_name, "[注意有单/多文件之分]\n请选择你需要的版本", "日版", "美版", "汉化", "", "", "");
+				showDownloadDialog(con, game_name, "[注意有单/多文件之分]\n请选择你需要的版本", "美版（多）", "美版（单）", "汉化（单）", "https://eyun.baidu.com/s/3c2inVEC", "https://eyun.baidu.com/s/3dFACfWd", "https://eyun.baidu.com/s/3eRYayD8");
 				break;
 			case "星之卡比 触摸卡比":
-				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "", "", "");
+				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "https://eyun.baidu.com/s/3hsqS3S4", "https://eyun.baidu.com/s/3c27V89i", "https://eyun.baidu.com/s/3i5Pwsxn");
 				break;
 			case "星之卡比 超究豪华版":
-				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "", "", "");
+				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "https://eyun.baidu.com/s/3i4Ricbb", "https://eyun.baidu.com/s/3nvCwXlB", "https://eyun.baidu.com/s/3c2EblZi");
 				break;
 			case "星之卡比 呐喊团":
-				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "", "", "");
+				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "https://eyun.baidu.com/s/3bo4Z5TH", "https://eyun.baidu.com/s/3czmilC", "https://eyun.baidu.com/s/3hr4PxbA");
 				break;
 			case "星之卡比 集合！卡比":
-				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "", "", "");
+				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "https://eyun.baidu.com/s/3geO4mbx", "https://eyun.baidu.com/s/3eSijdHS", "https://eyun.baidu.com/s/3o80PA6e");
 				break;
 			case "星之卡比 1":
-				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "", "", "");
+				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "https://eyun.baidu.com/s/3pKN6dIz", "https://eyun.baidu.com/s/3pKZHpaF", "");
 				break;
 			case "星之卡比 2":
-				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "", "", "");
+				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "https://eyun.baidu.com/s/3i57Kjjv", "https://eyun.baidu.com/s/3jI4urlW", "");
 				break;
 			case "星之卡比 卡比宝石星":
-				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "", "", "");
+				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "https://eyun.baidu.com/s/3miFgbtI", "https://eyun.baidu.com/s/3nvtzunn", "");
 				break;
 			case "星之卡比 卡比打砖块":
-				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "", "", "");
+				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "https://eyun.baidu.com/s/3i5Dkqah", "https://eyun.baidu.com/s/3ge7808r", "");
 				break;
 			case "星之卡比 卡比弹珠台":
-				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "", "", "");
+				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "https://eyun.baidu.com/s/3i48QqMh", "https://eyun.baidu.com/s/3eSwv1DK", "");
 				break;
 			case "星之卡比 滚滚卡比":
-				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "", "", "");
+				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "https://eyun.baidu.com/s/3pKP9eav", "https://eyun.baidu.com/s/3nuQZavJ", "");
 				break;
 			case "星之卡比 梦之泉物语":
-				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "", "", "");
+				showDownloadDialog(con, game_name, "请选择你需要的版本", "日版", "美版", "汉化", "https://eyun.baidu.com/s/3pKXFx8n", "https://eyun.baidu.com/s/3pKZHpaF", "https://eyun.baidu.com/s/3i4HC8FN");
 				break;
 			case "GBA模拟器\nMy Boy!":
 				showDownloadDialog(con, game_name, "咱这里只给你汉化版( •̀∀•́ )", "汉化", null, null, "", "", "");
