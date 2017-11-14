@@ -12,13 +12,10 @@ import android.widget.*;
 import cn.bmob.v3.*;
 import cn.bmob.v3.exception.*;
 import cn.bmob.v3.listener.*;
-import com.google.gson.*;
-import com.google.gson.reflect.*;
 import com.kirby.runanjing.*;
 import com.kirby.runanjing.activity.*;
 import com.kirby.runanjing.adapter.*;
 import com.kirby.runanjing.fragment.fab.*;
-import com.kirby.runanjing.gson.*;
 import com.kirby.runanjing.untils.*;
 import java.util.*;
 
@@ -105,32 +102,32 @@ public class MainMessFragment extends Fragment
 			});
 	}
 	private Handler handler=new Handler(){
-	 @Override
-	 public void handleMessage(Message msg)
-	 {
-	 switch (msg.what)
-	 {
-	 case 0:
-	 List<MessageBmob> list= (List<MessageBmob>)msg.obj;
-	 for (MessageBmob m : list)
-	 {
-	 //从获取的数据中提取需要的数据
-	 String 用户名=m.getNickname();
-	 String 内容=m.getMessage();
-	 String 时间_=m.getCreatedAt();
-	 String 时间 = 时间_.substring(0,16);
-	 Mess mess=new Mess(用户名, 内容, 时间);
-	 //将查询到的数据依次添加到列表
-	 messlist.add(mess);
-	 //设置适配器
-	 re.setAdapter(adapter);
-	 }			
-	 //刷新回调
-	 ProgressBar p=(ProgressBar)view.findViewById(R.id.mess_刷新);
-	 p.setVisibility(View.GONE);
-	 刷新.setRefreshing(false);
-	 break;
-	 }
-	 }
-	 };
+		@Override
+		public void handleMessage(Message msg)
+		{
+			switch (msg.what)
+			{
+				case 0:
+					List<MessageBmob> list= (List<MessageBmob>)msg.obj;
+					for (MessageBmob m : list)
+					{
+						//从获取的数据中提取需要的数据
+						String 用户名=m.getNickname();
+						String 内容=m.getMessage();
+						String 时间_=m.getCreatedAt();
+						String 时间 = 时间_.substring(0, 16);
+						Mess mess=new Mess(用户名, 内容, 时间);
+						//将查询到的数据依次添加到列表
+						messlist.add(mess);
+						//设置适配器
+						re.setAdapter(adapter);
+					}			
+					//刷新回调
+					ProgressBar p=(ProgressBar)view.findViewById(R.id.mess_刷新);
+					p.setVisibility(View.GONE);
+					刷新.setRefreshing(false);
+					break;
+			}
+		}
+	};
 }

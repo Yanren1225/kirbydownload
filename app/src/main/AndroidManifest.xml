@@ -1,29 +1,33 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.kirby.runanjing" >
-    <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:theme="@style/BuleTheme"
-		android:resizeableActivity = "true">
-        <activity
-            android:name=".activity.Launcher"
-            android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-	     </activity>	
+<?xml version='1.0' encoding='utf-8'?>
+<manifest
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	package="com.kirby.runanjing">
+	<uses-permission android:name="android.permission.WAKE_LOCK"/>
+	<uses-permission android:name="android.permission.INTERNET"/>
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+	<application
+		android:allowBackup="true"
+		android:icon="@mipmap/ic_launcher"
+		android:label="@string/app_name"
+		android:theme="@style/BuleTheme"
+		android:resizeableActivity="true">
+		<activity
+			android:name=".activity.Launcher"
+			android:label="@string/app_name">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN"/>
+				<category android:name="android.intent.category.LAUNCHER"/>
+			</intent-filter>
+		</activity>
 		<activity
 			android:name=".activity.MainActivity"
 			android:launchMode="singleTask"
-            android:label="kirby download" />
+			android:label="kirby download"/>
 		<activity
 			android:name=".activity.GameListActivity"
-			android:label="当前是" />
-		<activity
-			android:name=".activity.GameActivity" />
+			android:label="当前是"/>
+		<activity android:name=".activity.GameActivity"/>
 		<activity
 			android:name=".activity.AboutActivity"
 			android:label="关于"/>
@@ -39,14 +43,8 @@
 		<activity
 			android:name=".activity.GithubActivity"
 			android:label="开源相关"/>
-		<activity
-			android:name=".thefirst.WelcomeActivity"/>
-		<activity
-			android:name=".thefirst.UserActivity"/>
-		<activity
-			android:name=".thefirst.FinishActivity"/>
+		<activity android:name=".thefirst.WelcomeActivity"/>
+		<activity android:name=".thefirst.UserActivity"/>
+		<activity android:name=".thefirst.FinishActivity"/>
 	</application>
-	<uses-permission android:name="android.permission.INTERNET" />
-	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 </manifest>
