@@ -26,7 +26,7 @@ public class UserActivity extends AppCompatActivity
 				@Override
 				public void onClick(View p1)
 				{
-					Intent i=new Intent(UserActivity.this,FinishActivity.class);
+					Intent i=new Intent(UserActivity.this,PermissionActivity.class);
 					startActivity(i);
 					finish();
 				}
@@ -61,7 +61,7 @@ public class UserActivity extends AppCompatActivity
 									if (e == null)
 									{
 										Toast.makeText(UserActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
-										Intent me=new Intent(UserActivity.this, FinishActivity.class);
+										Intent me=new Intent(UserActivity.this, PermissionActivity.class);
 										startActivity(me);				
 									}
 									else

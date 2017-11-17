@@ -14,11 +14,7 @@
             android:key="help"
             android:summary="需要帮助吗，点我进群"
             android:title="反馈" />
-		<Preference
-            android:key="gnu"
-			android:summary="看看kirby download用了哪些开源库"
-            android:title="开放源代码许可" />
-    </PreferenceCategory>
+	  </PreferenceCategory>
 
     <PreferenceCategory android:title="捐赠">
         <Preference

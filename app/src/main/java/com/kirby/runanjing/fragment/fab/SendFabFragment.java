@@ -43,7 +43,7 @@ public class SendFabFragment extends AAH_FabulousFragment
 				}
 			});
 		setAnimationListener((AnimationListener) getActivity());
-	    setPeekHeight(400);
+	    setPeekHeight(300);
         setViewMain(rl_content); //necessary; main bottomsheet view
         setMainContentView(contentView); // necessary; call at end before super
         super.setupDialog(dialog, style); //call super at last

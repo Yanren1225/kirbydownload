@@ -31,7 +31,6 @@
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
 			android:text="写点什么吧վ'ᴗ' ի"
-			android:layout_above="@id/内容_编辑"
 			android:layout_centerHorizontal="true"
 			android:layout_alignParentTop="true"
 			android:textSize="18sp"

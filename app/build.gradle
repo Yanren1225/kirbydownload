@@ -1,15 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 21
+    compileSdkVersion 23
     buildToolsVersion "21.1.0"
     useLibrary 'org.apache.http.legacy'
     defaultConfig {
         applicationId "com.kirby.runanjing"
         minSdkVersion 19
-        targetSdkVersion 21
-        versionCode 20171002
-        versionName "2.0-卡比"
+        targetSdkVersion 23
+        versionCode 20171117
+        versionName "2.2-卡比"
     }
     buildTypes {
         release {

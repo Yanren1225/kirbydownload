@@ -7,7 +7,10 @@
 		app:showAsAction="always"/>
 	<item
         android:id="@+id/about"
-		android:icon="@drawable/circle"
         android:title="关于"
-		app:showAsAction="always"/>
+		app:showAsAction="never"/>
+	<item
+        android:id="@+id/app"
+        android:title="推荐APP"
+		app:showAsAction="never"/>
 </menu>

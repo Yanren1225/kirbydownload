@@ -33,8 +33,6 @@ import com.kirby.runanjing.R;
 import java.io.*;
 public class MainActivity extends AppCompatActivity implements AAH_FabulousFragment.AnimationListener 
 {
-	private TabLayout mTabLayout;
-    private long firstTime;
 	private NavigationView navView;
 	private DrawerLayout drawerLayout;
 	private String name;
@@ -135,8 +133,6 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 				{
 					drawerLayout.closeDrawers();
 					replaceFragment(new MainLoginFragment());
-					//Intent me=new Intent(MainActivity.this, LoginActivity.class);
-					//startActivity(me);	
 				}
 			});
 		if (null == u)
@@ -289,8 +285,7 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 													{
 														Toast.makeText(MainActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
 														u.logOut();
-														Intent 修改邮箱=new Intent(MainActivity.this, LoginActivity.class);
-														startActivity(修改邮箱);
+														open();
 													}
 													else
 													{
@@ -354,8 +349,7 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 													{
 														Toast.makeText(MainActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
 														u.logOut();
-														Intent 修改密码=new Intent(MainActivity.this, LoginActivity.class);
-														startActivity(修改密码);
+														open();
 													}
 													else
 													{
@@ -420,9 +414,98 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 				Intent about=new Intent(MainActivity.this, AboutActivity.class);
 				startActivity(about);
 				break;
+			case R.id.app:
+				AlertDialog.Builder builder = new AlertDialog.Builder(this);
+				builder.setTitle("推荐工具");
+				String[] items={"ZArchiver\n一款好用的解压工具可以用来解压下载的游戏文件"};
+				builder.setItems(items, new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialogInterface, int i)
+						{
+							switch (i)
+							{
+								case 0:
+									downloadappApk("ZArchiver");
+									break;
+							}
+						}
+					});
+				builder.create();
+				builder.show();
+				break;
 			default:
 		}
 		return true;	
+	}
+	public void downloadappApk(final String app_name)
+	{
+		Toast.makeText(MainActivity.this, "连", Toast.LENGTH_SHORT).show();
+		progressDialog = new ProgressDialog(MainActivity.this);
+		progressDialog.setMessage("正在连接服务器");
+		progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+		progressDialog.setMax(100);
+		progressDialog.show();
+		BmobQuery<moniqi> query = new BmobQuery<moniqi>();
+        query.addWhereEqualTo("name", app_name);
+        query.findObjects(new FindListener<moniqi>(){
+				private BmobFile moniqiApk;
+				@Override
+				public void done(List<moniqi> p1, BmobException p2)
+				{
+					if (p2 == null)
+					{
+						for (moniqi apk: p1)
+						{
+							moniqiApk = apk.getApk();
+						}
+						appFileDownload(moniqiApk, app_name);
+					}
+					else
+					{
+						progressDialog.dismiss();
+						Toast.makeText(MainActivity.this, "连接服务器失败:" + p2, Toast.LENGTH_SHORT).show();
+					}
+				}
+			});
+	}
+	private void appFileDownload(BmobFile moniqiApk, final String app_name)
+	{
+		File saveFile = new File("/storage/emulated/0/Android/data/com.kirby.runanjing/files");
+		moniqiApk.download(saveFile, new DownloadFileListener() {
+				@Override
+				public void onStart()
+				{
+					progressDialog.setMessage("正在下载:" + app_name);
+				}
+				@Override
+				public void done(String savePath, BmobException e)
+				{
+					if (e == null)
+					{
+						progressDialog.dismiss();
+						Toast.makeText(MainActivity.this, "下载完成，保存在:" + savePath, Toast.LENGTH_SHORT).show();
+						File file=new File(savePath);
+						installAppApk(file);
+					}
+					else
+					{
+						progressDialog.dismiss();
+						Toast.makeText(MainActivity.this, "下载失败:" + e.getMessage() + "\n错误码:" + e.getErrorCode(), Toast.LENGTH_SHORT).show();
+					}
+				}
+				@Override
+				public void onProgress(Integer value, long newworkSpeed)
+				{
+					progressDialog.setProgress(value);
+				}
+			});
+	}
+	protected void installAppApk(File file)
+	{
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);       
+		intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");       
+        startActivity(intent);
 	}
 	public void theDownload(Context con, String game_name)
 	{
@@ -496,26 +579,29 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 				showDownloadDialog(game_name, "请选择你需要的版本", "日版", "美版", "汉化", "https://eyun.baidu.com/s/3pKXFx8n", "https://eyun.baidu.com/s/3pKZHpaF", "https://eyun.baidu.com/s/3i4HC8FN");
 				break;
 			case "GBA模拟器\nMy Boy!":
-				showOtherDownloadDialog("gba",game_name);
+				showOtherDownloadDialog("gba", game_name);
 				break;
 			case "SFC模拟器\nSnes9x EX+":
-				showDownloadDialog(game_name, "咱这里只给你汉化版( •̀∀•́ )", "汉化", null, null, "", "", "");
+				showOtherDownloadDialog("sfc", game_name);
 				break;
 			case "N64模拟器\nTendo64":
-				showDownloadDialog(game_name, "咱这里只给你汉化版( •̀∀•́ )", "汉化", null, null, "", "", "");
+				showOtherDownloadDialog("n64", game_name);
+				break;
+			case "NDS模拟器\nDraStic":
+				showOtherDownloadDialog("nds", game_name);
 				break;
 			case "NGC&WII模拟器\nDolphin":
-				showDownloadDialog(game_name, "咱这里只给你汉化版( •̀∀•́ )", "汉化", null, null, "", "", "");
+				showOtherDownloadDialog("wii", game_name);
 				break;
 			case "GB&GBC模拟器\nMy OldBoy!":
-				showDownloadDialog(game_name, "咱这里只给你汉化版( •̀∀•́ )", "汉化", null, null, "", "", "");
+				showOtherDownloadDialog("gb", game_name);
 				break;
 			case "FC模拟器\nNES.emu":
-				showDownloadDialog(game_name, "咱这里只给你汉化版( •̀∀•́ )", "汉化", null, null, "", "", "");
+				showOtherDownloadDialog("fc", game_name);
 				break;
 		}
 	}
-	private void downloadMoniqiApk(final String game_name)
+	public void downloadMoniqiApk(final String game_name)
 	{
 		progressDialog = new ProgressDialog(gameContext);
 		progressDialog.setMessage("正在连接服务器");
@@ -535,18 +621,19 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 						{
 							moniqiApk = apk.getApk();
 						}
-						bmobFileDownload(moniqiApk, game_name);
+						moniqiFileDownload(moniqiApk, game_name);
 					}
 					else
 					{
-						Toast.makeText(gameContext, "错误信息:" + p2, Toast.LENGTH_SHORT).show();
+						progressDialog.dismiss();
+						Toast.makeText(gameContext, "连接服务器失败:" + p2, Toast.LENGTH_SHORT).show();
 					}
 				}
 			});
 	}
-	private void bmobFileDownload(BmobFile moniqiApk, final String game_name)
+	private void moniqiFileDownload(BmobFile moniqiApk, final String game_name)
 	{
-		File saveFile = new File("/storage/emulated/0/Android/data/com.kirby.runanjing/files/");
+		File saveFile = new File("/storage/emulated/0/Android/data/com.kirby.runanjing/files");
 		moniqiApk.download(saveFile, new DownloadFileListener() {
 				@Override
 				public void onStart()
@@ -561,7 +648,7 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 						progressDialog.dismiss();
 						Toast.makeText(gameContext, "下载完成，保存在:" + savePath, Toast.LENGTH_SHORT).show();
 						File file=new File(savePath);
-						installApk(file);
+						installMoniqiApk(file);
 					}
 					else
 					{
@@ -576,7 +663,7 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 				}
 			});
 	}
-	private void showOtherDownloadDialog(final String downloadName,String game_name)
+	private void showOtherDownloadDialog(final String downloadName, String game_name)
 	{
 		AlertDialog.Builder dialog = new
 			AlertDialog.Builder(gameContext)
@@ -593,7 +680,7 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 			}
 		);dialog.show();
 	}
-	protected void installApk(File file)
+	protected void installMoniqiApk(File file)
 	{
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);       

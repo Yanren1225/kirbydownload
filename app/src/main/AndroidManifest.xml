@@ -22,7 +22,6 @@
 		</activity>
 		<activity
 			android:name=".activity.MainActivity"
-			android:launchMode="singleTask"
 			android:label="kirby download"/>
 		<activity
 			android:name=".activity.GameListActivity"
@@ -37,14 +36,9 @@
 		<activity
 			android:name=".activity.LoginActivity"
 			android:label="登录/注册"/>
-		<activity
-			android:name=".activity.MessageActivity"
-			android:label="闲聊"/>
-		<activity
-			android:name=".activity.GithubActivity"
-			android:label="开源相关"/>
 		<activity android:name=".thefirst.WelcomeActivity"/>
 		<activity android:name=".thefirst.UserActivity"/>
 		<activity android:name=".thefirst.FinishActivity"/>
+		<activity android:name=".thefirst.PermissionActivity"/>
 	</application>
 </manifest>
