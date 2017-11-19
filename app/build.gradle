@@ -8,7 +8,7 @@ android {
         applicationId "com.kirby.runanjing"
         minSdkVersion 19
         targetSdkVersion 23
-        versionCode 20171117
+        versionCode 20171119
         versionName "2.2-卡比"
     }
     buildTypes {

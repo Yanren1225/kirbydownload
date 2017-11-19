@@ -213,7 +213,7 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 		//自定义MessBmob发送留言
 		MessageBmob mess = new MessageBmob();
 		mess.setMessage(edit_内容);
-		mess.setNickname(name);
+		mess.setNickname(u.getUsername());
 		mess.save(new SaveListener<String>() {
 				@Override
 				public void done(String objectId, BmobException e)
@@ -439,7 +439,6 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 	}
 	public void downloadappApk(final String app_name)
 	{
-		Toast.makeText(MainActivity.this, "连", Toast.LENGTH_SHORT).show();
 		progressDialog = new ProgressDialog(MainActivity.this);
 		progressDialog.setMessage("正在连接服务器");
 		progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
@@ -470,7 +469,7 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 	}
 	private void appFileDownload(BmobFile moniqiApk, final String app_name)
 	{
-		File saveFile = new File("/storage/emulated/0/Android/data/com.kirby.runanjing/files");
+		File saveFile = new File("/storage/emulated/0/Android/data/com.kirby.runanjing/files/"+moniqiApk.getFilename());
 		moniqiApk.download(saveFile, new DownloadFileListener() {
 				@Override
 				public void onStart()
@@ -633,7 +632,7 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 	}
 	private void moniqiFileDownload(BmobFile moniqiApk, final String game_name)
 	{
-		File saveFile = new File("/storage/emulated/0/Android/data/com.kirby.runanjing/files");
+		File saveFile = new File("/storage/emulated/0/Android/data/com.kirby.runanjing/files/"+moniqiApk.getFilename());
 		moniqiApk.download(saveFile, new DownloadFileListener() {
 				@Override
 				public void onStart()
