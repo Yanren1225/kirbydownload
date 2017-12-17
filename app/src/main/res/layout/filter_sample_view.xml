@@ -30,7 +30,7 @@
 		<TextView
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
-			android:text="写点什么吧վ'ᴗ' ի"
+			android:text="@string/edit_some"
 			android:layout_centerHorizontal="true"
 			android:layout_alignParentTop="true"
 			android:textSize="18sp"
@@ -40,14 +40,14 @@
 			android:layout_below="@id/发送"
 			android:layout_height="wrap_content"
 			android:layout_width="match_parent"
-			android:hint="内容（100字）"
+			android:hint="@string/edit_ny"
 			android:maxLength="200"
 			android:id="@+id/内容_编辑"/>
 
 		<TextView
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
-			android:text="看什么看(ﾉ｀⊿´)ﾉ"
+			android:text="@string/look_funk"
 			android:layout_alignParentBottom="true"
 			android:layout_centerHorizontal="true"/>
 

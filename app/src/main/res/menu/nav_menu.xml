@@ -2,15 +2,15 @@
     <group android:checkableBehavior="single">
 		<item
 			android:id="@+id/game"
-			android:title="资源"/>
+			android:title="@string/ziyuan"/>
 		<item
 			android:id="@+id/jsz"
-			android:title="金手指"/>
+			android:title="@string/jsz_title"/>
     </group>
 	<group android:checkableBehavior="single"
 		android:id="@+id/user">
 		<item
 			android:id="@+id/mess"
-			android:title="闲聊"/>
+			android:title="@string/talk"/>
 		</group>
 </menu>

@@ -7,9 +7,10 @@
 	android:id="@+id/drawer_main"
 	android:fitsSystemWindows="true">
 
-	<RelativeLayout
-		android:layout_height="wrap_content"
-		android:layout_width="wrap_content">
+	<android.support.design.widget.CoordinatorLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:id="@+id/mainCoordinatorLayout1">
 
 		<android.support.design.widget.AppBarLayout
 			android:layout_width="match_parent"
@@ -27,14 +28,13 @@
 
 		</android.support.design.widget.AppBarLayout>
 
-		<FrameLayout	
-			android:layout_below="@id/mainAppBarLayout1"
+		<FrameLayout
 			android:id="@+id/main_fragment"
 			android:layout_height="match_parent"
 			android:layout_width="match_parent"
-			/>
+			app:layout_behavior="@string/appbar_scrolling_view_behavior"	/>
 
-	</RelativeLayout>
+	</android.support.design.widget.CoordinatorLayout>
 
 	<android.support.design.widget.NavigationView
 		android:id="@+id/nav_view"

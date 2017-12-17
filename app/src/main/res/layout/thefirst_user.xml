@@ -15,7 +15,7 @@
 		<TextView
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
-			android:text="用户"
+			android:text="@string/the_first_user_title"
 			android:layout_marginLeft="32dp"
 			android:layout_alignParentBottom="true"
 			android:layout_marginBottom="16dp"
@@ -32,7 +32,7 @@
 		<TextView
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
-			android:text="kirby download拥有用户系统，你可以登录你之前注册的账号或者注册新账号\n当然，你也可以在进入程序之后登录或注册"
+			android:text="@string/the_first_user"
 			android:id="@+id/thefirstwelcomeTextView2"
 			android:layout_marginTop="8dp"
 			android:layout_marginLeft="16dp"/>
@@ -43,14 +43,14 @@
 			android:ems="10"
 			android:layout_below="@id/thefirstwelcomeTextView2"
 			android:id="@+id/用户名"
-			android:hint="用户名或邮箱"/>
+			android:hint="@string/login_user"/>
 
 		<EditText
 			android:layout_height="wrap_content"
 			android:inputType="textPassword"
 			android:layout_width="match_parent"
 			android:layout_below="@id/用户名"
-			android:hint="密码"
+			android:hint="@string/register"
 			android:id="@+id/密码"/>
 
 		<LinearLayout
@@ -63,7 +63,7 @@
 				style="?android:attr/buttonBarButtonStyle"
 				android:layout_height="wrap_content"
 				android:layout_width="wrap_content"
-				android:text="注册"
+				android:text="@string/register"
 				android:layout_weight="1.0"
 				android:id="@+id/注册"/>
 
@@ -71,7 +71,7 @@
 				style="?android:attr/buttonBarButtonStyle"
 				android:layout_height="wrap_content"
 				android:layout_width="wrap_content"
-				android:text="登录"
+				android:text="@string/login"
 				android:layout_weight="1.0"
 				android:id="@+id/登录"/>
 
@@ -87,7 +87,7 @@
 				style="?android:attr/buttonBarButtonStyle"
 				android:layout_height="wrap_content"
 				android:layout_width="wrap_content"
-				android:text="跳过"
+				android:text="@string/next_funk"
 				android:layout_alignParentRight="true"
 				android:layout_centerVertical="true"
 				android:id="@+id/next"/>

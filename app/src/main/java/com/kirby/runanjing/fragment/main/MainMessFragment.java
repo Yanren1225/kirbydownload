@@ -8,7 +8,6 @@ import android.support.v4.widget.*;
 import android.support.v7.widget.*;
 import android.util.*;
 import android.view.*;
-import android.widget.*;
 import cn.bmob.v3.*;
 import cn.bmob.v3.exception.*;
 import cn.bmob.v3.listener.*;
@@ -17,7 +16,11 @@ import com.kirby.runanjing.activity.*;
 import com.kirby.runanjing.adapter.*;
 import com.kirby.runanjing.fragment.fab.*;
 import com.kirby.runanjing.untils.*;
+import com.wang.avi.*;
 import java.util.*;
+
+import com.kirby.runanjing.R;
+import com.wang.avi.indicators.*;
 
 public class MainMessFragment extends Fragment
 {
@@ -28,8 +31,8 @@ public class MainMessFragment extends Fragment
 	private String name;
 	private FloatingActionButton 编写;
 	private View view;
-
 	private MainActivity m;
+	private AVLoadingIndicatorView p;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
@@ -40,9 +43,42 @@ public class MainMessFragment extends Fragment
 		Bmob.initialize(getActivity(), "e39c2e15ca40b358b0dcc933236c1165");
 		return view;
 	}
-
+	
 	private void initMess(View view)
 	{
+	    p=(AVLoadingIndicatorView)view.findViewById(R.id.mess_刷新);
+		String[] arr = {
+			 "BallPulseIndicator"
+			,"BallGridPulseIndicator"
+			,"BallClipRotateIndicator"
+			,"BallClipRotatePulseIndicator"
+			,"SquareSpinIndicator"
+			,"BallClipRotateMultipleIndicator"
+			,"BallPulseRiseIndicator"
+			,"BallRotateIndicator"
+			,"CubeTransitionIndicator"
+			,"BallZigZagIndicator"
+			,"BallZigZagDeflectIndicator"
+			,"BallTrianglePathIndicator"
+			,"BallScaleIndicator"
+			,"LineScaleIndicator"
+			,"LineScalePartyIndicator"
+			,"BallScaleMultipleIndicator"
+			,"BallPulseSyncIndicator"
+			,"BallBeatIndicator"
+			,"LineScalePulseOutIndicator"
+			,"LineScalePulseOutRapidIndicator"
+			,"BallScaleRippleIndicator"
+			,"BallScaleRippleMultipleIndicator"
+			,"BallSpinFadeLoaderIndicator"
+			,"LineSpinFadeLoaderIndicator"
+			,"TriangleSkewSpinIndicator"
+			,"PacmanIndicator"
+			,"BallGridBeatIndicator"
+			,"SemiCircleSpinIndicator"
+		};
+		int i=(int)(Math.random()*arr.length);
+		p.setIndicator(arr[i]);
 		//设置显示留言的列表
 		re = (RecyclerView)view.findViewById(R.id.留言);
 		GridLayoutManager layoutManager=new GridLayoutManager(getActivity(), 1);
@@ -123,7 +159,6 @@ public class MainMessFragment extends Fragment
 						re.setAdapter(adapter);
 					}			
 					//刷新回调
-					ProgressBar p=(ProgressBar)view.findViewById(R.id.mess_刷新);
 					p.setVisibility(View.GONE);
 					刷新.setRefreshing(false);
 					break;

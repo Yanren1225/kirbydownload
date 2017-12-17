@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 		//配置toolbar
 		toolbar = (Toolbar)findViewById(R.id.标题栏);
 		setSupportActionBar(toolbar);
-		toolbar.setSubtitle("资源");
+		toolbar.setSubtitle(R.string.ziyuan);
 		replaceFragment(new MainGameFragment());
 		//使用BmobUser类获取部分用户数据
 		u = BmobUser.getCurrentUser(MyUser.class);
@@ -93,15 +93,15 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 					switch (item.getItemId())
 					{
 						case R.id.game:
-							toolbar.setSubtitle("资源");
+							toolbar.setSubtitle(R.string.ziyuan);
 							replaceFragment(new MainGameFragment());
 							break;
 						case R.id.jsz:
-							toolbar.setSubtitle("金手指");
+							toolbar.setSubtitle(R.string.jsz_title);
 							replaceFragment(new MainJszFragment());
 							break;
 						case R.id.mess:
-							toolbar.setSubtitle("闲聊");
+							toolbar.setSubtitle(R.string.talk);
 							replaceFragment(new MainMessFragment());			
 							break;
 					}
@@ -133,6 +133,7 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 				{
 					drawerLayout.closeDrawers();
 					replaceFragment(new MainLoginFragment());
+					toolbar.setSubtitle(R.string.login_title);
 				}
 			});
 		if (null == u)
@@ -222,11 +223,11 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 					{		
 						MainMessFragment main_mess=(MainMessFragment)getSupportFragmentManager().findFragmentById(R.id.main_fragment);
 						main_mess.getMessage();
-						Toast.makeText(MainActivity.this, "发送成功：" + objectId, Toast.LENGTH_SHORT).show();
+						Toast.makeText(MainActivity.this, R.string.mess_true + objectId, Toast.LENGTH_SHORT).show();
 					}
 					else
 					{
-						Toast.makeText(MainActivity.this, "发送失败：" + e.getMessage(), Toast.LENGTH_SHORT).show();
+						Toast.makeText(MainActivity.this, R.string.mess_false+ e.getMessage(), Toast.LENGTH_SHORT).show();
 					}
 				}
 			});
@@ -243,9 +244,9 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 		email = u.getEmail();
 		id = u.getObjectId();
 		new AlertDialog.Builder(MainActivity.this)
-			.setTitle("用户信息")
-			.setMessage("用户名:" + name + "\n邮箱:" + email)
-			.setPositiveButton("修改邮箱", new
+			.setTitle(R.string.edit_email)
+			.setMessage(getResources().getString(R.string.user_name) + name + "\n"+getResources().getString(R.string.user_email) + email)
+			.setPositiveButton(R.string.user_email, new
 			DialogInterface.OnClickListener()
 			{
 				@Override
@@ -254,9 +255,9 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 					LayoutInflater lay_1 = getLayoutInflater();
 					final View modification_email_layout = lay_1.inflate(R.layout.dialog_modification_email, null);
 					new AlertDialog.Builder(MainActivity.this)
-						.setTitle("修改邮箱(成功后需要重新登录)")
+						.setTitle(R.string.email_title)
 						.setView(modification_email_layout) 
-						.setPositiveButton("确定", new
+						.setPositiveButton(R.string.dia_yes, new
 						DialogInterface.OnClickListener()
 						{
 							@Override
@@ -268,7 +269,7 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 								String edit_新邮箱=修改邮箱_新邮箱.getText().toString();
 								if (edit_原邮箱.isEmpty() || edit_新邮箱.isEmpty())
 								{
-									Toast.makeText(MainActivity.this, "不能为空！", Toast.LENGTH_SHORT).show();
+									Toast.makeText(MainActivity.this, R.string.is_null, Toast.LENGTH_SHORT).show();
 								}
 								else
 								{
@@ -283,13 +284,13 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 												{
 													if (e == null)
 													{
-														Toast.makeText(MainActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
+														Toast.makeText(MainActivity.this, R.string.edit_true, Toast.LENGTH_SHORT).show();
 														u.logOut();
 														open();
 													}
 													else
 													{
-														Toast.makeText(MainActivity.this, "修改失败：" + e.getMessage(), Toast.LENGTH_SHORT).show();
+														Toast.makeText(MainActivity.this, R.string.edit_false+ e.getMessage(), Toast.LENGTH_SHORT).show();
 													}
 												}
 
@@ -297,18 +298,18 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 									}
 									else
 									{
-										Toast.makeText(MainActivity.this, "原邮箱出错", Toast.LENGTH_SHORT).show();
+										Toast.makeText(MainActivity.this, R.string.email_false, Toast.LENGTH_SHORT).show();
 									}
 								}
 							}
 						}
 					)					
-						.setNegativeButton("取消", null)
+						.setNegativeButton(R.string.dia_cancel, null)
 						.show();
 				}
 			}
 		)
-			.setNegativeButton("修改密码", new DialogInterface.OnClickListener()
+			.setNegativeButton(R.string.edit_password, new DialogInterface.OnClickListener()
 			{
 				@Override
 				public void onClick(DialogInterface dialog, int which)
@@ -316,9 +317,9 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 					LayoutInflater lay_2 = getLayoutInflater();
 					final View modification_password_layout = lay_2.inflate(R.layout.dialog_modification_password, null);
 					new AlertDialog.Builder(MainActivity.this)
-						.setTitle("修改密码(成功后需要重新登录)")
+						.setTitle(R.string.password_title)
 						.setView(modification_password_layout) 
-						.setPositiveButton("确定", new
+						.setPositiveButton(R.string.dia_yes, new
 						DialogInterface.OnClickListener()
 						{
 
@@ -334,7 +335,7 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 								String edit_验证=修改密码_验证.getText().toString();
 								if (edit_原密码.isEmpty() || edit_新密码.isEmpty() || edit_验证.isEmpty())
 								{
-									Toast.makeText(MainActivity.this, "不能为空！", Toast.LENGTH_SHORT).show();
+									Toast.makeText(MainActivity.this, R.string.is_null, Toast.LENGTH_SHORT).show();
 								}
 								else
 								{
@@ -347,37 +348,37 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 												{
 													if (e == null)
 													{
-														Toast.makeText(MainActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
+														Toast.makeText(MainActivity.this, R.string.edit_true, Toast.LENGTH_SHORT).show();
 														u.logOut();
 														open();
 													}
 													else
 													{
-														Toast.makeText(MainActivity.this, "修改失败：" + e.getMessage(), Toast.LENGTH_SHORT).show();
+														Toast.makeText(MainActivity.this, R.string.edit_false + e.getMessage(), Toast.LENGTH_SHORT).show();
 													}
 												}
 											});
 									}
 									else
 									{
-										Toast.makeText(MainActivity.this, "两次输入的新密码不同", Toast.LENGTH_SHORT).show();
+										Toast.makeText(MainActivity.this, R.string.password_false, Toast.LENGTH_SHORT).show();
 									}
 								}
 							}
 						}
 					)					
-						.setNegativeButton("取消", null)
+						.setNegativeButton(R.string.dia_cancel, null)
 						.show();
 				}
 			}
 		)
-			.setNeutralButton("账号登出", new DialogInterface.OnClickListener()
+			.setNeutralButton(R.string.user_logout, new DialogInterface.OnClickListener()
 			{
 				@Override
 				public void onClick(DialogInterface dialog, int which)
 				{
 					u.logOut();
-					Toast.makeText(MainActivity.this, "登出成功", Toast.LENGTH_SHORT).show();
+					Toast.makeText(MainActivity.this, R.string.logout_true, Toast.LENGTH_SHORT).show();
 					open();
 				}
 			}
@@ -397,7 +398,7 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 				int itemSelected=c.getInt("id", 0);
 				String[] singleChoiceItems = {"冰冻蓝","中国红","基佬紫","颐堤蓝","水鸭青","酷安绿","伊藤橙","古铜棕","低调灰"};
                 new AlertDialog.Builder(MainActivity.this)
-					.setTitle("主题")
+					.setTitle(R.string.theme_title)
 					.setSingleChoiceItems(singleChoiceItems, itemSelected, new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialogInterface, int i)
@@ -406,7 +407,7 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 							dialogInterface.dismiss();
 						}
 					})
-					.setNegativeButton("取消", null)
+					.setNegativeButton(R.string.dia_cancel, null)
 					.show();
 				break;
 			case R.id.about:
@@ -416,8 +417,8 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 				break;
 			case R.id.app:
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
-				builder.setTitle("推荐工具");
-				String[] items={"ZArchiver\n一款好用的解压工具可以用来解压下载的游戏文件"};
+				builder.setTitle(R.string.tj_app);
+				String[] items={"ZArchiver\n"+getResources().getString(R.string.app_ZArchiver)};
 				builder.setItems(items, new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialogInterface, int i)
@@ -440,7 +441,7 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 	public void downloadappApk(final String app_name)
 	{
 		progressDialog = new ProgressDialog(MainActivity.this);
-		progressDialog.setMessage("正在连接服务器");
+		progressDialog.setMessage(getResources().getString(R.string.link_bmob));
 		progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 		progressDialog.setMax(100);
 		progressDialog.show();
@@ -462,7 +463,7 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 					else
 					{
 						progressDialog.dismiss();
-						Toast.makeText(MainActivity.this, "连接服务器失败:" + p2, Toast.LENGTH_SHORT).show();
+						Toast.makeText(MainActivity.this,getResources().getString(R.string.link_fail) + p2, Toast.LENGTH_SHORT).show();
 					}
 				}
 			});
@@ -474,7 +475,7 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 				@Override
 				public void onStart()
 				{
-					progressDialog.setMessage("正在下载:" + app_name);
+					progressDialog.setMessage(getResources().getString(R.string.downloading) + app_name);
 				}
 				@Override
 				public void done(String savePath, BmobException e)
@@ -482,14 +483,14 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 					if (e == null)
 					{
 						progressDialog.dismiss();
-						Toast.makeText(MainActivity.this, "下载完成，保存在:" + savePath, Toast.LENGTH_SHORT).show();
+						Toast.makeText(MainActivity.this,getResources().getString(R.string.download_susses) + savePath, Toast.LENGTH_SHORT).show();
 						File file=new File(savePath);
 						installAppApk(file);
 					}
 					else
 					{
 						progressDialog.dismiss();
-						Toast.makeText(MainActivity.this, "下载失败:" + e.getMessage() + "\n错误码:" + e.getErrorCode(), Toast.LENGTH_SHORT).show();
+						Toast.makeText(MainActivity.this,getResources().getString(R.string.download_fail) + e.getMessage() , Toast.LENGTH_SHORT).show();
 					}
 				}
 				@Override
@@ -512,70 +513,70 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 		switch (game_name)
 		{
 			case "星之卡比 梦之泉DX":
-				showDownloadDialog(game_name, "请选择你需要的版本", "日版", "美版", "汉化", "https://eyun.baidu.com/s/3kURIBIZ", "https://eyun.baidu.com/s/3o86TXDS", "https://eyun.baidu.com/s/3dF22BWP");
+				showDownloadDialog(game_name, R.string.game_name, R.string.jp, R.string.us, R.string.zh, "https://eyun.baidu.com/s/3kURIBIZ", "https://eyun.baidu.com/s/3o86TXDS", "https://eyun.baidu.com/s/3dF22BWP");
 				break;
 			case "星之卡比 镜之大迷宫":
-				showDownloadDialog(game_name, "请选择你需要的版本", "日版", "美版", "汉化", "https://eyun.baidu.com/s/3hs7Mjsg", "https://eyun.baidu.com/s/3c5qBl8", "https://eyun.baidu.com/s/3i5t6Z3J");
+				showDownloadDialog(game_name,  R.string.game_name, R.string.jp, R.string.us, R.string.zh, "https://eyun.baidu.com/s/3hs7Mjsg", "https://eyun.baidu.com/s/3c5qBl8", "https://eyun.baidu.com/s/3i5t6Z3J");
 				break;
 			case "星之卡比 3":
-				showDownloadDialog(game_name, "请选择你需要的版本", "日版", "美版", "汉化", "https://eyun.baidu.com/s/3pKTD8EZ", "https://eyun.baidu.com/s/3gfwui2n", "");
+				showDownloadDialog(game_name,  R.string.game_name, R.string.jp, R.string.us, R.string.nu, "https://eyun.baidu.com/s/3pKTD8EZ", "https://eyun.baidu.com/s/3gfwui2n", "");
 				break;
 			case "星之卡比 超豪华版":
-				showDownloadDialog(game_name, "请选择你需要的版本", "日版", "美版", "汉化", "https://eyun.baidu.com/s/3qXEc4Xm", "https://eyun.baidu.com/s/3nu8IVpv", "");
+				showDownloadDialog(game_name,  R.string.game_name, R.string.jp, R.string.us, R.string.nu, "https://eyun.baidu.com/s/3qXEc4Xm", "https://eyun.baidu.com/s/3nu8IVpv", "");
 				break;
 			case "星之卡比 卡比梦幻都":
-				showDownloadDialog(game_name, "请选择你需要的版本", "日版", "美版", "汉化", "https://eyun.baidu.com/s/3hsvCjfI", "https://eyun.baidu.com/s/3jHCmNps", "");
+				showDownloadDialog(game_name,  R.string.game_name, R.string.jp, R.string.us, R.string.nu, "https://eyun.baidu.com/s/3hsvCjfI", "https://eyun.baidu.com/s/3jHCmNps", "");
 				break;
 			case "[仅美国]星之卡比 卡比魔方气泡":
-				showDownloadDialog(game_name, "[限定]仅存在美版", "美版" , null ,  null, "https://eyun.baidu.com/s/3eSuusSi", "", "");
+				showDownloadDialog(game_name, R.string.game_name1, R.string.us , R.string.nu ,  R.string.nu, "https://eyun.baidu.com/s/3eSuusSi", "", "");
 				break;
 			case "[仅日本]星之卡比 卡比宝石星DX":
-				showDownloadDialog(game_name, "[限定]仅存在日版", "日版", null, null, "https://eyun.baidu.com/s/3kVDhaS3", "", "");
+				showDownloadDialog(game_name, R.string.game_name2, R.string.jp, R.string.nu, R.string.nu, "https://eyun.baidu.com/s/3kVDhaS3", "", "");
 				break;
 			case "星之卡比 64":
-				showDownloadDialog(game_name, "请选择你需要的版本", "日版", "美版", "汉化", "https://eyun.baidu.com/s/3jHPKdMY", "https://eyun.baidu.com/s/3jHPKdMY", "");
+				showDownloadDialog(game_name,  R.string.game_name, R.string.jp, R.string.us, R.string.nu, "https://eyun.baidu.com/s/3jHPKdMY", "https://eyun.baidu.com/s/3jHPKdMY", "");
 				break;
 			case "星之卡比 飞天赛车":
-				showDownloadDialog(game_name, "请选择你需要的版本", "日版", "美版", "汉化", "https://eyun.baidu.com/s/3qYAoXGC", "", "");
+				showDownloadDialog(game_name,  R.string.game_name, R.string.us, R.string.nu, R.string.nu, "https://eyun.baidu.com/s/3qYAoXGC", "", "");
 				break;
 			case "星之卡比 重返梦幻岛":
-				showDownloadDialog(game_name, "[注意有单/多文件之分]\n请选择你需要的版本", "日版（单）", "美版（多）", "汉化（多）", "https://eyun.baidu.com/s/3skEbla1", "https://eyun.baidu.com/s/3gf5Oxe7", "https://eyun.baidu.com/s/3gfqpuin");
+				//showDownloadDialog(game_name, "[注意有单/多文件之分]\n请选择你需要的版本", "日版（单）", "美版（多）", "汉化（多）", "https://eyun.baidu.com/s/3skEbla1", "https://eyun.baidu.com/s/3gf5Oxe7", "https://eyun.baidu.com/s/3gfqpuin");
 				break;
 			case "星之卡比 毛线卡比":
-				showDownloadDialog(game_name, "[注意有单/多文件之分]\n请选择你需要的版本", "美版（多）", "美版（单）", "汉化（单）", "https://eyun.baidu.com/s/3c2inVEC", "https://eyun.baidu.com/s/3dFACfWd", "https://eyun.baidu.com/s/3eRYayD8");
+				//showDownloadDialog(game_name, "[注意有单/多文件之分]\n请选择你需要的版本", "美版（多）", "美版（单）", "汉化（单）", "https://eyun.baidu.com/s/3c2inVEC", "https://eyun.baidu.com/s/3dFACfWd", "https://eyun.baidu.com/s/3eRYayD8");
 				break;
 			case "星之卡比 触摸卡比":
-				showDownloadDialog(game_name, "请选择你需要的版本", "日版", "美版", "汉化", "https://eyun.baidu.com/s/3hsqS3S4", "https://eyun.baidu.com/s/3c27V89i", "https://eyun.baidu.com/s/3i5Pwsxn");
+				showDownloadDialog(game_name,  R.string.game_name, R.string.jp, R.string.us, R.string.zh, "https://eyun.baidu.com/s/3hsqS3S4", "https://eyun.baidu.com/s/3c27V89i", "https://eyun.baidu.com/s/3i5Pwsxn");
 				break;
 			case "星之卡比 超究豪华版":
-				showDownloadDialog(game_name, "请选择你需要的版本", "日版", "美版", "汉化", "https://eyun.baidu.com/s/3i4Ricbb", "https://eyun.baidu.com/s/3nvCwXlB", "https://eyun.baidu.com/s/3c2EblZi");
+				showDownloadDialog(game_name,  R.string.game_name, R.string.jp, R.string.us, R.string.zh, "https://eyun.baidu.com/s/3i4Ricbb", "https://eyun.baidu.com/s/3nvCwXlB", "https://eyun.baidu.com/s/3c2EblZi");
 				break;
 			case "星之卡比 呐喊团":
-				showDownloadDialog(game_name, "请选择你需要的版本", "日版", "美版", "汉化", "https://eyun.baidu.com/s/3bo4Z5TH", "https://eyun.baidu.com/s/3czmilC", "https://eyun.baidu.com/s/3hr4PxbA");
+				showDownloadDialog(game_name,  R.string.game_name, R.string.jp, R.string.us, R.string.zh, "https://eyun.baidu.com/s/3bo4Z5TH", "https://eyun.baidu.com/s/3czmilC", "https://eyun.baidu.com/s/3hr4PxbA");
 				break;
 			case "星之卡比 集合！卡比":
-				showDownloadDialog(game_name, "请选择你需要的版本", "日版", "美版", "汉化", "https://eyun.baidu.com/s/3geO4mbx", "https://eyun.baidu.com/s/3eSijdHS", "https://eyun.baidu.com/s/3o80PA6e");
+				showDownloadDialog(game_name,  R.string.game_name, R.string.jp, R.string.us, R.string.zh, "https://eyun.baidu.com/s/3geO4mbx", "https://eyun.baidu.com/s/3eSijdHS", "https://eyun.baidu.com/s/3o80PA6e");
 				break;
 			case "星之卡比 1":
-				showDownloadDialog(game_name, "请选择你需要的版本", "日版", "美版", "汉化", "https://eyun.baidu.com/s/3pKN6dIz", "https://eyun.baidu.com/s/3pKZHpaF", "");
+				showDownloadDialog(game_name,  R.string.game_name, R.string.jp, R.string.us, R.string.nu, "https://eyun.baidu.com/s/3pKN6dIz", "https://eyun.baidu.com/s/3pKZHpaF", "");
 				break;
 			case "星之卡比 2":
-				showDownloadDialog(game_name, "请选择你需要的版本", "日版", "美版", "汉化", "https://eyun.baidu.com/s/3i57Kjjv", "https://eyun.baidu.com/s/3jI4urlW", "");
+				showDownloadDialog(game_name,  R.string.game_name, R.string.jp, R.string.us, R.string.nu, "https://eyun.baidu.com/s/3i57Kjjv", "https://eyun.baidu.com/s/3jI4urlW", "");
 				break;
 			case "星之卡比 卡比宝石星":
-				showDownloadDialog(game_name, "请选择你需要的版本", "日版", "美版", "汉化", "https://eyun.baidu.com/s/3miFgbtI", "https://eyun.baidu.com/s/3nvtzunn", "");
+				showDownloadDialog(game_name,  R.string.game_name, R.string.jp, R.string.us, R.string.nu, "https://eyun.baidu.com/s/3miFgbtI", "https://eyun.baidu.com/s/3nvtzunn", "");
 				break;
 			case "星之卡比 卡比打砖块":
-				showDownloadDialog(game_name, "请选择你需要的版本", "日版", "美版", "汉化", "https://eyun.baidu.com/s/3i5Dkqah", "https://eyun.baidu.com/s/3ge7808r", "");
+				showDownloadDialog(game_name,  R.string.game_name, R.string.jp, R.string.us, R.string.nu, "https://eyun.baidu.com/s/3i5Dkqah", "https://eyun.baidu.com/s/3ge7808r", "");
 				break;
 			case "星之卡比 卡比弹珠台":
-				showDownloadDialog(game_name, "请选择你需要的版本", "日版", "美版", "汉化", "https://eyun.baidu.com/s/3i48QqMh", "https://eyun.baidu.com/s/3eSwv1DK", "");
+				showDownloadDialog(game_name,  R.string.game_name, R.string.jp, R.string.us, R.string.nu, "https://eyun.baidu.com/s/3i48QqMh", "https://eyun.baidu.com/s/3eSwv1DK", "");
 				break;
 			case "星之卡比 滚滚卡比":
-				showDownloadDialog(game_name, "请选择你需要的版本", "日版", "美版", "汉化", "https://eyun.baidu.com/s/3pKP9eav", "https://eyun.baidu.com/s/3nuQZavJ", "");
+				showDownloadDialog(game_name,  R.string.game_name, R.string.jp, R.string.us, R.string.nu, "https://eyun.baidu.com/s/3pKP9eav", "https://eyun.baidu.com/s/3nuQZavJ", "");
 				break;
 			case "星之卡比 梦之泉物语":
-				showDownloadDialog(game_name, "请选择你需要的版本", "日版", "美版", "汉化", "https://eyun.baidu.com/s/3pKXFx8n", "https://eyun.baidu.com/s/3pKZHpaF", "https://eyun.baidu.com/s/3i4HC8FN");
+				showDownloadDialog(game_name,  R.string.game_name, R.string.jp, R.string.us, R.string.nu, "https://eyun.baidu.com/s/3pKXFx8n", "https://eyun.baidu.com/s/3pKZHpaF", "https://eyun.baidu.com/s/3i4HC8FN");
 				break;
 			case "GBA模拟器\nMy Boy!":
 				showOtherDownloadDialog("gba", game_name);
@@ -603,7 +604,7 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 	public void downloadMoniqiApk(final String game_name)
 	{
 		progressDialog = new ProgressDialog(gameContext);
-		progressDialog.setMessage("正在连接服务器");
+		progressDialog.setMessage(gameContext.getString(R.string.link_bmob));
 		progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 		progressDialog.setMax(100);
 		progressDialog.show();
@@ -625,7 +626,7 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 					else
 					{
 						progressDialog.dismiss();
-						Toast.makeText(gameContext, "连接服务器失败:" + p2, Toast.LENGTH_SHORT).show();
+						Toast.makeText(gameContext,gameContext.getString(R.string.link_fail) + p2, Toast.LENGTH_SHORT).show();
 					}
 				}
 			});
@@ -637,7 +638,7 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 				@Override
 				public void onStart()
 				{
-					progressDialog.setMessage("正在下载:" + game_name);
+					progressDialog.setMessage(gameContext.getString(R.string.downloading) + game_name);
 				}
 				@Override
 				public void done(String savePath, BmobException e)
@@ -645,14 +646,14 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 					if (e == null)
 					{
 						progressDialog.dismiss();
-						Toast.makeText(gameContext, "下载完成，保存在:" + savePath, Toast.LENGTH_SHORT).show();
+						Toast.makeText(gameContext,gameContext.getString(R.string.download_susses) + savePath, Toast.LENGTH_SHORT).show();
 						File file=new File(savePath);
 						installMoniqiApk(file);
 					}
 					else
 					{
 						progressDialog.dismiss();
-						Toast.makeText(gameContext, "下载失败:" + e.getMessage() + "\n错误码:" + e.getErrorCode(), Toast.LENGTH_SHORT).show();
+						Toast.makeText(gameContext, gameContext.getString(R.string.download_fail) + e.getMessage() , Toast.LENGTH_SHORT).show();
 					}
 				}
 				@Override
@@ -667,8 +668,8 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 		AlertDialog.Builder dialog = new
 			AlertDialog.Builder(gameContext)
 			.setTitle(game_name)
-			.setMessage("咱只给你汉化版(◦˙▽˙◦)")
-			.setPositiveButton("下载", new
+			.setMessage(R.string.download_dia_mess)
+			.setPositiveButton(R.string.dia_download, new
 			DialogInterface.OnClickListener()
 			{
 				@Override
@@ -686,7 +687,7 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 		intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");       
         gameContext.startActivity(intent);
 	}
-	public void showDownloadDialog(String name, String mess, String pos, String neg, String neu, final String pos_url, final String neg_url, final String neu_url)
+	public void showDownloadDialog(String name, int mess, Integer pos, Integer neg, Integer neu, final String pos_url, final String neg_url, final String neu_url)
 	{
 		AlertDialog.Builder dialog = new
 			AlertDialog.Builder(gameContext)

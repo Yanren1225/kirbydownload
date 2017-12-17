@@ -25,17 +25,17 @@
 			android:label="kirby download"/>
 		<activity
 			android:name=".activity.GameListActivity"
-			android:label="当前是"/>
+			android:label="@string/game_title"/>
 		<activity android:name=".activity.GameActivity"/>
 		<activity
 			android:name=".activity.AboutActivity"
-			android:label="关于"/>
+			android:label="@string/about_title"/>
 		<activity
 			android:name=".activity.JszActivity"
-			android:label="金手指"/>
+			android:label="@string/jsz_title"/>
 		<activity
-			android:name=".activity.LoginActivity"
-			android:label="登录/注册"/>
+			android:name=".activity.HelpActivity"
+			android:label="@string/help_title"/>
 		<activity android:name=".thefirst.WelcomeActivity"/>
 		<activity android:name=".thefirst.UserActivity"/>
 		<activity android:name=".thefirst.FinishActivity"/>

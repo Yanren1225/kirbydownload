@@ -37,38 +37,6 @@
 			android:layout_marginTop="8dp"
 			android:layout_marginLeft="16dp"/>
 
-		<TextView
-			android:layout_height="wrap_content"
-			android:layout_width="wrap_content"
-			android:text="✔绿色无病毒"
-			android:layout_below="@id/thefirstwelcomeTextView2"
-			android:id="@+id/t1"
-			android:layout_marginTop="8dp"
-			android:layout_marginLeft="16dp"/>
-
-		<TextView
-			android:layout_height="wrap_content"
-			android:layout_width="wrap_content"
-			android:text="✔无广告"
-			android:layout_below="@id/t1"
-			android:id="@+id/t2"
-			android:layout_marginLeft="16dp"/>
-
-		<TextView
-			android:layout_height="wrap_content"
-			android:layout_width="wrap_content"
-			android:text="✔方便的分类"
-			android:layout_below="@id/t2"
-			android:id="@+id/t3"
-			android:layout_marginLeft="16dp"/>
-
-		<TextView
-			android:layout_height="wrap_content"
-			android:layout_width="wrap_content"
-			android:text="✔游戏模拟器一网打尽"
-			android:layout_below="@id/t3"
-			android:id="@+id/t4"
-			android:layout_marginLeft="16dp"/>
 		<RelativeLayout
 			android:layout_height="56dp"
 			android:layout_width="match_parent"
@@ -79,7 +47,7 @@
 				style="?android:attr/buttonBarButtonStyle"
 				android:layout_height="wrap_content"
 				android:layout_width="wrap_content"
-				android:text="下一步"
+				android:text="@string/next"
 				android:layout_alignParentRight="true"
 				android:layout_centerVertical="true"
 				android:id="@+id/next"/>

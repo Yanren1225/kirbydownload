@@ -30,7 +30,7 @@ public class SendFabFragment extends AAH_FabulousFragment
 					//判断是否为空
 					if (edit_内容.isEmpty())
 					{
-						Toast.makeText(getContext(), "内容不能为空！", Toast.LENGTH_SHORT).show();
+						Toast.makeText(getContext(), getActivity().getString(R.string.is_null), Toast.LENGTH_SHORT).show();
 					}
 					else
 					{			

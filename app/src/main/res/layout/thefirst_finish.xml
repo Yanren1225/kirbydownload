@@ -15,7 +15,7 @@
 		<TextView
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
-			android:text="完成"
+			android:text="@string/the_first_finish_title"
 			android:layout_marginLeft="32dp"
 			android:layout_alignParentBottom="true"
 			android:layout_marginBottom="16dp"
@@ -32,17 +32,11 @@
 		<TextView
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
-			android:text="该程序的配置已经自动完成了\n祝你使用愉快"
+			android:text="@string/the_first_finish"
 			android:id="@+id/thefirstwelcomeTextView2"
 			android:layout_marginTop="8dp"
 			android:layout_marginLeft="16dp"/>
 
-		<TextView
-			android:layout_height="wrap_content"
-			android:layout_width="wrap_content"
-			android:text="₍ ⸝⸝· ᴥ ·⸝⸝ ₎"
-			android:layout_below="@id/thefirstwelcomeTextView2"
-			android:layout_marginLeft="16dp"/>
 
 		<RelativeLayout
 			android:layout_height="56dp"
@@ -54,7 +48,7 @@
 				style="?android:attr/buttonBarButtonStyle"
 				android:layout_height="wrap_content"
 				android:layout_width="wrap_content"
-				android:text="完成"
+				android:text="@string/next_finish"
 				android:layout_alignParentRight="true"
 				android:layout_centerVertical="true"
 				android:id="@+id/next"/>

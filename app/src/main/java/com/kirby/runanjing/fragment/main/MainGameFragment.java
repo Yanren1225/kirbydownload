@@ -62,8 +62,8 @@ public class MainGameFragment extends Fragment
         mViewList.add(view1);
         mViewList.add(view2);
 		//添加页卡标题
-        mTitleList.add("游戏");
-        mTitleList.add("模拟器");
+        mTitleList.add(getActivity().getString(R.string.game));
+        mTitleList.add(getActivity().getString(R.string.moniqi));
 		mTabLayout.setTabMode(TabLayout.MODE_FIXED);//设置tab模式，当前为系统默认模式
         mTabLayout.addTab(mTabLayout.newTab().setText(mTitleList.get(0)));//添加tab选项卡
         mTabLayout.addTab(mTabLayout.newTab().setText(mTitleList.get(1)));

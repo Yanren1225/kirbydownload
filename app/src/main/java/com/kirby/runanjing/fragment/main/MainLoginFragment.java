@@ -45,7 +45,7 @@ public class MainLoginFragment extends Fragment
 					//判断是否为空
 					if (editText_用户名.isEmpty() || editText_密码.isEmpty())
 					{
-						Toast.makeText(getActivity(), "用户名或密码不能为空!", Toast.LENGTH_SHORT).show();
+						Toast.makeText(getActivity(), getActivity().getString(R.string.is_null), Toast.LENGTH_SHORT).show();
 					}
 					else
 					{
@@ -59,12 +59,12 @@ public class MainLoginFragment extends Fragment
 								{
 									if (e == null)
 									{
-										Toast.makeText(getActivity(), "登录成功", Toast.LENGTH_SHORT).show();
+										Toast.makeText(getActivity(),getActivity().getString(R.string.login_susses), Toast.LENGTH_SHORT).show();
 										m.open();
 									}
 									else
 									{
-										Toast.makeText(getActivity(), "登录失败，请检查用户名或密码", Toast.LENGTH_SHORT).show();
+										Toast.makeText(getActivity(), getActivity().getString(R.string.login_fail), Toast.LENGTH_SHORT).show();
 									}
 								}
 							});
@@ -79,7 +79,7 @@ public class MainLoginFragment extends Fragment
 					LayoutInflater inflater = LayoutInflater.from(getActivity());
 					final View 注册_layout = inflater.inflate(R.layout.dialog_register, null);
 					new AlertDialog.Builder(getActivity())
-						.setTitle("注册")
+						.setTitle(R.string.register)
 						.setView(注册_layout)
 						.setPositiveButton("确定", new
 						DialogInterface.OnClickListener()
@@ -99,7 +99,7 @@ public class MainLoginFragment extends Fragment
 								//判断是否为空
 								if (editText_用户名.isEmpty() || editText_邮箱.isEmpty() || editText_密码.isEmpty() || editText_重复密码.isEmpty())
 								{
-									Toast.makeText(getActivity(), "你可能有哪一项没输入!", Toast.LENGTH_SHORT).show();
+									Toast.makeText(getActivity(), getActivity().getString(R.string.is_null), Toast.LENGTH_SHORT).show();
 								}
 								else
 								{
@@ -117,24 +117,24 @@ public class MainLoginFragment extends Fragment
 												{
 													if (e == null)
 													{
-														Toast.makeText(getActivity(), "注册成功", Toast.LENGTH_SHORT).show();
+														Toast.makeText(getActivity(), getActivity().getString(R.string.register_susses), Toast.LENGTH_SHORT).show();
 													}
 													else
 													{
-														Toast.makeText(getActivity(), "注册失败", Toast.LENGTH_SHORT).show();
+														Toast.makeText(getActivity(), getActivity().getString(R.string.register_fail), Toast.LENGTH_SHORT).show();
 													}
 												}
 											});
 									}
 									else
 									{
-										Toast.makeText(getActivity(), "两次输入的密码不同", Toast.LENGTH_SHORT).show();
+										Toast.makeText(getActivity(), getActivity().getString(R.string.password), Toast.LENGTH_SHORT).show();
 									}
 								}
 							}
 						}
 					)
-						.setNegativeButton("取消", null).show();
+						.setNegativeButton(R.string.dia_cancel, null).show();
 				}
 			});
 		忘记密码.setOnClickListener(new View.OnClickListener(){

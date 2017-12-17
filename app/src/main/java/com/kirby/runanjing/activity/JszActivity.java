@@ -69,7 +69,7 @@ public class JszActivity extends AppCompatActivity
 				String q=jsz.getJsz();
 				ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
 				cm.setText(q);
-				Toast.makeText(JszActivity.this,"已经将金手指代码复制到剪切板了",Toast.LENGTH_SHORT).show();
+				Toast.makeText(JszActivity.this,getResources().getString(R.string.jsz_copy),Toast.LENGTH_SHORT).show();
 			}
 		});
 	}
