@@ -209,7 +209,7 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 	@Override
 	public void onCloseAnimationStart()
 	{
-		SharedPreferences console=getSharedPreferences("string", Context.MODE_WORLD_READABLE);
+		SharedPreferences console=getSharedPreferences("string", 0);
 		String edit_内容= console.getString("Message", "");
 		//自定义MessBmob发送留言
 		MessageBmob mess = new MessageBmob();
@@ -394,7 +394,7 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 				drawerLayout.openDrawer(GravityCompat.START);
 				break;
 			case R.id.theme:
-				SharedPreferences c=getSharedPreferences("customtheme", Context.MODE_WORLD_READABLE);
+				SharedPreferences c=getSharedPreferences("customtheme", 0);
 				int itemSelected=c.getInt("id", 0);
 				String[] singleChoiceItems = {"冰冻蓝","中国红","基佬紫","颐堤蓝","水鸭青","酷安绿","伊藤橙","古铜棕","低调灰"};
                 new AlertDialog.Builder(MainActivity.this)

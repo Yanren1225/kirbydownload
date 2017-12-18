@@ -34,7 +34,7 @@ public class JszActivity extends AppCompatActivity
 		JszAdapter adapter=new JszAdapter(JszActivity.this, R.layout.jsz_list, list);
 		ListView listview=(ListView)findViewById(R.id.jsz_listview);
 		listview.setAdapter(adapter);
-		SharedPreferences console=getSharedPreferences("string", Context.MODE_WORLD_READABLE);
+		SharedPreferences console=getSharedPreferences("string", 0);
 		final String name= console.getString("金手指_游戏", "");
 		//获取数据并遍历
 		if (name == "星之卡比 镜之大迷宫")

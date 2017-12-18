@@ -39,7 +39,7 @@ public class Launcher extends AppCompatActivity
 	
 	private void theFirst()
 	{
-		SharedPreferences 状态=getSharedPreferences("boolean", Context.MODE_WORLD_READABLE);
+		SharedPreferences 状态=getSharedPreferences("boolean", 0);
 		状态_ = 状态.getBoolean("thefirst_状态", false);
 		if (状态_ == false)
 		{

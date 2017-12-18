@@ -29,7 +29,7 @@ public class GameListActivity extends AppCompatActivity
 		adapter = new GameAdapter(gamelist);
 		r.setAdapter(adapter);
 		//获取数据
-		SharedPreferences console=getSharedPreferences("string", Context.MODE_WORLD_READABLE);
+		SharedPreferences console=getSharedPreferences("string", 0);
 		String game= console.getString("主机名称", "");
 		toolbar.setSubtitle(game);
 		//判断数据然后处理列表
