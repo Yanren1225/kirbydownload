@@ -50,7 +50,7 @@
 			android:inputType="textPassword"
 			android:layout_width="match_parent"
 			android:layout_below="@id/用户名"
-			android:hint="@string/register"
+			android:hint="@string/login_password"
 			android:id="@+id/密码"/>
 
 		<LinearLayout

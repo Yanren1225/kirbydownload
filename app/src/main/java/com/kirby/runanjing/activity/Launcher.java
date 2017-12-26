@@ -8,6 +8,9 @@ import android.content.pm.*;
 import android.widget.*;
 import com.kirby.runanjing.thefirst.*;
 import com.kirby.runanjing.untils.*;
+import android.content.res.*;
+import android.util.*;
+import java.util.*;
 
 public class Launcher extends AppCompatActivity
 {
@@ -21,6 +24,7 @@ public class Launcher extends AppCompatActivity
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 							 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		super.onCreate(savedInstanceState);
+		setLanguage();
 		setContentView(R.layout.welcome);
 		new Thread(){
 			public void run()
@@ -57,4 +61,33 @@ public class Launcher extends AppCompatActivity
 			finish();
 		}
 	}
+	private void setLanguage() {
+
+        //读取SharedPreferences数据，默认选中第一项
+        SharedPreferences preferences = getSharedPreferences("string", Context.MODE_PRIVATE);
+        String language = preferences.getString("language","auto");
+
+        //根据读取到的数据，进行设置
+        Resources resources = getResources();
+        DisplayMetrics displayMetrics = resources.getDisplayMetrics();
+        Configuration configuration = resources.getConfiguration();
+
+        switch (language){
+            case "auto":
+                configuration.setLocale(Locale.getDefault());
+                break;
+            case "zh_cn":
+                configuration.setLocale( Locale.CHINA);
+                break;
+			case "zh_tw":
+                configuration.setLocale( Locale.TAIWAN);
+                break;
+			case "en":
+                configuration.setLocale( Locale.ENGLISH);
+                break;
+            default:
+                break;
+        }
+        resources.updateConfiguration(configuration,displayMetrics);
+    }
 }

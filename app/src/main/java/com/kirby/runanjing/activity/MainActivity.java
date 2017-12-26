@@ -2,6 +2,7 @@ package com.kirby.runanjing.activity;
 
 import android.app.*;
 import android.content.*;
+import android.content.res.*;
 import android.graphics.*;
 import android.net.*;
 import android.os.*;
@@ -11,6 +12,7 @@ import android.support.v4.view.*;
 import android.support.v4.widget.*;
 import android.support.v7.app.*;
 import android.support.v7.widget.*;
+import android.util.*;
 import android.view.*;
 import android.widget.*;
 import cn.bmob.v3.*;
@@ -21,6 +23,7 @@ import com.allattentionhere.fabulousfilter.*;
 import com.kirby.runanjing.*;
 import com.kirby.runanjing.fragment.main.*;
 import com.kirby.runanjing.untils.*;
+import java.io.*;
 import java.util.*;
 
 import android.support.v4.app.Fragment;
@@ -30,7 +33,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import com.kirby.runanjing.R;
-import java.io.*;
+import com.jaeger.library.*;
 public class MainActivity extends AppCompatActivity implements AAH_FabulousFragment.AnimationListener 
 {
 	private NavigationView navView;
@@ -54,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-		if (Build.VERSION.SDK_INT >= 21)
+		if (Build.VERSION.SDK_INT >= 25)
 		{
 			View decorView=getWindow().getDecorView();
 			decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
@@ -62,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 		}
 		Theme.setClassTheme(this);
         setContentView(R.layout.main);
+		StatusBarUtil.setTransparent(MainActivity.this);
 		//初始化bmob
 		Bmob.initialize(this, "e39c2e15ca40b358b0dcc933236c1165");
 		//跳转GameListActivity要用的数据
@@ -736,5 +740,6 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 		);
 		dialog.show();
 	}
+	
 }
 

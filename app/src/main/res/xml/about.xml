@@ -6,19 +6,22 @@
             android:key="version"
 			android:summary="2.2-卡比"
             android:title="@string/version" />
+		<Preference	
+			android:key="setLanguage"
+			android:title="@string/language" />
         <Preference
             android:key="star"
-            android:summary="@string/star1"
-            android:title="@string/star2" />
+            android:summary="@string/star2"
+            android:title="@string/star1" />
 		<Preference
             android:key="help1"
-            android:summary="@string/help1"
-            android:title="@string/help2" />
+            android:summary="@string/help2"
+            android:title="@string/help1" />
 		<Preference
             android:key="help2"
-            android:summary="@string/help3"
-            android:title="@string/help4" />
-	  </PreferenceCategory>
+            android:summary="@string/help4"
+            android:title="@string/help3" />
+	</PreferenceCategory>
 
     <PreferenceCategory android:title="@string/jz_title">
         <Preference
@@ -28,12 +31,12 @@
             android:key="Alibaba"
             android:title="@string/Alibaba" />
     </PreferenceCategory>
-	
+
 	<PreferenceCategory android:title="@string/kfz_title">
 		<Preference
             android:key="me"
-			android:summary="@string/me1"
-            android:title="@string/me2" />
+			android:summary="@string/me2"
+            android:title="@string/me1" />
 		<Preference
             android:key="github"
             android:title="@string/github" />

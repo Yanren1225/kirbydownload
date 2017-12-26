@@ -7,6 +7,9 @@ import android.content.*;
 import android.net.*;
 import android.widget.*;
 import com.kirby.runanjing.activity.*;
+import java.util.prefs.*;
+import android.support.v7.app.*;
+import android.view.View.*;
 
 public  class AboutPreferenceFragment extends PreferenceFragment
 {
@@ -35,6 +38,48 @@ public  class AboutPreferenceFragment extends PreferenceFragment
 					Toast.makeText(getActivity(), getActivity().getString(R.string.not_install_CoolApk), Toast.LENGTH_SHORT).show();
 				}		
 				break;
+			case "setLanguage":
+				SharedPreferences c=getActivity().getSharedPreferences("string", 0);
+				int itemSelected=c.getInt("language_i", 0);
+				String [] lan={"Auto","简体中文","繁體中文","ENGLISH"};
+				AlertDialog dialog = new AlertDialog.Builder(getActivity()).setTitle(R.string.language)
+					.setSingleChoiceItems(lan, itemSelected, new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int i)
+						{
+							SharedPreferences y=getActivity().getSharedPreferences("string",0);
+							SharedPreferences.Editor edit=y.edit();
+							edit.putInt("language_i",i);
+							switch (i)
+							{
+								case 0:
+									edit.putString("language","auto" );
+									edit.apply();
+									break;
+								case 1:
+									edit.putString("language","zh_cn" );
+									edit.apply();
+									break;
+								case 2:
+									edit.putString("language","zh_tw" );
+									edit.apply();
+									break;
+								case 3:
+									edit.putString("language","en" );
+									edit.apply();
+									break;
+							}
+							Intent intent = new Intent(getActivity(), Launcher.class);
+							intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+							getActivity().startActivity(intent);
+							android.os.Process.killProcess(android.os.Process.myPid()); 
+		//Intent re=new Intent(getActivity(), MainActivity.class);
+							//getActivity().startActivity(re);
+							dialog.dismiss();
+						}
+					}).create();
+				dialog.show();
+				break;
 			case "help1":
 				Intent help=new Intent(getActivity(), HelpActivity.class);
 				getActivity().startActivity(help);
@@ -61,6 +106,7 @@ public  class AboutPreferenceFragment extends PreferenceFragment
 		}
 		return super.onPreferenceTreeClick(preferenceScreen, preference);
 	}
+
 	public boolean joinQQGroup(String key)
 	{
 		Intent intent = new Intent();

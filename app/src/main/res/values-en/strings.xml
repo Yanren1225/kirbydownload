@@ -12,6 +12,7 @@
 	<string name="game">Games</string>
 	<string name="moniqi">Emulators</string>
 	<string name="not_login">Not Login</string>
+	<string name="language">Language setting</string>
 	
 	<string name="mess_true">Send Successfully:</string>
 	<string name="mess_false">Sand Unsuccessfully:</string>
@@ -101,8 +102,8 @@
 	<string name="WeChat">WeChat</string>
 	<string name="Alibaba">Alipay</string>
 	<string name="kfz_title">developer</string>
-	<string name="me1">\@Coolapk</string>
-	<string name="me2">汝南京</string>
+	<string name="me1">Coolapk</string>
+	<string name="me2">\@汝南京</string>
 	<string name="github">Browsing The Program In Github.</string>
 	
 	<string name="dia_y_email">Please Enter Your Original Email Address</string>
