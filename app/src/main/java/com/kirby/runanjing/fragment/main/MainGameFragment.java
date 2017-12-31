@@ -10,6 +10,7 @@ import com.kirby.runanjing.activity.*;
 import com.kirby.runanjing.adapter.*;
 import java.util.*;
 import com.kirby.runanjing.untils.*;
+import com.kirby.runanjing.bean.*;
 
 public class MainGameFragment extends Fragment
 {

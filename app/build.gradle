@@ -9,7 +9,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 23
         versionCode 20171225
-        versionName "2.2.2-卡比"
+        versionName "2.2.3-卡比"
     }
     buildTypes {
         release {

@@ -1,4 +1,4 @@
-package com.kirby.runanjing.untils;
+package com.kirby.runanjing.bmob;
 import cn.bmob.v3.*;
 import cn.bmob.v3.datatype.*;
 

@@ -8,7 +8,7 @@ import android.view.*;
 import android.content.*;
 import com.kirby.runanjing.activity.*;
 
-public class FinishActivity extends AppCompatActivity
+public class FinishActivity extends BaseActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -23,7 +23,7 @@ public class FinishActivity extends AppCompatActivity
 				{
 					Intent i=new Intent(FinishActivity.this,MainActivity.class);
 					startActivity(i);
-					SharedPreferences.Editor y=getSharedPreferences("boolean", MODE_PRIVATE).edit().putBoolean("thefirst_状态", true);
+					SharedPreferences.Editor y=getSharedPreferences("boolean", 0).edit().putBoolean("thefirst_状态", true);
 					y.apply();
 					finish();
 				}

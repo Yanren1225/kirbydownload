@@ -36,6 +36,9 @@
 		<activity
 			android:name=".activity.HelpActivity"
 			android:label="@string/help_title"/>
+		<activity
+			android:name=".activity.MessActivity"
+			android:label="@string/mess_title"/>
 		<activity android:name=".thefirst.WelcomeActivity"/>
 		<activity android:name=".thefirst.UserActivity"/>
 		<activity android:name=".thefirst.FinishActivity"/>

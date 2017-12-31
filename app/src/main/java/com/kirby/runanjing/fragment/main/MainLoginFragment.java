@@ -12,6 +12,7 @@ import cn.bmob.v3.listener.*;
 import com.kirby.runanjing.*;
 import com.kirby.runanjing.activity.*;
 import com.kirby.runanjing.untils.*;
+import com.kirby.runanjing.bmob.*;
 
 public class MainLoginFragment extends Fragment
 {

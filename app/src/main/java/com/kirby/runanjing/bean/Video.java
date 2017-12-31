@@ -1,4 +1,4 @@
-package com.kirby.runanjing.untils;
+package com.kirby.runanjing.bean;
 import java.io.*;
 
 public class Video

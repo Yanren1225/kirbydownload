@@ -34,7 +34,10 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import com.kirby.runanjing.R;
 import com.jaeger.library.*;
-public class MainActivity extends AppCompatActivity implements AAH_FabulousFragment.AnimationListener 
+import com.kirby.runanjing.bmob.*;
+import com.kirby.runanjing.fragment.fab.*;
+
+public class MainActivity extends BaseActivity implements AAH_FabulousFragment.AnimationListener 
 {
 	private NavigationView navView;
 	private DrawerLayout drawerLayout;
@@ -65,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 		}
 		Theme.setClassTheme(this);
         setContentView(R.layout.main);
-		StatusBarUtil.setTransparent(MainActivity.this);
+		
 		//初始化bmob
 		Bmob.initialize(this, "e39c2e15ca40b358b0dcc933236c1165");
 		//跳转GameListActivity要用的数据
@@ -160,7 +163,7 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 	}
 	private void setApply()
 	{
-		SharedPreferences.Editor y=getSharedPreferences("string", MODE_PRIVATE).edit();
+		SharedPreferences.Editor y=getSharedPreferences("string", 0).edit();
 		y.putString("主机名称", "0");
 		y.putString("游戏或模拟器名称", "0");
 		y.apply();
@@ -169,7 +172,7 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 	protected void onDestroy()//在退出程序时恢复数据
 	{	
 		super.onDestroy();
-		SharedPreferences.Editor y=getSharedPreferences("string", MODE_PRIVATE).edit();
+		SharedPreferences.Editor y=getSharedPreferences("string", 0).edit();
 		y.putString("主机名称", "0");
 		y.putString("游戏或模拟器名称", "0");
 		y.apply();
@@ -178,7 +181,7 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 	public void setCustomTheme(int i)
 	{
 		Theme.setTheme(MainActivity.this, i);
-		SharedPreferences.Editor y=getSharedPreferences("customtheme", MODE_PRIVATE).edit();
+		SharedPreferences.Editor y=getSharedPreferences("customtheme", 0).edit();
 		y.putInt("id", i);
 		y.apply();
 		open();
@@ -201,7 +204,7 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 	@Override
 	public void onOpenAnimationStart()
 	{
-		// TODO: Implement this method
+		
 	}
 
 	@Override
@@ -228,6 +231,10 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 						MainMessFragment main_mess=(MainMessFragment)getSupportFragmentManager().findFragmentById(R.id.main_fragment);
 						main_mess.getMessage();
 						Toast.makeText(MainActivity.this, R.string.mess_true + objectId, Toast.LENGTH_SHORT).show();
+						SharedPreferences y=getSharedPreferences("string",0);
+						SharedPreferences.Editor edit=y.edit();
+						edit.putString("Message", "");
+						edit.apply();
 					}
 					else
 					{
@@ -740,6 +747,9 @@ public class MainActivity extends AppCompatActivity implements AAH_FabulousFragm
 		);
 		dialog.show();
 	}
-	
+	@Override
+    protected void setStatusBar() {
+        StatusBarUtil.setColorForDrawerLayout(this, (DrawerLayout) findViewById(R.id.drawer_main), R.attr.colorPrimaryDark,54);
+    }
 }
 

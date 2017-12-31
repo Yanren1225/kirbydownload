@@ -9,6 +9,7 @@ import com.kirby.runanjing.*;
 import com.kirby.runanjing.adapter.*;
 import com.kirby.runanjing.untils.*;
 import java.util.*;
+import com.kirby.runanjing.bean.*;
 
 public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder>
 {

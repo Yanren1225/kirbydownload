@@ -21,6 +21,8 @@ import java.util.*;
 
 import com.kirby.runanjing.R;
 import com.wang.avi.indicators.*;
+import com.kirby.runanjing.bmob.*;
+import com.kirby.runanjing.bean.*;
 
 public class MainMessFragment extends Fragment
 {
@@ -138,6 +140,8 @@ public class MainMessFragment extends Fragment
 			});
 	}
 	private Handler handler=new Handler(){
+
+		private String message;
 		@Override
 		public void handleMessage(Message msg)
 		{
@@ -148,11 +152,18 @@ public class MainMessFragment extends Fragment
 					for (MessageBmob m : list)
 					{
 						//从获取的数据中提取需要的数据
-						String 用户名=m.getNickname();
-						String 内容=m.getMessage();
-						String 时间_=m.getCreatedAt();
-						String 时间 = 时间_.substring(0, 16);
-						Mess mess=new Mess(用户名, 内容, 时间);
+						String user=m.getNickname();
+						String message_full=m.getMessage();
+						if(message_full.length()>40){
+							 message=message_full.substring(0,40);
+						}
+						else
+						{
+							 message=message_full;
+						}
+						String time_=m.getCreatedAt();
+						String time = time_.substring(0, 16);
+						Mess mess=new Mess(user,message,time,message_full);
 						//将查询到的数据依次添加到列表
 						messlist.add(mess);
 						//设置适配器

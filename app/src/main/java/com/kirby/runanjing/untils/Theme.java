@@ -10,13 +10,13 @@ public class Theme
 	private static String FILE_NAME="theme";
 	public static void setClassTheme(Context context)
 	{
-		SharedPreferences theme = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+		SharedPreferences theme = context.getSharedPreferences(FILE_NAME, 0);
 		int themeId=theme.getInt("themeId", 0);
 		Theme(context, themeId);
 	}
 	public static void setTheme(Context context, int i)
 	{
-		SharedPreferences theme = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+		SharedPreferences theme = context.getSharedPreferences(FILE_NAME, 0);
 		edit=theme.edit();
 		edit.putInt("themeId", i);
 		edit.apply();

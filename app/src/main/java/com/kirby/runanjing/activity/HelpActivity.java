@@ -1,15 +1,16 @@
 package com.kirby.runanjing.activity;
 
 import android.os.*;
-import android.support.v7.app.*;
 import android.support.v7.widget.*;
 import android.widget.*;
+import com.jaeger.library.*;
 import com.kirby.runanjing.*;
 import com.kirby.runanjing.untils.*;
 
 import android.support.v7.widget.Toolbar;
+import com.kirby.runanjing.R;
 
-public class HelpActivity extends AppCompatActivity
+public class HelpActivity extends BaseActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)

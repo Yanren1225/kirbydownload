@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">kirby download</string>
 	
 	<string name="game_title">當前是</string>
 	<string name="about_title">關於</string>
 	<string name="help_title">幫助</string>
+	<string name="mess_title">詳情</string>
 	<string name="jsz_title">金手指</string>
 	<string name="ziyuan">資源</string>
 	<string name="talk">閑聊</string>

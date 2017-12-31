@@ -9,6 +9,7 @@ import android.content.*;
 import com.kirby.runanjing.activity.*;
 import com.bumptech.glide.*;
 import com.kirby.runanjing.fragment.*;
+import com.kirby.runanjing.bean.*;
 
 public class JszGameAdapter extends RecyclerView.Adapter<JszGameAdapter.ViewHolder>
 {

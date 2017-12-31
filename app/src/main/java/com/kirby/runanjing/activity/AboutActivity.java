@@ -1,16 +1,15 @@
 package com.kirby.runanjing.activity;
 
-import android.content.*;
-import android.net.*;
 import android.os.*;
-import android.support.v4.app.*;
-import android.support.v7.app.*;
 import android.support.v7.widget.*;
+import com.jaeger.library.*;
 import com.kirby.runanjing.*;
 import com.kirby.runanjing.fragment.preference.*;
 import com.kirby.runanjing.untils.*;
 
-public class AboutActivity extends AppCompatActivity
+import com.kirby.runanjing.R;
+
+public class AboutActivity extends BaseActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)

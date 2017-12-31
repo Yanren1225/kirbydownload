@@ -5,6 +5,7 @@ import android.widget.*;
 import com.kirby.runanjing.*;
 import com.kirby.runanjing.untils.*;
 import java.util.*;
+import com.kirby.runanjing.bean.*;
 
 public class JszAdapter extends ArrayAdapter<Jsz>
 {

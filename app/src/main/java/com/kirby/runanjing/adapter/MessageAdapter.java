@@ -6,6 +6,8 @@ import java.util.*;
 import android.view.*;
 import com.kirby.runanjing.*;
 import android.support.v7.widget.*;
+import com.kirby.runanjing.bean.*;
+import com.kirby.runanjing.activity.*;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder>
 {
@@ -14,7 +16,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
 	static class ViewHolder extends RecyclerView.ViewHolder
 	{
-		CardView cardview;
+		RelativeLayout relativelayout;
 		TextView 用户名;
 		TextView 内容;
 		TextView 时间;
@@ -22,7 +24,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 		public ViewHolder(View view)
 		{
 			super(view);
-			cardview = (CardView)view.findViewById(R.id.cardview);
+			relativelayout = (RelativeLayout)view.findViewById(R.id.messageitemRelativeLayout1);
 			用户名 = (TextView)view.findViewById(R.id.用户名);
 			内容 = (TextView)view.findViewById(R.id.内容);
 			时间 = (TextView)view.findViewById(R.id.时间);
@@ -39,8 +41,21 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 		{
 			mContext = parent.getContext();
 		}
-		View view=LayoutInflater.from(mContext).inflate(R.layout.message_item, parent, false);
-		return new ViewHolder(view);
+		View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.message_item, parent, false);
+		final ViewHolder holder=new ViewHolder(view);
+        holder.relativelayout.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					int position = holder.getAdapterPosition();
+					Mess mess = mMesslist.get(position);
+					Intent intent = new Intent(mContext, MessActivity.class);
+					intent.putExtra(MessActivity.USER_NAME, mess.getName());
+					intent.putExtra(MessActivity.TIME, mess.getTime());
+					intent.putExtra(MessActivity.MESS, mess.getFullMessage());
+					mContext.startActivity(intent);
+				}
+			});
+		return holder;
 	}
 
 	@Override

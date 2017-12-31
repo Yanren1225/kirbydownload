@@ -12,10 +12,12 @@ import android.content.res.*;
 import android.util.*;
 import java.util.*;
 
-public class Launcher extends AppCompatActivity
+public class Launcher extends BaseActivity
 {
 
 	private boolean 状态_;
+
+	private String versionname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -64,7 +66,7 @@ public class Launcher extends AppCompatActivity
 	private void setLanguage() {
 
         //读取SharedPreferences数据，默认选中第一项
-        SharedPreferences preferences = getSharedPreferences("string", Context.MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences("string", 0);
         String language = preferences.getString("language","auto");
 
         //根据读取到的数据，进行设置

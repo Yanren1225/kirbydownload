@@ -14,7 +14,7 @@ import com.kirby.runanjing.thefirst.*;
 
 import com.kirby.runanjing.R;
 
-public class PermissionActivity extends AppCompatActivity
+public class PermissionActivity extends BaseActivity
 {
 	private Button next;
 	private Button sd;

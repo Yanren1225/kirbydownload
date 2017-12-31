@@ -11,8 +11,9 @@ import cn.bmob.v3.listener.*;
 import com.kirby.runanjing.*;
 import com.kirby.runanjing.activity.*;
 import com.kirby.runanjing.untils.*;
+import com.kirby.runanjing.bmob.*;
 
-public class UserActivity extends AppCompatActivity
+public class UserActivity extends BaseActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)

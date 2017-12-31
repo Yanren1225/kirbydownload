@@ -3,18 +3,20 @@ package com.kirby.runanjing.activity;
 
 import android.content.*;
 import android.os.*;
-import android.support.v7.app.*;
 import android.support.v7.widget.*;
 import android.view.*;
 import android.widget.*;
+import com.jaeger.library.*;
 import com.kirby.runanjing.*;
+import com.kirby.runanjing.adapter.*;
+import com.kirby.runanjing.untils.*;
 import java.util.*;
 
 import android.support.v7.widget.Toolbar;
-import com.kirby.runanjing.untils.*;
-import com.kirby.runanjing.adapter.*;
+import com.kirby.runanjing.R;
+import com.kirby.runanjing.bean.*;
 
-public class JszActivity extends AppCompatActivity
+public class JszActivity extends BaseActivity
 {
 	//金手指数据
 	Jsz []镜迷_金手指={new Jsz("正常", "02020FE3 00"),new Jsz("喷火", "02020FE3 01"),new Jsz("冷冻", "02020FE3 02"),new Jsz("回力镖", "02020FE3 06"),new Jsz("烈焰", "02020FE3 03"),new Jsz("轮胎", "02020FE3 04"),new Jsz("射线", "02020FE3 07"),new Jsz("锤子", "02020FE3 11"),new Jsz("石头", "02020FE3 08"),new Jsz("炸弹", "02020FE3 09"),new Jsz("不明", "02020FE3 0B"),new Jsz("厨师", "02020FE3 0C"),new Jsz("镭射", "02020FE3 0D"),new Jsz("闪电", "02020FE3 0F"),new Jsz("旋风", "02020FE3 10"),new Jsz("射箭", "02020FE3 13"),new Jsz("剑士", "02020FE3 12"),new Jsz("格斗", "02020FE3 14"),new Jsz("魔术师", "02020FE3 15"),new Jsz("万能拳", "02020FE3 16"),new Jsz("强力吸收", "02020FE3 0A"),new Jsz("雨伞", "02020FE3 05"),new Jsz("爆炸", "02020FE3 18"),new Jsz("导弹", "02020FE3 19"),new Jsz("万能剑", "02020FE3 1A"),new Jsz("ufo飞碟", "02020FE3 0E"),new Jsz("体力", " 02020FE0 0F "),new Jsz("体力上限", " 02020FE1 0F "),new Jsz("人数", " 02020FE2 63 "),new Jsz("电话", " 02020FBC 03 "),new Jsz("无敌 ", "02020F3C 06"),new Jsz("BOSS一击必杀 ", "02000088 00"),new Jsz("镜片全满", " 02038970 FF"),new Jsz("传送门全开1", "42028C14 0001"), new Jsz("", "0000000F 0004")};

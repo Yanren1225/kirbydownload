@@ -1,15 +1,15 @@
 package com.kirby.runanjing.fragment.preference;
 
+import android.content.*;
+import android.content.pm.*;
+import android.net.*;
 import android.os.*;
 import android.preference.*;
-import com.kirby.runanjing.*;
-import android.content.*;
-import android.net.*;
-import android.widget.*;
-import com.kirby.runanjing.activity.*;
-import java.util.prefs.*;
 import android.support.v7.app.*;
-import android.view.View.*;
+import android.widget.*;
+import com.kirby.runanjing.*;
+import com.kirby.runanjing.activity.*;
+import android.content.pm.PackageManager.*;
 
 public  class AboutPreferenceFragment extends PreferenceFragment
 {
@@ -122,5 +122,5 @@ public  class AboutPreferenceFragment extends PreferenceFragment
 			// 未安装手Q或安装的版本不支持
 			return false;
 		}
-	}
+	}	
 }

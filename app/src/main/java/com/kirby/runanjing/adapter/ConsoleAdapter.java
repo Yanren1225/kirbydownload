@@ -8,6 +8,7 @@ import com.kirby.runanjing.*;
 import com.kirby.runanjing.activity.*;
 import com.kirby.runanjing.untils.*;
 import java.util.*;
+import com.kirby.runanjing.bean.*;
 
 public class ConsoleAdapter extends RecyclerView.Adapter<ConsoleAdapter.ViewHolder>
 {

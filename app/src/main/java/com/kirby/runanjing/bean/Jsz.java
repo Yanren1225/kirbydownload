@@ -1,4 +1,4 @@
-package com.kirby.runanjing.untils;
+package com.kirby.runanjing.bean;
 
 public class Jsz
 {
