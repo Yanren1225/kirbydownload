@@ -142,6 +142,8 @@ public class MainMessFragment extends Fragment
 	private Handler handler=new Handler(){
 
 		private String message;
+
+		private boolean show_all;
 		@Override
 		public void handleMessage(Message msg)
 		{
@@ -155,15 +157,17 @@ public class MainMessFragment extends Fragment
 						String user=m.getNickname();
 						String message_full=m.getMessage();
 						if(message_full.length()>40){
-							 message=message_full.substring(0,40);
+							 message=message_full.substring(0,40)+"...";
+							 show_all=true;
 						}
 						else
 						{
 							 message=message_full;
+							 show_all=false;
 						}
 						String time_=m.getCreatedAt();
 						String time = time_.substring(0, 16);
-						Mess mess=new Mess(user,message,time,message_full);
+						Mess mess=new Mess(user,message,time,message_full,show_all);
 						//将查询到的数据依次添加到列表
 						messlist.add(mess);
 						//设置适配器

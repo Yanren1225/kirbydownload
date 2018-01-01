@@ -31,9 +31,22 @@
 		android:layout_width="wrap_content"
 		android:text="内容"
 		android:id="@+id/内容"
-		android:layout_margin="8dp"
 		android:layout_below="@id/用户名"
-		android:textSize="16sp"/>
+		android:textSize="16sp"
+		android:layout_marginLeft="8dp"
+		android:layout_marginTop="8dp"
+		android:layout_marginBottom="8dp"/>
+
+	<TextView
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:text="查看更多"
+		android:textSize="16sp"
+		android:id="@+id/show_all"
+		android:textColor="?attr/colorPrimary"
+		android:visibility="gone"
+		android:layout_alignParentRight="true"
+		android:layout_margin="8dp"/>
 
 </RelativeLayout>
 

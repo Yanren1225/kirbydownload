@@ -4,11 +4,14 @@ import android.content.*;
 import android.os.*;
 import android.support.v7.widget.*;
 import android.widget.*;
+import com.github.anzewei.parallaxbacklayout.*;
 import com.kirby.runanjing.*;
 import com.kirby.runanjing.untils.*;
 
 import android.support.v7.widget.Toolbar;
+import com.kirby.runanjing.R;
 
+@ParallaxBack
 public class MessActivity extends BaseActivity
 {
 

@@ -8,13 +8,13 @@
 
 	<android.support.design.widget.TabLayout
 		android:id="@+id/tabLayout"
-		android:background="?attr/colorPrimary"
-		android:theme="@style/ThemeOverlay.AppCompat.Dark"
+		android:background="#ffeeeeee"
+		android:theme="@style/ThemeOverlay.AppCompat"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		app:tabIndicatorColor="#ffffff"
-		app:tabIndicatorHeight="2dp"
-		android:elevation="2dp"/>
+		app:tabSelectedTextColor="?attr/colorPrimary"
+		app:tabIndicatorColor="?attr/colorPrimary"
+		app:tabIndicatorHeight="2dp"/>
 
 	<android.support.v4.view.ViewPager
 		android:id="@+id/viewpager"

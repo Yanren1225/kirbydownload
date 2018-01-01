@@ -20,6 +20,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 		TextView 用户名;
 		TextView 内容;
 		TextView 时间;
+	    TextView 查看更多;
+		
 
 		public ViewHolder(View view)
 		{
@@ -28,6 +30,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 			用户名 = (TextView)view.findViewById(R.id.用户名);
 			内容 = (TextView)view.findViewById(R.id.内容);
 			时间 = (TextView)view.findViewById(R.id.时间);
+			查看更多 = (TextView)view.findViewById(R.id.show_all);
 		}
 	}
 	public MessageAdapter(List<Mess>messlist)
@@ -65,6 +68,13 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 		holder.用户名.setText(mess.getName());
 		holder.内容.setText(mess.getMessage());
 		holder.时间.setText(mess.getTime());
+		if(mess.getShowAll()){
+			holder.查看更多.setVisibility(View.VISIBLE);
+		}
+		else
+		{
+			holder.查看更多.setVisibility(View.GONE);
+		}
 	}
 
 	@Override

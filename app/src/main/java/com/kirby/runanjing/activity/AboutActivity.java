@@ -8,7 +8,9 @@ import com.kirby.runanjing.fragment.preference.*;
 import com.kirby.runanjing.untils.*;
 
 import com.kirby.runanjing.R;
+import com.github.anzewei.parallaxbacklayout.*;
 
+@ParallaxBack
 public class AboutActivity extends BaseActivity
 {
     @Override

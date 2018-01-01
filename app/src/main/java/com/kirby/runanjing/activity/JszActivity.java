@@ -15,7 +15,9 @@ import java.util.*;
 import android.support.v7.widget.Toolbar;
 import com.kirby.runanjing.R;
 import com.kirby.runanjing.bean.*;
+import com.github.anzewei.parallaxbacklayout.*;
 
+@ParallaxBack
 public class JszActivity extends BaseActivity
 {
 	//金手指数据

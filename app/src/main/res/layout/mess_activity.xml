@@ -38,7 +38,8 @@
 				android:textAppearance="?android:attr/textAppearanceMedium"
 				android:layout_width="wrap_content"
 				android:text="Medium Text"
-				android:id="@+id/userName"/>
+				android:id="@+id/userName"
+				android:textColor="#000000"/>
 
 			<TextView
 				android:layout_height="wrap_content"
@@ -55,7 +56,8 @@
 				android:layout_width="wrap_content"
 				android:text="Medium Text"
 				android:layout_below="@id/time"
-				android:id="@+id/mess"/>
+				android:id="@+id/mess"
+				android:textColor="#000000"/>
 
 		</RelativeLayout>
 

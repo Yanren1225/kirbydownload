@@ -9,7 +9,9 @@ import com.kirby.runanjing.untils.*;
 
 import android.support.v7.widget.Toolbar;
 import com.kirby.runanjing.R;
+import com.github.anzewei.parallaxbacklayout.*;
 
+@ParallaxBack
 public class HelpActivity extends BaseActivity
 {
     @Override

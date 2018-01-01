@@ -3,15 +3,16 @@ package com.kirby.runanjing.activity;
 import android.content.*;
 import android.os.*;
 import android.support.v7.widget.*;
-import com.jaeger.library.*;
+import com.github.anzewei.parallaxbacklayout.*;
 import com.kirby.runanjing.*;
 import com.kirby.runanjing.adapter.*;
+import com.kirby.runanjing.bean.*;
 import com.kirby.runanjing.untils.*;
 import java.util.*;
 
 import com.kirby.runanjing.R;
-import com.kirby.runanjing.bean.*;
 
+@ParallaxBack
 public class GameListActivity extends BaseActivity
 {
 	private List<Console> gamelist=new ArrayList<>();
