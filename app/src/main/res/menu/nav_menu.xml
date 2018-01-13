@@ -8,6 +8,12 @@
 			android:title="@string/jsz_title"/>
     </group>
 	<group android:checkableBehavior="single"
+		android:id="@+id/Introduction">
+		<item
+			android:id="@+id/video"
+			android:title="@string/video_title"/>
+    </group>
+	<group android:checkableBehavior="single"
 		android:id="@+id/user">
 		<item
 			android:id="@+id/mess"

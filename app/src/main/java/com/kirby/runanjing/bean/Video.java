@@ -1,20 +1,17 @@
 package com.kirby.runanjing.bean;
 import java.io.*;
+import java.lang.annotation.*;
 
 public class Video
 {
 	private String name;
 	private String imageUrl;
-	public Video(String name,  String imageUrl)
+	private String av;
+	public Video(String name, String imageUrl, String av)
 	{
 		this.name = name;
 		this.imageUrl = imageUrl;
-	}
-
-	public File getImageId()
-	{
-		// TODO: Implement this method
-		return null;
+		this.av=av;
 	}
 	public String getName()
 	{
@@ -23,5 +20,8 @@ public class Video
 	public String getImageUrl()
 	{
 		return imageUrl;
+	}
+	public String getAv(){
+		return av;
 	}
 }

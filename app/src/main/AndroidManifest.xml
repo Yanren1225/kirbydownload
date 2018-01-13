@@ -6,13 +6,14 @@
 	<uses-permission android:name="android.permission.INTERNET"/>
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 	<application
 		android:name=".Kirby"
+		android:supportsRtl="true"
 		android:allowBackup="true"
 		android:icon="@mipmap/ic_launcher"
 		android:label="@string/app_name"
-		android:theme="@style/BuleTheme"
-		android:resizeableActivity="true">
+		android:theme="@style/BuleTheme">
 		<activity
 			android:name=".activity.Launcher"
 			android:label="@string/app_name">
@@ -24,6 +25,9 @@
 		<activity
 			android:name=".activity.MainActivity"
 			android:label="kirby download"/>
+		<activity android:name=".activity.KirbyIntroActivity"/>
+		<activity android:name=".activity.KirbyWebActivity"/>
+		<activity android:name=".activity.DownloadActivity"/>
 		<activity
 			android:name=".activity.GameListActivity"
 			android:label="@string/game_title"/>
@@ -40,9 +44,5 @@
 		<activity
 			android:name=".activity.MessActivity"
 			android:label="@string/mess_title"/>
-		<activity android:name=".thefirst.WelcomeActivity"/>
-		<activity android:name=".thefirst.UserActivity"/>
-		<activity android:name=".thefirst.FinishActivity"/>
-		<activity android:name=".thefirst.PermissionActivity"/>
 	</application>
 </manifest>

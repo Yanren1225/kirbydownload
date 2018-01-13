@@ -13,4 +13,8 @@
         android:id="@+id/app"
         android:title="@string/tj_app"
 		app:showAsAction="never"/>
+	<item
+        android:id="@+id/Download"
+        android:title="下载"
+		app:showAsAction="never"/>
 </menu>

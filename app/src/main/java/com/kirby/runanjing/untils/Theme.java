@@ -51,6 +51,15 @@ public class Theme
 			case 8:
 				context.setTheme(R.style.BlueGreyTheme);
 				break;
+			case 9:
+				context.setTheme(R.style.YellowTheme);
+				break;
+			case 10:
+				context.setTheme(R.style.KirbyTheme);
+				break;
+			case 11:
+				context.setTheme(R.style.DarkTheme);
+				break;
 		}
 	}
 }

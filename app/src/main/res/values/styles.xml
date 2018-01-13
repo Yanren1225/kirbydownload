@@ -54,4 +54,20 @@
 		<item name="colorPrimaryDark">#455A64</item>
 		<item name="colorAccent">#607D8B</item>	
 	</style>
+	
+	<style name="YellowTheme" parent="Theme.AppCompat.Light.NoActionBar">		
+		<item name="colorPrimary">#FFEB3B</item>	
+		<item name="colorPrimaryDark">#FDD835</item>
+		<item name="colorAccent">#FFEB3B</item>	
+	</style>
+	
+	<style name="KirbyTheme" parent="Theme.AppCompat.Light.NoActionBar">		
+		<item name="colorPrimary">#ee749d</item>	
+		<item name="colorPrimaryDark">#cf5f83</item>
+		<item name="colorAccent">#ee749d</item>	
+	</style>
+	
+	<style name="DarkTheme" parent="Theme.AppCompat.NoActionBar">		
+		<item name="colorAccent">#404390</item>	
+	</style>
 </resources>

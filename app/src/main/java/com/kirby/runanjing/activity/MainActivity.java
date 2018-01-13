@@ -36,6 +36,7 @@ import com.kirby.runanjing.R;
 import com.jaeger.library.*;
 import com.kirby.runanjing.bmob.*;
 import com.kirby.runanjing.fragment.fab.*;
+import com.kirby.runanjing.adapter.*;
 
 public class MainActivity extends BaseActivity implements AAH_FabulousFragment.AnimationListener 
 {
@@ -70,7 +71,7 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
         setContentView(R.layout.main);
 		
 		//初始化bmob
-		Bmob.initialize(this, "e39c2e15ca40b358b0dcc933236c1165");
+		Bmob.initialize(MainActivity.this, "e39c2e15ca40b358b0dcc933236c1165");
 		//跳转GameListActivity要用的数据
 		setApply();	
 		//配置toolbar
@@ -106,6 +107,10 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 						case R.id.jsz:
 							toolbar.setSubtitle(R.string.jsz_title);
 							replaceFragment(new MainJszFragment());
+							break;
+						case R.id.video:
+							toolbar.setSubtitle(R.string.video_title);
+							replaceFragment(new MainVideoFragment());
 							break;
 						case R.id.mess:
 							toolbar.setSubtitle(R.string.talk);
@@ -230,7 +235,7 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 					{		
 						MainMessFragment main_mess=(MainMessFragment)getSupportFragmentManager().findFragmentById(R.id.main_fragment);
 						main_mess.getMessage();
-						Toast.makeText(MainActivity.this, R.string.mess_true + objectId, Toast.LENGTH_SHORT).show();
+						Toast.makeText(MainActivity.this, getResources().getString( R.string.mess_true) + objectId, Toast.LENGTH_SHORT).show();
 						SharedPreferences y=getSharedPreferences("string",0);
 						SharedPreferences.Editor edit=y.edit();
 						edit.putString("Message", "");
@@ -238,7 +243,7 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 					}
 					else
 					{
-						Toast.makeText(MainActivity.this, R.string.mess_false+ e.getMessage(), Toast.LENGTH_SHORT).show();
+						Toast.makeText(MainActivity.this, getResources().getString(R.string.mess_false)+ e.getMessage(), Toast.LENGTH_SHORT).show();
 					}
 				}
 			});
@@ -406,20 +411,44 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 				break;
 			case R.id.theme:
 				SharedPreferences c=getSharedPreferences("customtheme", 0);
-				int itemSelected=c.getInt("id", 0);
-				String[] singleChoiceItems = {"冰冻蓝","中国红","基佬紫","颐堤蓝","水鸭青","酷安绿","伊藤橙","古铜棕","低调灰"};
-                new AlertDialog.Builder(MainActivity.this)
-					.setTitle(R.string.theme_title)
-					.setSingleChoiceItems(singleChoiceItems, itemSelected, new DialogInterface.OnClickListener() {
+				final int itemSelected=c.getInt("id", 0);
+				AlertDialog.Builder theme = new AlertDialog.Builder(MainActivity.this);
+				theme.setTitle(R.string.theme_title);
+				Integer[] res = new Integer[]{
+					R.drawable.buletheme,
+					R.drawable.redtheme,
+					R.drawable.purpletheme,
+					R.drawable.lindigotheme,
+					R.drawable.tealtheme,
+					R.drawable.greentheme,
+					R.drawable.orangetheme,
+					R.drawable.browntheme,
+					R.drawable.bluegreytheme,
+					R.drawable.yellowtheme,
+					R.drawable.kirbytheme,
+					R.drawable.darktheme
+				};
+				List<Integer> list = Arrays.asList(res);
+				ColorListAdapter adapter = new ColorListAdapter(MainActivity.this, list);
+				adapter.setCheckItem(itemSelected);
+				GridView gridView = (GridView) LayoutInflater.from(MainActivity.this).inflate(R.layout.colors_panel_layout, null);
+				gridView.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
+				gridView.setCacheColorHint(0);
+				gridView.setAdapter(adapter);
+				theme.setView(gridView);
+				final AlertDialog dialog = theme.show();
+				gridView.setOnItemClickListener(
+					new AdapterView.OnItemClickListener() {
 						@Override
-						public void onClick(DialogInterface dialogInterface, int i)
-						{
-							setCustomTheme(i);
-							dialogInterface.dismiss();
+						public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+							dialog.dismiss();
+								if (itemSelected != position) {
+									setCustomTheme(position);
+							}
 						}
-					})
-					.setNegativeButton(R.string.dia_cancel, null)
-					.show();
+					}
+
+				);
 				break;
 			case R.id.about:
 				//跳转AboutActivity
@@ -710,11 +739,14 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 				@Override
 				public void onClick(DialogInterface dialog, int which)
 				{
+					/*Intent kirby_web=new Intent(gameContext,KirbyWebActivity.class);
+					kirby_web.putExtra("url",pos_url);
+					gameContext.startActivity(kirby_web);*/
 					Intent web = new Intent();        
 					web.setAction("android.intent.action.VIEW");    
 					Uri content_url = Uri.parse(pos_url);   
 					web.setData(content_url);  
-					gameContext.startActivity(web);  			
+					gameContext.startActivity(web); 
 				}
 			}
 		)

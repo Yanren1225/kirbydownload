@@ -1,7 +1,9 @@
-package com.kirby.runanjing.thefirst;
+package com.kirby.runanjing.fragment.intro;
 
 import android.content.*;
 import android.os.*;
+import android.support.annotation.*;
+import android.support.v4.app.*;
 import android.support.v7.app.*;
 import android.view.*;
 import android.widget.*;
@@ -10,33 +12,32 @@ import cn.bmob.v3.exception.*;
 import cn.bmob.v3.listener.*;
 import com.kirby.runanjing.*;
 import com.kirby.runanjing.activity.*;
-import com.kirby.runanjing.untils.*;
 import com.kirby.runanjing.bmob.*;
 
-public class UserActivity extends BaseActivity
+public class IntroLoginFragment extends Fragment
 {
-    @Override
-    protected void onCreate(Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
-        setContentView(R.layout.thefirst_user);
-		Bmob.initialize(this, "e39c2e15ca40b358b0dcc933236c1165");
-		Button next=(Button)findViewById(R.id.next);
-		next.setOnClickListener(new View.OnClickListener(){
 
-				@Override
-				public void onClick(View p1)
-				{
-					Intent i=new Intent(UserActivity.this,PermissionActivity.class);
-					startActivity(i);
-					finish();
-				}
-			});
-		Button 登录=(Button)findViewById(R.id.登录);
-		Button 注册=(Button)findViewById(R.id.注册);
+	private View view;
+
+	private KirbyIntroActivity m;
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+		view=inflater.inflate(R.layout.intro_login, container, false);
+		m=(KirbyIntroActivity)getActivity();
+		Bmob.initialize(getActivity(), "e39c2e15ca40b358b0dcc933236c1165");
+		initLogin(view);
+		return view;
+    }
+
+	private void initLogin(View view)
+	{
+		Button 登录=(Button)view.findViewById(R.id.登录);
+		Button 注册=(Button)view.findViewById(R.id.注册);
 		//从edittext里获取字符串
-		final EditText 登录_用户名=(EditText)findViewById(R.id.用户名);
-		final EditText 登录_密码=(EditText)findViewById(R.id.密码);
+		final EditText 登录_用户名=(EditText)view.findViewById(R.id.登录_用户名);
+		final EditText 登录_密码=(EditText)view.findViewById(R.id.登录_密码);
 		登录.setOnClickListener(new View.OnClickListener(){
 				@Override
 				public void onClick(View v)
@@ -47,7 +48,7 @@ public class UserActivity extends BaseActivity
 					//判断是否为空
 					if (editText_用户名.isEmpty() || editText_密码.isEmpty())
 					{
-						Toast.makeText(UserActivity.this, "用户名或密码不能为空!", Toast.LENGTH_SHORT).show();
+						Toast.makeText(getActivity(), getActivity().getString(R.string.is_null), Toast.LENGTH_SHORT).show();
 					}
 					else
 					{
@@ -61,13 +62,13 @@ public class UserActivity extends BaseActivity
 								{
 									if (e == null)
 									{
-										Toast.makeText(UserActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
-										Intent me=new Intent(UserActivity.this, PermissionActivity.class);
-										startActivity(me);				
+										Toast.makeText(getActivity(),getActivity().getString(R.string.login_susses), Toast.LENGTH_SHORT).show();
+										m.setProgress(2);
+										//m.open();
 									}
 									else
 									{
-										Toast.makeText(UserActivity.this, "登录失败，请检查用户名或密码", Toast.LENGTH_SHORT).show();
+										Toast.makeText(getActivity(), getActivity().getString(R.string.login_fail), Toast.LENGTH_SHORT).show();
 									}
 								}
 							});
@@ -79,10 +80,10 @@ public class UserActivity extends BaseActivity
 				public void onClick(View v)
 				{
 					//实例化布局
-					LayoutInflater inflater = getLayoutInflater();
+					LayoutInflater inflater = LayoutInflater.from(getActivity());
 					final View 注册_layout = inflater.inflate(R.layout.dialog_register, null);
-					new AlertDialog.Builder(UserActivity.this)
-						.setTitle("注册")
+					new AlertDialog.Builder(getActivity())
+						.setTitle(R.string.register)
 						.setView(注册_layout)
 						.setPositiveButton("确定", new
 						DialogInterface.OnClickListener()
@@ -102,7 +103,7 @@ public class UserActivity extends BaseActivity
 								//判断是否为空
 								if (editText_用户名.isEmpty() || editText_邮箱.isEmpty() || editText_密码.isEmpty() || editText_重复密码.isEmpty())
 								{
-									Toast.makeText(UserActivity.this, "你可能有哪一项没输入!", Toast.LENGTH_SHORT).show();
+									Toast.makeText(getActivity(), getActivity().getString(R.string.is_null), Toast.LENGTH_SHORT).show();
 								}
 								else
 								{
@@ -120,25 +121,24 @@ public class UserActivity extends BaseActivity
 												{
 													if (e == null)
 													{
-														Toast.makeText(UserActivity.this, "注册成功", Toast.LENGTH_SHORT).show();
+														Toast.makeText(getActivity(), getActivity().getString(R.string.register_susses), Toast.LENGTH_SHORT).show();
 													}
 													else
 													{
-														Toast.makeText(UserActivity.this, "注册失败", Toast.LENGTH_SHORT).show();
+														Toast.makeText(getActivity(), getActivity().getString(R.string.register_fail), Toast.LENGTH_SHORT).show();
 													}
 												}
 											});
 									}
 									else
 									{
-										Toast.makeText(UserActivity.this, "两次输入的密码不同", Toast.LENGTH_SHORT).show();
+										Toast.makeText(getActivity(), getActivity().getString(R.string.password), Toast.LENGTH_SHORT).show();
 									}
 								}
 							}
 						}
 					)
-						.setNegativeButton("取消", null).show();
+						.setNegativeButton(R.string.dia_cancel, null).show();
 				}
 			});
-	}
-}
+}}

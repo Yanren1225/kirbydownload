@@ -5,8 +5,11 @@ import com.github.anzewei.parallaxbacklayout.*;
 public class Kirby extends Application
 {
 	@Override
-    public void onCreate() {
+    public void onCreate()
+	{
         super.onCreate();
         registerActivityLifecycleCallbacks(ParallaxHelper.getInstance());
-    }
+		//DownloadInit.initDownload(getApplicationContext());
+		
+	}
 }

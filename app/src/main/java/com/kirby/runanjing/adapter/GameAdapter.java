@@ -50,14 +50,6 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder>
 					Console game = mGameList.get(position);
 					MainActivity m=new MainActivity();
 					m.theDownload(mContext,game.getName());
-					//Intent intent = new Intent(mContext, GameActivity.class);
-					//intent.putExtra(GameActivity.GAME_NAME, game.getName());
-					//intent.putExtra(GameActivity.GAME_IMAGE_ID, game.getImageId());
-					//mContext.startActivity(intent);		
-					//String  input=game.getName().toString();	
-					//SharedPreferences.Editor t=mContext.getSharedPreferences("string",0).edit();
-					//t.putString("游戏或模拟器名称",input);
-					//t.apply();
 				}
 			}
 		);

@@ -6,11 +6,13 @@
 	<string name="about_title">About</string>
 	<string name="help_title">Help</string>
 	<string name="mess_title">Details</string>
+	<string name="video_title">Video</string>
 	<string name="jsz_title">Cheat Code</string>
 	<string name="ziyuan">Resources</string>
 	<string name="talk">chet</string>
 	<string name="login_title">Login/Register</string>
 	<string name="game">Games</string>
+	<string name="welcome_to">Welcome to</string>
 	<string name="moniqi">Emulators</string>
 	<string name="not_login">Not Login</string>
 	<string name="language">Language setting</string>
@@ -39,6 +41,8 @@
 	<string name="logout_true">Logout Successfully</string>
 	
 	<string name="theme_title">Themes</string>
+	
+	<string name="web_loading">Loading</string>
 	
 	<string name="hello">Hello:</string>
 	
@@ -78,14 +82,15 @@
 	
 	<string name="jsz_copy">Copy Cheat Code Successfully</string>
 	
-	<string name="the_first_welcome">It Is An App You Can Get Kirby Games Resource, And It Is FREE.</string><!-- Kirby能给斜体吗，英语中专用名词没有专名号用斜体代替-->
-	<string name="the_first_user_title">Account</string>
-	<string name="the_first_user">Kirby Download Have Users System, You Can Login Your Account If You Have Registered Before,Or Register\nOf Course,You Can Also Do It Whenever You Use This App.</string>
-	<string name="the_first_finish_title">Done</string>
-	<string name="the_first_finish">The Setup Wizard For The App Has Neen Completed\nHope You Use It Happily!</string>
-	<string name="the_first_permission_title">Permission</string>
-	<string name="the_first_permission_1">Kirby Download Need Some Permissions,Please Allowed.</string>
-	<string name="the_first_permission_2">"SD card read/write permissions"</string>
+	<string name="intro_welcome_title">Welcome</string>
+	<string name="intro_welcome_text">It Is An App You Can Get Kirby Games Resource, And It Is FREE.</string><!-- Kirby能给斜体吗，英语中专用名词没有专名号用斜体代替-->
+	<string name="intro_user_title">Account</string>
+	<string name="intro_user_text">Kirby Download Have Users System, You Can Login Your Account If You Have Registered Before,Or Register\nOf Course,You Can Also Do It Whenever You Use This App.</string>
+	<string name="intro_finish_title">Done</string>
+	<string name="intro_finish_text">The Setup Wizard For The App Has Neen Completed\nHope You Use It Happily!</string>
+	<string name="intro_permission_title">Permission</string>
+	<string name="intro_permission_text">Kirby Download Need Some Permissions,Please Allowed.</string>
+	<string name="intro_permission_sd">"SD card read/write permissions"</string>
 	<string name="the_first_permission_3">WARNING:If Your Phone system is MIUI OS,Flyme OS Or Emui OS Rom\n--&gt;Please Open Phone Manager Or Set&gt;Authorization Management To Open SDcard Read And Write Permissions\nIf You Use Antivirus Softwares Such As Qihoo 360 Phone guard\n--&gt;Please Open Antivirus Softwares To Find Authorization Management To Open SDcard Read And Write Permissions\nIf You Have Done,Please Press This Button.</string>
 	<string name="next">Next</string>
 	<string name="next_funk">Skip</string>
