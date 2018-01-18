@@ -37,17 +37,13 @@ import com.jaeger.library.*;
 import com.kirby.runanjing.bmob.*;
 import com.kirby.runanjing.fragment.fab.*;
 import com.kirby.runanjing.adapter.*;
+import com.nightonke.boommenu.*;
+import com.nightonke.boommenu.BoomButtons.*;
 
 public class MainActivity extends BaseActivity implements AAH_FabulousFragment.AnimationListener 
 {
-	private NavigationView navView;
 	private DrawerLayout drawerLayout;
 	private String name;
-	private RelativeLayout notok;
-	private TextView user_name;
-	private RelativeLayout ok;
-	private Button user;
-	private Button login;
 	private MyUser u;
 	private String email;
 	private String id;
@@ -57,6 +53,8 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 	private Context gameContext;
 
 	private ProgressDialog progressDialog;
+
+	private BoomMenuButton bmb;
 	@Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -69,7 +67,6 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 		}
 		Theme.setClassTheme(this);
         setContentView(R.layout.main);
-		
 		//初始化bmob
 		Bmob.initialize(MainActivity.this, "e39c2e15ca40b358b0dcc933236c1165");
 		//跳转GameListActivity要用的数据
@@ -81,83 +78,89 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 		replaceFragment(new MainGameFragment());
 		//使用BmobUser类获取部分用户数据
 		u = BmobUser.getCurrentUser(MyUser.class);
-		//侧滑
-		drawerLayout = (DrawerLayout)findViewById(R.id.drawer_main);
-		navView = (NavigationView)findViewById(R.id.nav_view);
-		initNav();
-		ActionBar actionBar=getSupportActionBar();
-		if (actionBar != null)
-		{
-			actionBar.setDisplayHomeAsUpEnabled(true);
-			actionBar.setHomeAsUpIndicator(R.drawable.menu);
-		}
-		navView.setCheckedItem(R.id.game);
-		navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener(){
-
-				@Override
-				public boolean onNavigationItemSelected(MenuItem item)
-				{
-					drawerLayout.closeDrawers();
-					switch (item.getItemId())
-					{
-						case R.id.game:
-							toolbar.setSubtitle(R.string.ziyuan);
-							replaceFragment(new MainGameFragment());
-							break;
-						case R.id.jsz:
-							toolbar.setSubtitle(R.string.jsz_title);
-							replaceFragment(new MainJszFragment());
-							break;
-						case R.id.video:
-							toolbar.setSubtitle(R.string.video_title);
-							replaceFragment(new MainVideoFragment());
-							break;
-						case R.id.mess:
-							toolbar.setSubtitle(R.string.talk);
-							replaceFragment(new MainMessFragment());			
-							break;
-					}
-					return true;
-				}
-			});
+		bmb = (BoomMenuButton) findViewById(R.id.bmb);
+        assert bmb != null;
+		initBmb();
 	}
 
-	private void initNav()
+	private void initBmb()
 	{
-		View navview_header = navView.inflateHeaderView(R.layout.nav_header);
-        //ImageView user_pic = (ImageView) drawview.findViewById(R.id.imageViewIcon);		
-		ok = (RelativeLayout)navview_header.findViewById(R.id.ok);
-		notok = (RelativeLayout)navview_header.findViewById(R.id.notok);
-		user_name = (TextView)navview_header.findViewById(R.id.user_name);
-		user = (Button)navview_header.findViewById(R.id.user);
-		login = (Button)navview_header.findViewById(R.id.login);
-		user.setOnClickListener(new View.OnClickListener(){
-
-				@Override
-				public void onClick(View p1)
-				{
-					initUser();
-				}
-			});
-		login.setOnClickListener(new View.OnClickListener(){
-				@Override
-				public void onClick(View p1)
-				{
-					drawerLayout.closeDrawers();
-					replaceFragment(new MainLoginFragment());
-					toolbar.setSubtitle(R.string.login_title);
-				}
-			});
+		
 		if (null == u)
 		{
-			navView.getMenu().removeItem(R.id.mess);	
-			ok.setVisibility(View.GONE);
+			HamButton.Builder user = new HamButton.Builder()
+				.normalTextRes(R.string.ziyuan)
+				.normalImageRes(R.drawable.account)
+				.listener(new OnBMClickListener(){
+					@Override
+					public void onBoomButtonClick(int p1)
+					{
+						replaceFragment(new MainLoginFragment());
+						toolbar.setSubtitle(R.string.login_title);
+					}
+				});
+			bmb.addBuilder(user);
 		}
 		else
 		{
-			notok.setVisibility(View.GONE);
-			user_name.setText(u.getUsername());
+			HamButton.Builder user = new HamButton.Builder()
+				.normalText(getResources().getString(R.string.hello)+u.getUsername())
+				.normalImageRes(R.drawable.account)
+				.listener(new OnBMClickListener(){
+					@Override
+					public void onBoomButtonClick(int p1)
+					{
+					initUser();
+					}
+				});
+			bmb.addBuilder(user);
 		}
+		HamButton.Builder game = new HamButton.Builder()
+			.normalTextRes(R.string.ziyuan)
+			.normalImageRes(R.drawable.game)
+			.listener(new OnBMClickListener(){
+				@Override
+				public void onBoomButtonClick(int p1)
+				{
+					toolbar.setSubtitle(R.string.ziyuan);
+					replaceFragment(new MainGameFragment());
+				}
+			});
+		bmb.addBuilder(game);
+		HamButton.Builder jsz = new HamButton.Builder()
+			.normalTextRes(R.string.jsz_title)
+			.listener(new OnBMClickListener(){
+				@Override
+				public void onBoomButtonClick(int p1)
+				{
+					toolbar.setSubtitle(R.string.jsz_title);
+					replaceFragment(new MainJszFragment());
+				}
+			});
+		bmb.addBuilder(jsz);
+		HamButton.Builder video = new HamButton.Builder()
+			.normalTextRes(R.string.video_title)
+			.listener(new OnBMClickListener(){
+				@Override
+				public void onBoomButtonClick(int p1)
+				{
+					toolbar.setSubtitle(R.string.video_title);
+					replaceFragment(new MainVideoFragment());
+				}
+			});
+		bmb.addBuilder(video);
+		HamButton.Builder mess = new HamButton.Builder()
+			.normalTextRes(R.string.talk)
+			.normalImageRes(R.drawable.talk)
+			.listener(new OnBMClickListener(){
+				@Override
+				public void onBoomButtonClick(int p1)
+				{
+					toolbar.setSubtitle(R.string.talk);
+					replaceFragment(new MainMessFragment());			
+				}
+			});
+		bmb.addBuilder(mess);
 	}
 	public void replaceFragment(Fragment fragment)
 	{
@@ -209,7 +212,7 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 	@Override
 	public void onOpenAnimationStart()
 	{
-		
+
 	}
 
 	@Override
@@ -235,15 +238,15 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 					{		
 						MainMessFragment main_mess=(MainMessFragment)getSupportFragmentManager().findFragmentById(R.id.main_fragment);
 						main_mess.getMessage();
-						Toast.makeText(MainActivity.this, getResources().getString( R.string.mess_true) + objectId, Toast.LENGTH_SHORT).show();
-						SharedPreferences y=getSharedPreferences("string",0);
+						Toast.makeText(MainActivity.this, getResources().getString(R.string.mess_true) + objectId, Toast.LENGTH_SHORT).show();
+						SharedPreferences y=getSharedPreferences("string", 0);
 						SharedPreferences.Editor edit=y.edit();
 						edit.putString("Message", "");
 						edit.apply();
 					}
 					else
 					{
-						Toast.makeText(MainActivity.this, getResources().getString(R.string.mess_false)+ e.getMessage(), Toast.LENGTH_SHORT).show();
+						Toast.makeText(MainActivity.this, getResources().getString(R.string.mess_false) + e.getMessage(), Toast.LENGTH_SHORT).show();
 					}
 				}
 			});
@@ -261,7 +264,7 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 		id = u.getObjectId();
 		new AlertDialog.Builder(MainActivity.this)
 			.setTitle(R.string.edit_email)
-			.setMessage(getResources().getString(R.string.user_name) + name + "\n"+getResources().getString(R.string.user_email) + email)
+			.setMessage(getResources().getString(R.string.user_name) + name + "\n" + getResources().getString(R.string.user_email) + email)
 			.setPositiveButton(R.string.user_email, new
 			DialogInterface.OnClickListener()
 			{
@@ -306,7 +309,7 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 													}
 													else
 													{
-														Toast.makeText(MainActivity.this, R.string.edit_false+ e.getMessage(), Toast.LENGTH_SHORT).show();
+														Toast.makeText(MainActivity.this, R.string.edit_false + e.getMessage(), Toast.LENGTH_SHORT).show();
 													}
 												}
 
@@ -440,10 +443,12 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 				gridView.setOnItemClickListener(
 					new AdapterView.OnItemClickListener() {
 						@Override
-						public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+						public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+						{
 							dialog.dismiss();
-								if (itemSelected != position) {
-									setCustomTheme(position);
+							if (itemSelected != position)
+							{
+								setCustomTheme(position);
 							}
 						}
 					}
@@ -458,7 +463,7 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 			case R.id.app:
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
 				builder.setTitle(R.string.tj_app);
-				String[] items={"ZArchiver\n"+getResources().getString(R.string.app_ZArchiver)};
+				String[] items={"ZArchiver\n" + getResources().getString(R.string.app_ZArchiver)};
 				builder.setItems(items, new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialogInterface, int i)
@@ -503,14 +508,14 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 					else
 					{
 						progressDialog.dismiss();
-						Toast.makeText(MainActivity.this,getResources().getString(R.string.link_fail) + p2, Toast.LENGTH_SHORT).show();
+						Toast.makeText(MainActivity.this, getResources().getString(R.string.link_fail) + p2, Toast.LENGTH_SHORT).show();
 					}
 				}
 			});
 	}
 	private void appFileDownload(BmobFile moniqiApk, final String app_name)
 	{
-		File saveFile = new File("/storage/emulated/0/Android/data/com.kirby.runanjing/files/"+moniqiApk.getFilename());
+		File saveFile = new File("/storage/emulated/0/Android/data/com.kirby.runanjing/files/" + moniqiApk.getFilename());
 		moniqiApk.download(saveFile, new DownloadFileListener() {
 				@Override
 				public void onStart()
@@ -523,14 +528,14 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 					if (e == null)
 					{
 						progressDialog.dismiss();
-						Toast.makeText(MainActivity.this,getResources().getString(R.string.download_susses) + savePath, Toast.LENGTH_SHORT).show();
+						Toast.makeText(MainActivity.this, getResources().getString(R.string.download_susses) + savePath, Toast.LENGTH_SHORT).show();
 						File file=new File(savePath);
 						installAppApk(file);
 					}
 					else
 					{
 						progressDialog.dismiss();
-						Toast.makeText(MainActivity.this,getResources().getString(R.string.download_fail) + e.getMessage() , Toast.LENGTH_SHORT).show();
+						Toast.makeText(MainActivity.this, getResources().getString(R.string.download_fail) + e.getMessage() , Toast.LENGTH_SHORT).show();
 					}
 				}
 				@Override
@@ -666,14 +671,14 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 					else
 					{
 						progressDialog.dismiss();
-						Toast.makeText(gameContext,gameContext.getString(R.string.link_fail) + p2, Toast.LENGTH_SHORT).show();
+						Toast.makeText(gameContext, gameContext.getString(R.string.link_fail) + p2, Toast.LENGTH_SHORT).show();
 					}
 				}
 			});
 	}
 	private void moniqiFileDownload(BmobFile moniqiApk, final String game_name)
 	{
-		File saveFile = new File("/storage/emulated/0/Android/data/com.kirby.runanjing/files/"+moniqiApk.getFilename());
+		File saveFile = new File("/storage/emulated/0/Android/data/com.kirby.runanjing/files/" + moniqiApk.getFilename());
 		moniqiApk.download(saveFile, new DownloadFileListener() {
 				@Override
 				public void onStart()
@@ -686,7 +691,7 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 					if (e == null)
 					{
 						progressDialog.dismiss();
-						Toast.makeText(gameContext,gameContext.getString(R.string.download_susses) + savePath, Toast.LENGTH_SHORT).show();
+						Toast.makeText(gameContext, gameContext.getString(R.string.download_susses) + savePath, Toast.LENGTH_SHORT).show();
 						File file=new File(savePath);
 						installMoniqiApk(file);
 					}
@@ -740,8 +745,8 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 				public void onClick(DialogInterface dialog, int which)
 				{
 					/*Intent kirby_web=new Intent(gameContext,KirbyWebActivity.class);
-					kirby_web.putExtra("url",pos_url);
-					gameContext.startActivity(kirby_web);*/
+					 kirby_web.putExtra("url",pos_url);
+					 gameContext.startActivity(kirby_web);*/
 					Intent web = new Intent();        
 					web.setAction("android.intent.action.VIEW");    
 					Uri content_url = Uri.parse(pos_url);   
@@ -779,9 +784,5 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 		);
 		dialog.show();
 	}
-	@Override
-    protected void setStatusBar() {
-        StatusBarUtil.setColorForDrawerLayout(this, (DrawerLayout) findViewById(R.id.drawer_main), R.attr.colorPrimaryDark,54);
-    }
 }
 

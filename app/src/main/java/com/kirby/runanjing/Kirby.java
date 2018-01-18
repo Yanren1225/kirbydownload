@@ -9,7 +9,5 @@ public class Kirby extends Application
 	{
         super.onCreate();
         registerActivityLifecycleCallbacks(ParallaxHelper.getInstance());
-		//DownloadInit.initDownload(getApplicationContext());
-		
 	}
 }
