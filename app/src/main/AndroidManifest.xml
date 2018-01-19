@@ -36,6 +36,9 @@
 			android:name=".activity.AboutActivity"
 			android:label="@string/about_title"/>
 		<activity
+			android:name=".activity.KirbyCrashActivity"
+			android:label="@string/crash_title"/>
+		<activity
 			android:name=".activity.JszActivity"
 			android:label="@string/jsz_title"/>
 		<activity

@@ -25,22 +25,22 @@ public class MainGameFragment extends Fragment
 	private ConsoleAdapter adapter;
 	private GameAdapter adapter2;
     private Console[]主机={
-		new Console("gba", R.drawable.gba),
-		new Console("sfc", R.drawable.sfc),
-		new Console("n64", R.drawable.n64),
-		new Console("ngc", R.drawable.ngc),
-		new Console("wii", R.drawable.wii),
-		new Console("nds", R.drawable.nds),
-		new Console("gb/gbc", R.drawable.gbc),
-		new Console("fc", R.drawable.fc)};
+		new Console("gba", "https://raw.githubusercontent.com/nihaocun/kirby_image/master/consose/gba.png"),
+		new Console("sfc", "https://raw.githubusercontent.com/nihaocun/kirby_image/master/consose/sfc.png"),
+		new Console("n64", "https://raw.githubusercontent.com/nihaocun/kirby_image/master/consose/n64.png"),
+		new Console("ngc", "https://raw.githubusercontent.com/nihaocun/kirby_image/master/consose/ngc.png"),
+		new Console("wii", "https://raw.githubusercontent.com/nihaocun/kirby_image/master/consose/wii.png"),
+		new Console("nds", "https://raw.githubusercontent.com/nihaocun/kirby_image/master/consose/nds.png"),
+		new Console("gb/gbc", "https://raw.githubusercontent.com/nihaocun/kirby_image/master/consose/gbc.png"),
+		new Console("fc", "https://raw.githubusercontent.com/nihaocun/kirby_image/master/consose/fc.png")};
 	private Console[] 模拟器 = {
-		new Console("GBA模拟器\nMy Boy!", R.drawable.moniqi_gba),
-		new Console("SFC模拟器\nSnes9x EX+", R.drawable.moniqi_sfc),
-		new Console("N64模拟器\nTendo64", R.drawable.moniqi_n64),
-		new Console("NDS模拟器\nDraStic", R.drawable.moniqi_nds),
-		new Console("NGC&WII模拟器\nDolphin", R.drawable.moniqi_wii),
-		new Console("GB&GBC模拟器\nMy OldBoy!", R.drawable.moniqi_gb_gbc),
-		new Console("FC模拟器\nNES.emu", R.drawable.moniqi_fc),
+		new Console("GBA模拟器\nMy Boy!", "https://raw.githubusercontent.com/nihaocun/kirby_image/master/moniqi/moniqi_gba.png"),
+		new Console("SFC模拟器\nSnes9x EX+", "https://raw.githubusercontent.com/nihaocun/kirby_image/master/moniqi/moniqi_sfc.png"),
+		new Console("N64模拟器\nTendo64", "https://raw.githubusercontent.com/nihaocun/kirby_image/master/moniqi/moniqi_n64.png"),
+		new Console("NDS模拟器\nDraStic", "https://raw.githubusercontent.com/nihaocun/kirby_image/master/moniqi/moniqi_nds.png"),
+		new Console("NGC&WII模拟器\nDolphin", "https://raw.githubusercontent.com/nihaocun/kirby_image/master/moniqi/moniqi_wii.png"),
+		new Console("GB&GBC模拟器\nMy OldBoy!", "https://raw.githubusercontent.com/nihaocun/kirby_image/master/moniqi/moniqi_gb_gbc.png"),
+		new Console("FC模拟器\nNES.emu", "https://raw.githubusercontent.com/nihaocun/kirby_image/master/moniqi/moniqi_fc.png"),
 	}; 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

@@ -66,8 +66,14 @@ public class ConsoleAdapter extends RecyclerView.Adapter<ConsoleAdapter.ViewHold
 	{
         Console co = mConsoleList.get(position);
         holder.consoleName.setText(co.getName());
-        Glide.with(mContext).load(co.getImageId()).into(holder.consoleImage);
-    }
+        Glide
+			.with(mContext)
+			.load(co.getImageUrl())
+			.placeholder(R.drawable.ic_download)
+			.error(R.drawable.ic_close_circle_outline)
+			.into(holder.consoleImage);
+			
+		}
 
     @Override
     public int getItemCount()

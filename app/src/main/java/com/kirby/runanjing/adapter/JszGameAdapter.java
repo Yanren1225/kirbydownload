@@ -70,7 +70,7 @@ public class JszGameAdapter extends RecyclerView.Adapter<JszGameAdapter.ViewHold
 	{
 		Console co = mJszGameList.get(position);
         holder.gameName.setText(co.getName());
-        Glide.with(mContext).load(co.getImageId()).into(holder.gameImage);
+        Glide.with(mContext).load(co.getImageUrl()).into(holder.gameImage);
 	}
 
 	@Override

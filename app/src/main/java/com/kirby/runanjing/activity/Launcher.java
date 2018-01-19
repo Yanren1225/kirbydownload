@@ -69,6 +69,7 @@ public class Launcher extends AppCompatActivity
 			intent.setClass(Launcher.this, MainActivity.class);
 			startActivity(intent);
 			finish();
+			overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
 		}
 	}
 	private void setLanguage()

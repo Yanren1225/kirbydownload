@@ -49,7 +49,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder>
 					int position = holder.getAdapterPosition();
 					Console game = mGameList.get(position);
 					MainActivity m=new MainActivity();
-					m.theDownload(mContext,game.getName());
+					m.theDownload(mContext, game.getName());
 				}
 			}
 		);
@@ -59,9 +59,14 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder>
     @Override
     public void onBindViewHolder(ViewHolder holder, int position)
 	{
-        Console fr = mGameList.get(position);
-        holder.gameName.setText(fr.getName());
-		Glide.with(mContext).load(fr.getImageId()).into(holder.gameImage);
+        Console co = mGameList.get(position);
+        holder.gameName.setText(co.getName());
+		Glide
+			.with(mContext)
+			.load(co.getImageUrl())
+			.placeholder(R.drawable.ic_download)
+			.error(R.drawable.ic_close_circle_outline)
+			.into(holder.gameImage);
     }
 
     @Override

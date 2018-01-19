@@ -16,7 +16,6 @@ import com.kirby.runanjing.activity.*;
 import com.kirby.runanjing.adapter.*;
 import com.kirby.runanjing.fragment.fab.*;
 import com.kirby.runanjing.untils.*;
-import com.wang.avi.*;
 import java.util.*;
 
 import com.kirby.runanjing.R;

@@ -16,6 +16,7 @@
 	<string name="moniqi">模拟器</string>
 	<string name="not_login">没有登陆</string>
 	<string name="language">语言设置</string>
+	<string name="crash_title">出错了</string>
 	
 	<string name="mess_true">发送成功:</string>
 	<string name="mess_false">发送失败:</string>

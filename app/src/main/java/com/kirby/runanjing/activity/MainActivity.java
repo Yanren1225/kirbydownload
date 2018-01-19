@@ -59,12 +59,6 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-		if (Build.VERSION.SDK_INT >= 25)
-		{
-			View decorView=getWindow().getDecorView();
-			decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-			getWindow().setStatusBarColor(Color.TRANSPARENT);
-		}
 		Theme.setClassTheme(this);
         setContentView(R.layout.main);
 		//初始化bmob

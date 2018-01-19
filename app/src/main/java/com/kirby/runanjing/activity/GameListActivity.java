@@ -40,8 +40,8 @@ public class GameListActivity extends BaseActivity
 		if (game == "gba")
 		{	
 			Console[] 游戏 = {
-				new Console("星之卡比 梦之泉DX", R.drawable.mengzhiquandx),
-				new Console("星之卡比 镜之大迷宫", R.drawable.jingmi),			
+				new Console("星之卡比 梦之泉DX", "https://raw.githubusercontent.com/nihaocun/kirby_image/master/game/mengzhiquandx.jpg"),
+				new Console("星之卡比 镜之大迷宫", "https://raw.githubusercontent.com/nihaocun/kirby_image/master/game/jingmi.jpg"),			
 			}; 
 			int index = 0;
 			while (index < 游戏.length)
@@ -52,12 +52,12 @@ public class GameListActivity extends BaseActivity
 		if (game == "gb/gbc")
 		{
 			Console []游戏={		
-				new Console("星之卡比 1", R.drawable.xing1),
-				new Console("星之卡比 2", R.drawable.xing2),
-				new Console("星之卡比 卡比宝石星", R.drawable.baoshixing),
-				new Console("星之卡比 卡比打砖块", R.drawable.dazhuankuai),
-				new Console("星之卡比 卡比弹珠台", R.drawable.danzhutai),
-				new Console("星之卡比 滚滚卡比", R.drawable.gungun),
+				new Console("星之卡比 1", "https://raw.githubusercontent.com/nihaocun/kirby_image/master/game/xing1.jpg"),
+				new Console("星之卡比 2", "https://raw.githubusercontent.com/nihaocun/kirby_image/master/game/xing2.jpg"),
+				new Console("星之卡比 卡比宝石星", "https://raw.githubusercontent.com/nihaocun/kirby_image/master/game/baoshixing.jpg"),
+				new Console("星之卡比 卡比打砖块", "https://raw.githubusercontent.com/nihaocun/kirby_image/master/game/dazhuankuai.jpg"),
+				new Console("星之卡比 卡比弹珠台", "https://raw.githubusercontent.com/nihaocun/kirby_image/master/game/danzhutai.jpg"),
+				new Console("星之卡比 滚滚卡比", "https://raw.githubusercontent.com/nihaocun/kirby_image/master/game/gungun.jpg"),
 			};
 			int index = 0;
 			while (index < 游戏.length)
@@ -68,11 +68,11 @@ public class GameListActivity extends BaseActivity
 		if (game == "sfc")
 		{
 			Console[] 游戏 = {
-				new Console("星之卡比 3", R.drawable.xing3),
-				new Console("星之卡比 超豪华版", R.drawable.kss),
-				new Console("星之卡比 卡比梦幻都", R.drawable.menghuandu),
-				new Console("[仅美国]星之卡比 卡比魔方气泡", R.drawable.mofangqipao),
-				new Console("[仅日本]星之卡比 卡比宝石星DX", R.drawable.banshixingdx),
+				new Console("星之卡比 3", "https://raw.githubusercontent.com/nihaocun/kirby_image/master/game/xing3.jpg"),
+				new Console("星之卡比 超豪华版", "https://raw.githubusercontent.com/nihaocun/kirby_image/master/game/kss.jpg"),
+				new Console("星之卡比 卡比梦幻都", "https://raw.githubusercontent.com/nihaocun/kirby_image/master/game/menghuandu.jpg"),
+				new Console("[仅美国]星之卡比 卡比魔方气泡", "https://raw.githubusercontent.com/nihaocun/kirby_image/master/game/mofangqipao.jpg"),
+				new Console("[仅日本]星之卡比 卡比宝石星DX", "https://raw.githubusercontent.com/nihaocun/kirby_image/master/game/banshixingdx.jpg"),
 			}; 
 			int index = 0;
 			while (index < 游戏.length)
@@ -84,7 +84,7 @@ public class GameListActivity extends BaseActivity
 		{
 
 			Console[] 游戏 = {
-				new Console("星之卡比 64", R.drawable.k64),
+				new Console("星之卡比 64", "https://raw.githubusercontent.com/nihaocun/kirby_image/master/game/k64.jpg"),
 			}; 
 			int index = 0;
 			while (index < 游戏.length)
@@ -96,7 +96,7 @@ public class GameListActivity extends BaseActivity
 		{
 
 			Console[] 游戏 = {
-				new Console("星之卡比 飞天赛车", R.drawable.feitian),
+				new Console("星之卡比 飞天赛车", "https://raw.githubusercontent.com/nihaocun/kirby_image/master/game/feitian.jpg"),
 			}; 
 			int index = 0;
 			while (index < 游戏.length)
@@ -108,8 +108,8 @@ public class GameListActivity extends BaseActivity
 		{
 
 			Console[] 游戏 = {
-				new Console("星之卡比 重返梦幻岛", R.drawable.chongfan),
-				new Console("星之卡比 毛线卡比", R.drawable.maoxian),
+				new Console("星之卡比 重返梦幻岛", "https://raw.githubusercontent.com/nihaocun/kirby_image/master/game/chongfan.jpg"),
+				new Console("星之卡比 毛线卡比", "https://raw.githubusercontent.com/nihaocun/kirby_image/master/game/manxian.jpg"),
 			}; 
 			int index = 0;
 			while (index < 游戏.length)
@@ -121,10 +121,10 @@ public class GameListActivity extends BaseActivity
 		{
 
 			Console[] 游戏 = {
-				new Console("星之卡比 触摸卡比", R.drawable.chumo),
-				new Console("星之卡比 超究豪华版", R.drawable.kssu),
-				new Console("星之卡比 呐喊团", R.drawable.nahantuan),
-				new Console("星之卡比 集合！卡比", R.drawable.jihe),
+				new Console("星之卡比 触摸卡比", "https://raw.githubusercontent.com/nihaocun/kirby_image/master/game/chumo.jpg"),
+				new Console("星之卡比 超究豪华版", "https://raw.githubusercontent.com/nihaocun/kirby_image/master/game/kssu.jpg"),
+				new Console("星之卡比 呐喊团", "https://raw.githubusercontent.com/nihaocun/kirby_image/master/game/nahantuan.jpg"),
+				new Console("星之卡比 集合！卡比", "https://raw.githubusercontent.com/nihaocun/kirby_image/master/game/jihe.jpg"),
 			}; 
 			int index = 0;
 			while (index < 游戏.length)
@@ -136,7 +136,7 @@ public class GameListActivity extends BaseActivity
 		{
 
 			Console[] 游戏 = {
-				new Console("星之卡比 梦之泉物语", R.drawable.mengzhiquan),
+				new Console("星之卡比 梦之泉物语", "https://raw.githubusercontent.com/nihaocun/kirby_image/master/game/mengzhiquan.jpg"),
 			}; 
 			int index = 0;
 			while (index < 游戏.length)

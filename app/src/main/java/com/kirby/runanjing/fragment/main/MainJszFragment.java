@@ -17,9 +17,9 @@ public class MainJszFragment extends Fragment
 	private JszGameAdapter adapter;
 	private List<Console> jszgamelist=new ArrayList<>();
 	private Console[]金手指_游戏={
-		new Console("星之卡比 梦之泉物语", R.drawable.mengzhiquan),
-		new Console("星之卡比 梦之泉DX", R.drawable.mengzhiquandx),
-		new Console("星之卡比 镜之大迷宫", R.drawable.jingmi)
+		new Console("星之卡比 梦之泉物语", "https://raw.githubusercontent.com/nihaocun/kirby_image/master/game/mengzhiquan.jpg"),
+		new Console("星之卡比 梦之泉DX", "https://raw.githubusercontent.com/nihaocun/kirby_image/master/game/mengzhiquandx.jpg"),
+		new Console("星之卡比 镜之大迷宫", "https://raw.githubusercontent.com/nihaocun/kirby_image/master/game/jingmi.jpg")
 	};
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

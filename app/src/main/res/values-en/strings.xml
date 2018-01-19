@@ -16,6 +16,7 @@
 	<string name="moniqi">Emulators</string>
 	<string name="not_login">Not Login</string>
 	<string name="language">Language setting</string>
+	<string name="crash_title">Error</string>
 	
 	<string name="mess_true">Send Successfully:</string>
 	<string name="mess_false">Sand Unsuccessfully:</string>

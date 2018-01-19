@@ -3,18 +3,18 @@ package com.kirby.runanjing.bean;
 public class Console
 {
 	private String name;
-	private int imageId;
-	public Console(String name, int imageId)
+	private String imageUrl;
+	public Console(String name, String imageUrl)
 	{
 		this.name = name;
-		this.imageId = imageId;
+		this.imageUrl = imageUrl;
 	}
 	public String getName()
 	{
 		return name;
 	}
-	public int getImageId()
+	public String getImageUrl()
 	{
-		return imageId;
+		return imageUrl;
 	}
 }
