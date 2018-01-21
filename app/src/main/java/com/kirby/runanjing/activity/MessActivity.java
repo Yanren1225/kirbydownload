@@ -30,7 +30,7 @@ public class MessActivity extends BaseActivity
     {
 		super.onCreate(savedInstanceState);
         Theme.setClassTheme(this);
-		setContentView(R.layout.mess_activity);
+		setContentView(R.layout.activity_message);
 		Intent intent = getIntent();
 		s_user_name=intent.getStringExtra(USER_NAME);
 		s_time=intent.getStringExtra(TIME);

@@ -68,6 +68,6 @@
 	</style>
 	
 	<style name="DarkTheme" parent="Theme.AppCompat.NoActionBar">		
-		<item name="colorAccent">#404390</item>	
+		<item name="colorAccent">#009688</item>	
 	</style>
 </resources>

@@ -23,7 +23,6 @@ public class MainLoginFragment extends Fragment
 	{
         view=inflater.inflate(R.layout.main_login, container, false);
 		m=(MainActivity)getActivity();
-		Bmob.initialize(getActivity(), "e39c2e15ca40b358b0dcc933236c1165");
 		initLogin(view);
 		return view;
 	}

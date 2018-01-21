@@ -60,9 +60,7 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
     {
         super.onCreate(savedInstanceState);
 		Theme.setClassTheme(this);
-        setContentView(R.layout.main);
-		//初始化bmob
-		Bmob.initialize(MainActivity.this, "e39c2e15ca40b358b0dcc933236c1165");
+        setContentView(R.layout.activity_main);
 		//跳转GameListActivity要用的数据
 		setApply();	
 		//配置toolbar
@@ -84,7 +82,7 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 		{
 			HamButton.Builder user = new HamButton.Builder()
 				.normalTextRes(R.string.ziyuan)
-				.normalImageRes(R.drawable.account)
+				.normalImageRes(R.drawable.ic_account)
 				.listener(new OnBMClickListener(){
 					@Override
 					public void onBoomButtonClick(int p1)
@@ -99,19 +97,20 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 		{
 			HamButton.Builder user = new HamButton.Builder()
 				.normalText(getResources().getString(R.string.hello)+u.getUsername())
-				.normalImageRes(R.drawable.account)
+				.normalImageRes(R.drawable.ic_account)
 				.listener(new OnBMClickListener(){
 					@Override
 					public void onBoomButtonClick(int p1)
 					{
-					initUser();
+						Intent user=new Intent(MainActivity.this,UserActivity.class);
+						startActivity(user);
 					}
 				});
 			bmb.addBuilder(user);
 		}
 		HamButton.Builder game = new HamButton.Builder()
 			.normalTextRes(R.string.ziyuan)
-			.normalImageRes(R.drawable.game)
+			.normalImageRes(R.drawable.ic_game)
 			.listener(new OnBMClickListener(){
 				@Override
 				public void onBoomButtonClick(int p1)
@@ -145,7 +144,7 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 		bmb.addBuilder(video);
 		HamButton.Builder mess = new HamButton.Builder()
 			.normalTextRes(R.string.talk)
-			.normalImageRes(R.drawable.talk)
+			.normalImageRes(R.drawable.ic_talk2)
 			.listener(new OnBMClickListener(){
 				@Override
 				public void onBoomButtonClick(int p1)

@@ -29,7 +29,7 @@ public class Launcher extends AppCompatActivity
 		Theme.setClassTheme(this);
 		super.onCreate(savedInstanceState);
 		setLanguage();
-		setContentView(R.layout.welcome);
+		setContentView(R.layout.activity_welcome);
 		welcome = (HTextView)findViewById(R.id.textview);
 		welcome.setTextColor(getColorPrimary());
 		welcome.animateText(getResources().getString(R.string.welcome_to));

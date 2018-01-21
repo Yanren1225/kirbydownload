@@ -16,10 +16,14 @@
 	<string name="moniqi">模擬器</string>
 	<string name="not_login">沒有登錄</string>
 	<string name="language">語言設置</string>
+	<string name="crash_title">出錯了</string>
 	
 	<string name="mess_true">發送成功:</string>
 	<string name="mess_false">發送失敗:</string>
 	<string name="user_title">用護信息</string>
+	
+	<string name="copy">複製</string>
+	<string name="email">郵件發送</string>
 	
 	<string name="user_name">用護名</string>
 	<string name="user_email">郵箱</string>

@@ -28,6 +28,7 @@
 		<activity android:name=".activity.KirbyIntroActivity"/>
 		<activity android:name=".activity.KirbyWebActivity"/>
 		<activity android:name=".activity.DownloadActivity"/>
+		<activity android:name=".activity.UserActivity"/>
 		<activity
 			android:name=".activity.GameListActivity"
 			android:label="@string/game_title"/>

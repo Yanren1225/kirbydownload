@@ -38,7 +38,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder>
 		{
 			mContext = parent.getContext();
 		}
-		View view=LayoutInflater.from(mContext).inflate(R.layout.message_item, parent, false);
+		View view=LayoutInflater.from(mContext).inflate(R.layout.item_message, parent, false);
 		return new ViewHolder(view);
 	}
 

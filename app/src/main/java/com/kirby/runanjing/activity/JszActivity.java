@@ -30,12 +30,12 @@ public class JszActivity extends BaseActivity
     {
         super.onCreate(savedInstanceState);
 		Theme.setClassTheme(this);
-		setContentView(R.layout.jsz_activity);
+		setContentView(R.layout.activity_jsz);
 		//配置toolbar
 		final Toolbar toolbar=(Toolbar)findViewById(R.id.标题栏);
 		setSupportActionBar(toolbar);
 		//设置List的适配器
-		JszAdapter adapter=new JszAdapter(JszActivity.this, R.layout.jsz_list, list);
+		JszAdapter adapter=new JszAdapter(JszActivity.this, R.layout.item_jsz, list);
 		ListView listview=(ListView)findViewById(R.id.jsz_listview);
 		listview.setAdapter(adapter);
 		SharedPreferences console=getSharedPreferences("string", 0);
@@ -49,7 +49,7 @@ public class JszActivity extends BaseActivity
 				list.add(镜迷_金手指[index++]);
 			}
 		}
-		if(name=="星之卡比 梦之泉"){
+		if(name=="星之卡比 梦之泉物语"){
 			int index = 0;
 			while (index < 梦之泉_金手指.length)
 			{       	

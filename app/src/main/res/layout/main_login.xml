@@ -6,14 +6,14 @@
 	android:layout_height="fill_parent"
 	android:orientation="vertical">
 	
-	<EditText
+	<com.rengwuxian.materialedittext.MaterialEditText
 		android:layout_height="wrap_content"
 		android:layout_width="match_parent"
 		android:layout_below="@id/mainAppBarLayout1"
 		android:id="@+id/登录_用户名"
 		android:hint="@string/login_user"/>
 
-	<EditText
+	<com.rengwuxian.materialedittext.MaterialEditText
 		android:layout_height="wrap_content"
 		android:inputType="textPassword"
 		android:layout_width="match_parent"

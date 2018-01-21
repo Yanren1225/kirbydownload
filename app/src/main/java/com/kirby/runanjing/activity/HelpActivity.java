@@ -19,7 +19,7 @@ public class HelpActivity extends BaseActivity
     {
 		super.onCreate(savedInstanceState);
         Theme.setClassTheme(this);
-		setContentView(R.layout.help);
+		setContentView(R.layout.activity_help);
 		Toolbar toolbar=(Toolbar)findViewById(R.id.标题栏);
 		setSupportActionBar(toolbar);
 		TextView helpText=(TextView)findViewById(R.id.helpText);

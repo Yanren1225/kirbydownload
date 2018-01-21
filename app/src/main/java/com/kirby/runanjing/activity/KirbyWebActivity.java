@@ -32,7 +32,7 @@ public class KirbyWebActivity extends BaseActivity
 	{
 		super.onCreate(savedInstanceState);
 		Theme.setClassTheme(this);
-		setContentView(R.layout.web);
+		setContentView(R.layout.activity_web);
 		Intent kirby_web=getIntent();
 	    url = kirby_web.getStringExtra("url");
 		//配置toolbar

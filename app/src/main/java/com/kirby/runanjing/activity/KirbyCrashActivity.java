@@ -10,6 +10,9 @@ import com.kirby.runanjing.untils.*;
 
 import android.support.v7.widget.Toolbar;
 import android.text.*;
+import android.view.View.*;
+import android.view.*;
+import android.net.*;
 
 public class KirbyCrashActivity extends BaseActivity
 {
@@ -21,13 +24,14 @@ public class KirbyCrashActivity extends BaseActivity
     {
 		super.onCreate(savedInstanceState);
         Theme.setClassTheme(this);
-		setContentView(R.layout.error);
+		setContentView(R.layout.activity_error);
 		Toolbar toolbar=(Toolbar)findViewById(R.id.标题栏);
 		setSupportActionBar(toolbar);
 		Intent crash=getIntent();
         crash_=(Throwable) crash.getSerializableExtra("crash");
 		phoneInfo = new PhoneUtil(this);
-		TextView crashText=(TextView)findViewById(R.id.crashText);
+		final TextView crashText=(TextView)findViewById(R.id.crashText);
+		Button email=(Button)findViewById(R.id.email);
 	  
 		crashText.append("手机品牌:");
         crashText.append(Html.fromHtml("<font color=\"#E51C23\">" + phoneInfo.getBrand() + "</font>"));
@@ -65,6 +69,18 @@ public class KirbyCrashActivity extends BaseActivity
             crashText.append(")");
             crashText.append("\n");
         }
-		
+		email.setOnClickListener(new View.OnClickListener(){
+
+				@Override
+				public void onClick(View p1)
+				{
+					Intent email=new Intent(Intent.ACTION_SENDTO); 
+					email.putExtra(android.content.Intent.EXTRA_EMAIL,new String[] {"nihaocun@163.com"});
+					email.putExtra(android.content.Intent.EXTRA_SUBJECT, "Kirby download Bug反馈"); 
+					email.putExtra(android.content.Intent.EXTRA_TEXT, crashText.getText()); 
+					email.setType("plain/text");  
+					startActivity(Intent.createChooser(email, "Mail Chooser"));  
+				}
+			});
 	}
 }

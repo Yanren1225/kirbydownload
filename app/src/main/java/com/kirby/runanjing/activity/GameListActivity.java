@@ -22,7 +22,7 @@ public class GameListActivity extends BaseActivity
     {
 		super.onCreate(savedInstanceState);
         Theme.setClassTheme(this);
-		setContentView(R.layout.gamelist_layout);
+		setContentView(R.layout.activity_gamelist);
 		//配置toolbar
 		Toolbar toolbar=(Toolbar)findViewById(R.id.标题栏);
 		setSupportActionBar(toolbar);

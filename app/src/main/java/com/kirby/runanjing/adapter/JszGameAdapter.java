@@ -43,7 +43,7 @@ public class JszGameAdapter extends RecyclerView.Adapter<JszGameAdapter.ViewHold
 		{
             mContext = parent.getContext();
         }
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.console_list, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_console, parent, false);
 		final ViewHolder holder=new ViewHolder(view);
 		holder.LinearLayout.setOnClickListener(new View.OnClickListener(){
 				@Override

@@ -18,7 +18,7 @@ public class AboutActivity extends BaseActivity
     {
 		super.onCreate(savedInstanceState);
         Theme.setClassTheme(this);
-		setContentView(R.layout.about);
+		setContentView(R.layout.activity_about);
 		Toolbar toolbar=(Toolbar)findViewById(R.id.标题栏);
 		setSupportActionBar(toolbar);
 		getFragmentManager().beginTransaction().replace(R.id.about_fragment, new AboutPreferenceFragment()).commit();

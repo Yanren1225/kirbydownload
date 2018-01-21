@@ -44,7 +44,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 		{
 			mContext = parent.getContext();
 		}
-		View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.message_item, parent, false);
+		View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_message, parent, false);
 		final ViewHolder holder=new ViewHolder(view);
         holder.relativelayout.setOnClickListener(new View.OnClickListener() {
 				@Override

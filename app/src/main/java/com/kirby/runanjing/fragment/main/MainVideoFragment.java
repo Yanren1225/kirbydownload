@@ -17,7 +17,6 @@ public class MainVideoFragment extends Fragment
 	{
         view = inflater.inflate(R.layout.main_video, container, false);
 		m = (MainActivity)getActivity();
-		Bmob.initialize(getActivity(), "e39c2e15ca40b358b0dcc933236c1165");
 		initVideo(view);
 		return view;
 	}

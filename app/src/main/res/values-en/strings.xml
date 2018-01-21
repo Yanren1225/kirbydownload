@@ -22,6 +22,9 @@
 	<string name="mess_false">Sand Unsuccessfully:</string>
 	<string name="user_title">User Information</string>
 	
+	<string name="copy">Copy</string>
+	<string name="email">Send Email</string>
+	
 	<string name="user_name">User Name</string>
 	<string name="user_email">E-mail</string>
 	

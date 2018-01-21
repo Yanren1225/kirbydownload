@@ -44,7 +44,6 @@ public class MainMessFragment extends Fragment
 		m = (MainActivity)getActivity();
 		initMess(view);
 		刷新.autoRefresh();
-		Bmob.initialize(getActivity(), "e39c2e15ca40b358b0dcc933236c1165");
 		return view;
 	}
 	

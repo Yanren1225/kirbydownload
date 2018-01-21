@@ -8,7 +8,7 @@
 
 	<android.support.design.widget.TabLayout
 		android:id="@+id/tabLayout"
-		android:background="#ffeeeeee"
+		android:background="?attr/android:windowBackground"
 		android:theme="@style/ThemeOverlay.AppCompat"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"

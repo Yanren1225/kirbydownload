@@ -16,13 +16,10 @@ public class Kirby extends Application
 	{
         super.onCreate();
         registerActivityLifecycleCallbacks(ParallaxHelper.getInstance());
-	//	CrashHandler crashHandler = CrashHandler.getInstance();
-       // crashHandler.init(getApplicationContext());		
-		NeverCrash.init(new NeverCrash.CrashHandler() {
+	    NeverCrash.init(new NeverCrash.CrashHandler() {
 				@Override
 				public void uncaughtException(Thread t, Throwable e)
-				{
-					
+				{		
 					toCrashActivity(e);
 				}
 			});
@@ -34,7 +31,6 @@ public class Kirby extends Application
 				@Override
 				public void run()
 				{
-					//Toast.makeText(getApplicationContext(),crash,Toast.LENGTH_SHORT).show();
 					Intent crash_=new Intent(Kirby.this, KirbyCrashActivity.class);
 					crash_.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					crash_.putExtra("crash",crash);
