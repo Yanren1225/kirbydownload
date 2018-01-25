@@ -2,17 +2,13 @@ package com.kirby.runanjing.activity;
 
 import android.app.*;
 import android.content.*;
-import android.content.res.*;
-import android.graphics.*;
 import android.net.*;
 import android.os.*;
-import android.support.design.widget.*;
 import android.support.v4.app.*;
 import android.support.v4.view.*;
 import android.support.v4.widget.*;
 import android.support.v7.app.*;
 import android.support.v7.widget.*;
-import android.util.*;
 import android.view.*;
 import android.widget.*;
 import cn.bmob.v3.*;
@@ -20,28 +16,36 @@ import cn.bmob.v3.datatype.*;
 import cn.bmob.v3.exception.*;
 import cn.bmob.v3.listener.*;
 import com.allattentionhere.fabulousfilter.*;
+import com.base.bj.trpayjar.domain.*;
+import com.base.bj.trpayjar.listener.*;
+import com.base.bj.trpayjar.utils.*;
 import com.kirby.runanjing.*;
+import com.kirby.runanjing.adapter.*;
+import com.kirby.runanjing.bmob.*;
 import com.kirby.runanjing.fragment.main.*;
 import com.kirby.runanjing.untils.*;
+import com.nightonke.boommenu.*;
+import com.nightonke.boommenu.BoomButtons.*;
 import java.io.*;
 import java.util.*;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import com.kirby.runanjing.R;
-import com.jaeger.library.*;
-import com.kirby.runanjing.bmob.*;
-import com.kirby.runanjing.fragment.fab.*;
-import com.kirby.runanjing.adapter.*;
-import com.nightonke.boommenu.*;
-import com.nightonke.boommenu.BoomButtons.*;
 
 public class MainActivity extends BaseActivity implements AAH_FabulousFragment.AnimationListener 
 {
+	private final static String appkey = "0b658d2e3de040d188119d3d03e45019";
+	String userid = "trpay@52yszd.com";//商户系统用户ID(如：trpay@52yszd.com，商户系统内唯一)
+	String outtradeno = UUID.randomUUID() + "";//商户系统订单号(为便于演示，此处利用UUID生成模拟订单号，商户系统内唯一)
+	String tradename = "Kirby download捐赠";
+	String backparams = "name=2&age=22";//商户系统回调参数
+	String notifyurl = "http://101.200.13.92/notify/alipayTestNotify";//商户系统回调地址
+
+
 	private DrawerLayout drawerLayout;
 	private String name;
 	private MyUser u;
@@ -61,6 +65,7 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
         super.onCreate(savedInstanceState);
 		Theme.setClassTheme(this);
         setContentView(R.layout.activity_main);
+		TrPay.getInstance(this).initPaySdk(appkey, "coolapk");
 		//跳转GameListActivity要用的数据
 		setApply();	
 		//配置toolbar
@@ -77,7 +82,7 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 
 	private void initBmb()
 	{
-		
+
 		if (null == u)
 		{
 			HamButton.Builder user = new HamButton.Builder()
@@ -96,13 +101,13 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 		else
 		{
 			HamButton.Builder user = new HamButton.Builder()
-				.normalText(getResources().getString(R.string.hello)+u.getUsername())
+				.normalText(getResources().getString(R.string.hello) + u.getUsername())
 				.normalImageRes(R.drawable.ic_account)
 				.listener(new OnBMClickListener(){
 					@Override
 					public void onBoomButtonClick(int p1)
 					{
-						Intent user=new Intent(MainActivity.this,UserActivity.class);
+						Intent user=new Intent(MainActivity.this, UserActivity.class);
 						startActivity(user);
 					}
 				});
@@ -471,6 +476,25 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 					});
 				builder.create();
 				builder.show();
+				break;
+			case R.id.Download:
+				TrPay.getInstance(this).callAlipay(tradename, outtradeno, 50L, backparams, notifyurl, userid, new PayResultListener() {
+						@Override
+						public void onPayFinish(Context context, String outtradeno, int resultCode, String resultString, int payType, Long amount, String tradename)
+						{
+							if (resultCode == TrPayResult.RESULT_CODE_SUCC.getId())
+							{//1：支付成功回调
+								TrPay.getInstance((Activity) context).closePayView();//关闭快捷支付页面
+								Toast.makeText(MainActivity.this, resultString, Toast.LENGTH_LONG).show();
+								//支付成功逻辑处理
+							}
+							else if (resultCode == TrPayResult.RESULT_CODE_FAIL.getId())
+							{//2：支付失败回调
+								Toast.makeText(MainActivity.this, resultString, Toast.LENGTH_LONG).show();
+								//支付失败逻辑处理
+							}
+						}
+					});
 				break;
 			default:
 		}

@@ -10,6 +10,10 @@ import android.widget.*;
 import com.kirby.runanjing.*;
 import com.kirby.runanjing.activity.*;
 import android.content.pm.PackageManager.*;
+import com.base.bj.trpayjar.utils.*;
+import com.base.bj.trpayjar.domain.*;
+import java.util.*;
+import com.base.bj.trpayjar.listener.*;
 
 public  class AboutPreferenceFragment extends PreferenceFragment
 {
@@ -18,6 +22,7 @@ public  class AboutPreferenceFragment extends PreferenceFragment
 	{
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.about);
+		
 	}
 
 	@Override
@@ -94,9 +99,9 @@ public  class AboutPreferenceFragment extends PreferenceFragment
 				getActivity().startActivity(WeChat);
 				break;
 			case "Alibaba":
-				Intent Alibaba=new Intent("android.intent.action.VIEW");
+				/*Intent Alibaba=new Intent("android.intent.action.VIEW");
 				Alibaba .setData(Uri.parse("https://github.com/nihaocun/pay/blob/master/ZFB.jpg"));
-				getActivity().startActivity(Alibaba);
+				getActivity().startActivity(Alibaba);*/
 				break;
 			case "github":
 				Intent github=new Intent("android.intent.action.VIEW");
