@@ -23,15 +23,6 @@
             android:title="@string/help3" />
 	</PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/jz_title">
-        <Preference
-            android:key="WeChat"
-            android:title="@string/WeChat" />
-        <Preference
-            android:key="Alibaba"
-            android:title="@string/Alibaba" />
-    </PreferenceCategory>
-
 	<PreferenceCategory android:title="@string/kfz_title">
 		<Preference
             android:key="me"

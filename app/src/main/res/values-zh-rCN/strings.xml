@@ -50,6 +50,7 @@
 	
 	<string name="hello">你好:</string>
 	
+	<string name="look_more">查看更多</string>
 	<string name="edit_some">写点什么吧｡ӧ◡ӧ｡</string>	
 	<string name="look_funk">看什么看(ﾉ｀⊿´)ﾉ</string>
 	<string name="edit_ny">内容(1000字)</string>
@@ -108,9 +109,6 @@
 	<string name="help2">常见问题汇总</string>
 	<string name="help3">反馈</string>
 	<string name="help4">更详细的帮助？点我进入QQ群</string>
-	<string name="jz_title">捐赠</string>
-	<string name="WeChat">微信</string>
-	<string name="Alibaba">支付宝</string>
 	<string name="kfz_title">开发者</string>
 	<string name="me1">酷安</string>
 	<string name="me2">\@汝南京</string>
@@ -124,6 +122,8 @@
 	<string name="dia_username">用户名（注册以后不可更改）</string>
 	<string name="dia_email">邮箱（用于找回密码）</string>
 	<string name="dia_password">密码（支持数字和字母）</string>
+	
+	<string name="pay_title">捐赠</string>
 	
 	<string name="dia_download">下载</string>
 	<string name="dia_yes">确定</string>

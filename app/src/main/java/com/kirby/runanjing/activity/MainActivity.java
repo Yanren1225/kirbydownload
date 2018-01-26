@@ -477,7 +477,7 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 				builder.create();
 				builder.show();
 				break;
-			case R.id.Download:
+			case R.id.pay:
 				TrPay.getInstance(this).callAlipay(tradename, outtradeno, 50L, backparams, notifyurl, userid, new PayResultListener() {
 						@Override
 						public void onPayFinish(Context context, String outtradeno, int resultCode, String resultString, int payType, Long amount, String tradename)

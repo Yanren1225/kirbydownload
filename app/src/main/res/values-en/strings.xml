@@ -50,6 +50,7 @@
 	
 	<string name="hello">Hello:</string>
 	
+	<string name="look_more">Look More</string>
 	<string name="edit_some">Please write something...｡ӧ◡ӧ｡</string>	
 	<string name="look_funk">What are you seeing?!(ﾉ｀⊿´)ﾉ</string>
 	<string name="edit_ny">Text (1000 Letters)</string>
@@ -108,9 +109,6 @@
 	<string name="help2">FAQ</string>
 	<string name="help3">Feedback</string>
 	<string name="help4">More Detailed Help？Pass The Button To Go To Me Tencent QQ Group</string>
-	<string name="jz_title">Donate</string>
-	<string name="WeChat">WeChat</string>
-	<string name="Alibaba">Alipay</string>
 	<string name="kfz_title">developer</string>
 	<string name="me1">Coolapk</string>
 	<string name="me2">\@汝南京</string>
@@ -124,6 +122,8 @@
 	<string name="dia_username">User Name(Can\'t Change If You Have Registered)</string>
 	<string name="dia_email">E-mail(Used To Retrieve Password)</string>
 	<string name="dia_password">Password(Numbers Or Letter</string>
+	
+	<string name="pay_title">Donate</string>
 	
 	<string name="dia_download">Download</string>
 	<string name="dia_yes">OK</string>

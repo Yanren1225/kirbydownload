@@ -14,7 +14,7 @@
         android:title="@string/tj_app"
 		app:showAsAction="never"/>
 	<item
-        android:id="@+id/Download"
-        android:title="下载"
+        android:id="@+id/pay"
+        android:title="@string/pay_title"
 		app:showAsAction="never"/>
 </menu>

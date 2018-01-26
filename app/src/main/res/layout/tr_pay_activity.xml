@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tr_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/tr_bg_color"
+    android:orientation="vertical">
+
+    <WebView
+        android:id="@+id/tr_webview"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="140dp">
+
+    </WebView>
+    <RelativeLayout
+        android:background="@color/tr_colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tr_toolbar_height">
+        <TextView
+            android:id="@+id/tr_back_bt"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/tr_dimen_30"
+            android:drawableLeft="@mipmap/tr_icon_arrow_left" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/tr_app_title"
+            android:textColor="@color/tr_main_text_white"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:padding="@dimen/tr_dimen_20"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:paddingTop="@dimen/tr_dimen_20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="商品名称："
+                android:textSize="@dimen/tr_font_size_14"
+                android:textColor="@color/tr_text_main_color"
+                />
+            <TextView
+                android:id="@+id/tr_tv_good_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="万部电影在线看万部电影在线看万部电影在线看万部电影在线看万部电影在线看万部电影在线看万部电影在线看万部电影在线看"
+                android:textColor="@color/tr_text_main_color"
+                android:maxLines="2"
+                android:textSize="@dimen/tr_font_size_14"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:paddingTop="@dimen/tr_dimen_20"
+            android:paddingBottom="@dimen/tr_dimen_20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/tr_font_size_14"
+                android:text="价格(元)："
+                android:textColor="@color/tr_text_main_color"
+                />
+            <TextView
+                android:id="@+id/tr_tv_good_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥10.2"
+                android:textColor="#ee4141"
+                android:textSize="@dimen/tr_font_size_14"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp">
+        <TextView
+            android:layout_width="8dp"
+            android:layout_height="match_parent"
+            android:background="@color/tr_colorPrimary"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="16sp"
+            android:textColor="@color/tr_colorPrimary"
+            android:layout_marginLeft="@dimen/tr_dimen_10"
+            android:textStyle="bold"
+            android:gravity="center_vertical"
+            android:text="请选择支付方式"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="@dimen/tr_dimen_20"
+        android:background="@color/tr_main_line" />
+
+    <LinearLayout
+        android:id="@+id/ll_alipay"
+        android:paddingTop="@dimen/tr_dimen_10"
+        android:paddingBottom="@dimen/tr_dimen_10"
+        android:paddingLeft="@dimen/tr_dimen_20"
+        android:paddingRight="@dimen/tr_dimen_20"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/tr_bg_white">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/tr_alipay"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:drawableRight="@mipmap/tr_arrow_icon"
+            android:text="支付宝"
+            android:layout_marginLeft="@dimen/tr_dimen_20"
+            android:textColor="@color/tr_text_main_color"
+            android:textSize="@dimen/tr_font_size_14" />
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/tr_main_line" />
+
+    <LinearLayout
+        android:id="@+id/ll_weixin"
+        android:paddingTop="@dimen/tr_dimen_10"
+        android:paddingBottom="@dimen/tr_dimen_10"
+        android:paddingLeft="@dimen/tr_dimen_20"
+        android:paddingRight="@dimen/tr_dimen_20"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/tr_bg_white">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/tr_weixin_pay"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:drawableRight="@mipmap/tr_arrow_icon"
+            android:text="微信"
+            android:layout_marginLeft="@dimen/tr_dimen_20"
+            android:textColor="@color/tr_text_main_color"
+            android:textSize="@dimen/tr_font_size_14" />
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/tr_main_line" />
+    <LinearLayout
+        android:id="@+id/ll_union"
+        android:paddingTop="@dimen/tr_dimen_10"
+        android:paddingBottom="@dimen/tr_dimen_10"
+        android:paddingLeft="@dimen/tr_dimen_20"
+        android:paddingRight="@dimen/tr_dimen_20"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:background="@color/tr_bg_white">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/tr_union_pay"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:drawableRight="@mipmap/tr_arrow_icon"
+            android:text="银联快捷"
+            android:layout_marginLeft="@dimen/tr_dimen_20"
+            android:textColor="@color/tr_text_main_color"
+            android:textSize="@dimen/tr_font_size_14" />
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/tr_main_line" />
+    <LinearLayout
+        android:visibility="gone"
+        android:paddingTop="@dimen/tr_dimen_10"
+        android:paddingBottom="@dimen/tr_dimen_10"
+        android:paddingLeft="@dimen/tr_dimen_20"
+        android:paddingRight="@dimen/tr_dimen_20"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/tr_bg_white">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/tr_alipay"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:drawableRight="@mipmap/tr_arrow_icon"
+            android:text="余额钱包"
+            android:layout_marginLeft="@dimen/tr_dimen_20"
+            android:textColor="@color/tr_text_main_color"
+            android:textSize="@dimen/tr_font_size_14" />
+
+    </LinearLayout>
+    <View
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/tr_main_line" />
+</LinearLayout>
