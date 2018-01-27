@@ -5,53 +5,77 @@ import android.content.*;
 import android.support.v7.widget.*;
 import android.view.*;
 import android.widget.*;
+import cn.bmob.v3.b.*;
+import com.bumptech.glide.*;
 import com.kirby.runanjing.*;
+import com.kirby.runanjing.activity.*;
 import com.kirby.runanjing.adapter.*;
-import com.kirby.runanjing.untils.*;
-import java.util.*;
 import com.kirby.runanjing.bean.*;
+import java.util.*;
 
 public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder>
 {
-	private Context mContext;
-	private List<Video> mVideolist;
-
-	static class ViewHolder extends RecyclerView.ViewHolder
+    private Context mContext;
+    private List<Video> mVideoList;
+    static class ViewHolder extends RecyclerView.ViewHolder
 	{
-		CardView cardview;
-		TextView 用户名;
-		public ViewHolder(View view)
+        LinearLayout LinearLayout;
+		CardView cardView;
+		ImageView videoImage;
+		TextView videoName;
+        public ViewHolder(View view)
 		{
-			super(view);
-			cardview = (CardView)view.findViewById(R.id.cardview);
-			用户名 = (TextView)view.findViewById(R.id.用户名);
-		}
-	}
-	public VideoAdapter(List<Video>videolist)
+            super(view);
+			LinearLayout = (LinearLayout)view.findViewById(R.id.LinearLayout);
+            cardView = (CardView) view.findViewById(R.id.cardview);
+			videoImage = (ImageView) view.findViewById(R.id.video_image);
+            videoName = (TextView) view.findViewById(R.id.video_text);
+        }
+    }
+
+    public VideoAdapter(List<Video> videolist)
 	{
-		mVideolist = videolist;
-	}
-	@Override
-	public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
+        mVideoList = videolist;
+    }
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
 	{
-		if (mContext == null)
+        if (mContext == null)
 		{
-			mContext = parent.getContext();
-		}
-		View view=LayoutInflater.from(mContext).inflate(R.layout.item_message, parent, false);
-		return new ViewHolder(view);
+            mContext = parent.getContext();
+        }
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_video, parent, false);
+		final ViewHolder holder=new ViewHolder(view);
+		holder.LinearLayout.setOnClickListener(new View.OnClickListener(){
+				@Override
+				public void onClick(View v)
+				{
+					int position=holder.getAdapterPosition();
+					Video video=mVideoList.get(position);
+					Intent in=new Intent(mContext, KirbyWebActivity.class);
+					mContext.startActivity(in);
+				}
+			}
+		);
+		return holder;
+    }
+
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position)
+	{
+        Video vi = mVideoList.get(position);
+        holder.videoName.setText(vi.getName());
+        Glide
+			.with(mContext)
+			.load(vi.getImageUrl())
+			.placeholder(R.drawable.ic_download)
+			.error(R.drawable.ic_close_circle_outline)
+			.into(holder.videoImage);
 	}
 
-	@Override
-	public void onBindViewHolder(ViewHolder holder, int position)
+    @Override
+    public int getItemCount()
 	{
-		Video mess=mVideolist.get(position);
-		holder.用户名.setText(mess.getName());
-	}
-
-	@Override
-	public int getItemCount()
-	{
-		return mVideolist.size();
-	}
+        return mVideoList.size();
+    }
 }

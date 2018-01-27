@@ -4,7 +4,6 @@ import cn.bmob.v3.*;
 public class BmobVideo extends BmobObject
 {
     private String name;
-	private String imageUrl;
 	private String av;
     public String getName()
 	{
@@ -13,14 +12,6 @@ public class BmobVideo extends BmobObject
     public void setName(String name)
 	{
         this.name = name;
-    }
-	public String getImageUrl()
-	{
-        return imageUrl;
-    }
-    public void setImageUrl(String imageUrl)
-	{
-        this.imageUrl = imageUrl;
     }
 	public String getAv()
 	{
