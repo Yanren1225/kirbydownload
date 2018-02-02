@@ -478,7 +478,9 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 				builder.show();
 				break;
 			case R.id.pay:
-				TrPay.getInstance(this).callAlipay(tradename, outtradeno, 50L, backparams, notifyurl, userid, new PayResultListener() {
+				Intent pay=new Intent(MainActivity.this, PayActivity.class);
+				startActivity(pay);
+				/*TrPay.getInstance(this).callAlipay(tradename, outtradeno, 50L, backparams, notifyurl, userid, new PayResultListener() {
 						@Override
 						public void onPayFinish(Context context, String outtradeno, int resultCode, String resultString, int payType, Long amount, String tradename)
 						{
@@ -494,7 +496,7 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 								//支付失败逻辑处理
 							}
 						}
-					});
+					});*/
 				break;
 			default:
 		}

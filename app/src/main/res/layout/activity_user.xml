@@ -14,7 +14,8 @@
 		<android.support.design.widget.CollapsingToolbarLayout
 			android:id="@+id/折叠"
 			app:elevation="4dp"
-			app:titleEnabled="false"
+			app:expandedTitleMarginStart="100dp"
+			app:titleEnabled="true"
 			android:layout_height="match_parent"
 			android:layout_width="match_parent"
 			app:contentScrim="?attr/colorPrimary"

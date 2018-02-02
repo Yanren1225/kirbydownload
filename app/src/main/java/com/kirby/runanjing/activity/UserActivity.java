@@ -38,8 +38,7 @@ public class UserActivity extends BaseActivity
 		setSupportActionBar(toolbar);
 		u = BmobUser.getCurrentUser(MyUser.class);
 		coll = (CollapsingToolbarLayout)findViewById(R.id.折叠);
-		toolbar.setTitle(getUserName());
-		toolbar.setSubtitle("ID:" + getUserId());
+		coll.setTitle(getUserName());
 		initMess();
 		getMessage();
 	}
