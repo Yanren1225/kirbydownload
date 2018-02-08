@@ -1,7 +1,6 @@
 package com.kirby.runanjing.fragment.preference;
 
 import android.content.*;
-import android.content.pm.*;
 import android.net.*;
 import android.os.*;
 import android.preference.*;
@@ -9,11 +8,6 @@ import android.support.v7.app.*;
 import android.widget.*;
 import com.kirby.runanjing.*;
 import com.kirby.runanjing.activity.*;
-import android.content.pm.PackageManager.*;
-import com.base.bj.trpayjar.utils.*;
-import com.base.bj.trpayjar.domain.*;
-import java.util.*;
-import com.base.bj.trpayjar.listener.*;
 
 public  class AboutPreferenceFragment extends PreferenceFragment
 {

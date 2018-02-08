@@ -16,9 +16,6 @@ import cn.bmob.v3.datatype.*;
 import cn.bmob.v3.exception.*;
 import cn.bmob.v3.listener.*;
 import com.allattentionhere.fabulousfilter.*;
-import com.base.bj.trpayjar.domain.*;
-import com.base.bj.trpayjar.listener.*;
-import com.base.bj.trpayjar.utils.*;
 import com.kirby.runanjing.*;
 import com.kirby.runanjing.adapter.*;
 import com.kirby.runanjing.bmob.*;
@@ -65,7 +62,6 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
         super.onCreate(savedInstanceState);
 		Theme.setClassTheme(this);
         setContentView(R.layout.activity_main);
-		TrPay.getInstance(this).initPaySdk(appkey, "coolapk");
 		//跳转GameListActivity要用的数据
 		setApply();	
 		//配置toolbar
