@@ -27,6 +27,8 @@ public class MainVideoFragment extends Fragment
 	private VideoAdapter adapter;
 	private RefreshLayout 刷新;
 	private List<Video> videolist = new ArrayList<>();
+
+	private String bilibili;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
@@ -98,23 +100,18 @@ public class MainVideoFragment extends Fragment
 						//从获取的数据中提取需要的数据
 						String video_url=m.getAv();
 						String video_title=m.getName();
-						String video_image_url = null;
-						try
-						{
-							OkHttpClient client=new OkHttpClient();
-							Request request=new Request.Builder()
-								.url(video_url)
-								.build();
+						OkHttpClient client=new OkHttpClient();
+						Request request=new Request.Builder()
+							.url(video_url)
+							.build();
+						try{
 							Response response=client.newCall(request).execute();
-							String bilibili=response.body().string();
-							String jpg= bilibili.substring(bilibili.indexOf("/bfs/archive/"), bilibili.lastIndexOf(".jpg"));
-							Toast.makeText(getActivity(),jpg,Toast.LENGTH_SHORT).show();
-							video_image_url="http://i0.hdslb.com/bfs/archive/" + jpg + ".jpg";
-						}
-						catch (Exception e)
-						{
-							e.printStackTrace();
-						}
+							bilibili=response.body().string();
+						}catch(Exception e){}
+						String jpg= bilibili.substring(bilibili.indexOf("/bfs/archive/")+1, bilibili.lastIndexOf(".jpg"));
+						String video_image_url="http://i0.hdslb.com/bfs/archive/" + jpg + ".jpg";	
+						Toast.makeText(getActivity(),video_image_url,Toast.LENGTH_SHORT).show();
+						
 						//将查询到的数据依次添加到列表
 						Video video=new Video(video_title, video_image_url, video_url);
 						videolist.add(video);

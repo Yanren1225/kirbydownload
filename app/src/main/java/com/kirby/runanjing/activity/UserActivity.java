@@ -3,6 +3,7 @@ import android.os.*;
 import android.support.design.widget.*;
 import android.support.v7.widget.*;
 import android.util.*;
+import android.widget.*;
 import cn.bmob.v3.*;
 import cn.bmob.v3.exception.*;
 import cn.bmob.v3.listener.*;
@@ -13,10 +14,11 @@ import com.kirby.runanjing.bean.*;
 import com.kirby.runanjing.bmob.*;
 import com.kirby.runanjing.untils.*;
 import com.scwang.smartrefresh.layout.api.*;
-import com.scwang.smartrefresh.layout.listener.*;
 import java.util.*;
 
+import android.support.v7.widget.Toolbar;
 import com.kirby.runanjing.R;
+import android.view.*;
 
 @ParallaxBack
 public class UserActivity extends BaseActivity
@@ -28,6 +30,10 @@ public class UserActivity extends BaseActivity
 	private RecyclerView re;
 	private RefreshLayout 刷新;
 	private MessageAdapter adapter;
+
+	private TextView user_id;
+
+	private ImageView bg_image;
 	@Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -38,7 +44,17 @@ public class UserActivity extends BaseActivity
 		setSupportActionBar(toolbar);
 		u = BmobUser.getCurrentUser(MyUser.class);
 		coll = (CollapsingToolbarLayout)findViewById(R.id.折叠);
+		user_id=(TextView)findViewById(R.id.user_id);
+		bg_image=(ImageView)findViewById(R.id.bg_image);
 		coll.setTitle(getUserName());
+		user_id.setText(getUserId());
+		bg_image.setOnClickListener(new View.OnClickListener(){
+				@Override
+				public void onClick(View p1)
+				{
+					Toast.makeText(UserActivity.this,"图片", Toast.LENGTH_SHORT).show();
+				}
+			});
 		initMess();
 		getMessage();
 	}
@@ -121,7 +137,7 @@ public class UserActivity extends BaseActivity
 	};
 	private String getUserId()
 	{
-		return u.getObjectId();
+		return "ID:"+u.getObjectId();
 	}
 
 	private String getUserName()

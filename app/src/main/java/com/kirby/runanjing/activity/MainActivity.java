@@ -35,14 +35,6 @@ import com.kirby.runanjing.R;
 
 public class MainActivity extends BaseActivity implements AAH_FabulousFragment.AnimationListener 
 {
-	private final static String appkey = "0b658d2e3de040d188119d3d03e45019";
-	String userid = "trpay@52yszd.com";//商户系统用户ID(如：trpay@52yszd.com，商户系统内唯一)
-	String outtradeno = UUID.randomUUID() + "";//商户系统订单号(为便于演示，此处利用UUID生成模拟订单号，商户系统内唯一)
-	String tradename = "Kirby download捐赠";
-	String backparams = "name=2&age=22";//商户系统回调参数
-	String notifyurl = "http://101.200.13.92/notify/alipayTestNotify";//商户系统回调地址
-
-
 	private DrawerLayout drawerLayout;
 	private String name;
 	private MyUser u;
@@ -78,7 +70,7 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 
 	private void initBmb()
 	{
-
+		
 		if (null == u)
 		{
 			HamButton.Builder user = new HamButton.Builder()
@@ -476,23 +468,6 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 			case R.id.pay:
 				Intent pay=new Intent(MainActivity.this, PayActivity.class);
 				startActivity(pay);
-				/*TrPay.getInstance(this).callAlipay(tradename, outtradeno, 50L, backparams, notifyurl, userid, new PayResultListener() {
-						@Override
-						public void onPayFinish(Context context, String outtradeno, int resultCode, String resultString, int payType, Long amount, String tradename)
-						{
-							if (resultCode == TrPayResult.RESULT_CODE_SUCC.getId())
-							{//1：支付成功回调
-								TrPay.getInstance((Activity) context).closePayView();//关闭快捷支付页面
-								Toast.makeText(MainActivity.this, resultString, Toast.LENGTH_LONG).show();
-								//支付成功逻辑处理
-							}
-							else if (resultCode == TrPayResult.RESULT_CODE_FAIL.getId())
-							{//2：支付失败回调
-								Toast.makeText(MainActivity.this, resultString, Toast.LENGTH_LONG).show();
-								//支付失败逻辑处理
-							}
-						}
-					});*/
 				break;
 			default:
 		}

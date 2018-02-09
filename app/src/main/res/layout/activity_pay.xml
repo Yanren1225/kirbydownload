@@ -23,11 +23,12 @@
 
 	</android.support.design.widget.AppBarLayout>
 
-	<android.support.v7.widget.RecyclerView
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:id="@+id/捐赠"
-		android:layout_below="@id/mainAppBarLayout1"/>
+	<Button
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:text="捐赠"
+		android:layout_below="@id/mainAppBarLayout1"
+		android:id="@+id/donate"/>
 
 </RelativeLayout>
 

@@ -14,7 +14,6 @@
 		<android.support.design.widget.CollapsingToolbarLayout
 			android:id="@+id/折叠"
 			app:elevation="4dp"
-			app:expandedTitleMarginStart="100dp"
 			app:titleEnabled="true"
 			android:layout_height="match_parent"
 			android:layout_width="match_parent"
@@ -27,6 +26,21 @@
 				android:layout_height="match_parent"
 				android:layout_width="match_parent"
 				app:layout_collapseMode="parallax">
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:text="Medium Text"
+					android:layout_alignParentBottom="true"
+					android:layout_margin="4dp"
+					android:id="@+id/user_id"
+					android:layout_alignParentLeft="true"/>
+
+				<ImageView
+					android:layout_height="match_parent"
+					android:layout_width="match_parent"
+					android:id="@+id/bg_image"/>
 
 			</RelativeLayout>
 

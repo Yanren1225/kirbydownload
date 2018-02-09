@@ -21,6 +21,8 @@ android {
 dependencies {
 	compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
+	//支付服务-支付宝
+	compile 'com.github.didikee:AndroidDonate:0.1.0'
 	//菜单
 	compile 'com.nightonke:boommenu:2.1.1'
 	//多样的下拉刷新

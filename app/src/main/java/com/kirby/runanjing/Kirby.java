@@ -15,6 +15,7 @@ public class Kirby extends Application
     public void onCreate()
 	{
         super.onCreate();
+		//MultiDex.install(this);
         registerActivityLifecycleCallbacks(ParallaxHelper.getInstance());
 	    NeverCrash.init(new NeverCrash.CrashHandler() {
 				@Override

@@ -32,12 +32,12 @@ public class Launcher extends AppCompatActivity
 		setContentView(R.layout.activity_welcome);
 		welcome = (HTextView)findViewById(R.id.textview);
 		welcome.setTextColor(getColorPrimary());
-		welcome.animateText(getResources().getString(R.string.welcome_to));
+		welcome.animateText("kirby download");
 		mHandler.postDelayed(new Runnable() {
 				@Override
 				public void run()
 				{
-					welcome.animateText("kirby download");
+					welcome.animateText(getResources().getString(R.string.welcome_to));
 				}
 			}
 			, 1250);
