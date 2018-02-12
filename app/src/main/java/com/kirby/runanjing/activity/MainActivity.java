@@ -1,46 +1,62 @@
 package com.kirby.runanjing.activity;
 
-import android.app.*;
-import android.content.*;
-import android.net.*;
-import android.os.*;
-import android.support.v4.app.*;
-import android.support.v4.view.*;
-import android.support.v4.widget.*;
-import android.support.v7.app.*;
-import android.support.v7.widget.*;
-import android.view.*;
-import android.widget.*;
-import cn.bmob.v3.*;
-import cn.bmob.v3.datatype.*;
-import cn.bmob.v3.exception.*;
-import cn.bmob.v3.listener.*;
-import com.allattentionhere.fabulousfilter.*;
-import com.kirby.runanjing.*;
-import com.kirby.runanjing.adapter.*;
-import com.kirby.runanjing.bmob.*;
-import com.kirby.runanjing.fragment.main.*;
-import com.kirby.runanjing.untils.*;
-import com.nightonke.boommenu.*;
-import com.nightonke.boommenu.BoomButtons.*;
-import java.io.*;
-import java.util.*;
 
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.GridView;
+import android.widget.Toast;
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.datatype.BmobFile;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.DownloadFileListener;
+import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.SaveListener;
+import com.allattentionhere.fabulousfilter.AAH_FabulousFragment;
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetView;
+import com.kirby.runanjing.BaseActivity;
 import com.kirby.runanjing.R;
+import com.kirby.runanjing.activity.MainActivity;
+import com.kirby.runanjing.adapter.ColorListAdapter;
+import com.kirby.runanjing.bmob.MessageBmob;
+import com.kirby.runanjing.bmob.MyUser;
+import com.kirby.runanjing.bmob.moniqi;
+import com.kirby.runanjing.fragment.main.MainGameFragment;
+import com.kirby.runanjing.fragment.main.MainJszFragment;
+import com.kirby.runanjing.fragment.main.MainLoginFragment;
+import com.kirby.runanjing.fragment.main.MainMessFragment;
+import com.kirby.runanjing.fragment.main.MainVideoFragment;
+import com.kirby.runanjing.untils.Install;
+import com.kirby.runanjing.untils.Theme;
+import com.nightonke.boommenu.BoomButtons.HamButton;
+import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
+import com.nightonke.boommenu.BoomMenuButton;
+import java.io.File;
+import java.util.Arrays;
+import java.util.List;
 
 public class MainActivity extends BaseActivity implements AAH_FabulousFragment.AnimationListener 
 {
 	private DrawerLayout drawerLayout;
-	private String name;
 	private MyUser u;
-	private String email;
-	private String id;
-
 	private Toolbar toolbar;
 
 	private Context gameContext;
@@ -66,15 +82,24 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 		bmb = (BoomMenuButton) findViewById(R.id.bmb);
         assert bmb != null;
 		initBmb();
+		theFirst();
 	}
-
+	private void theFirst()
+	{
+		SharedPreferences 状态=getSharedPreferences("boolean", 0);
+		boolean 状态_ = 状态.getBoolean("thefirst_main", false);
+		if (状态_ == false)
+		{
+			showBmobTap();
+		}
+	}
 	private void initBmb()
 	{
 		
 		if (null == u)
 		{
 			HamButton.Builder user = new HamButton.Builder()
-				.normalTextRes(R.string.ziyuan)
+				.normalTextRes(R.string.login_title)
 				.normalImageRes(R.drawable.ic_account)
 				.listener(new OnBMClickListener(){
 					@Override
@@ -147,6 +172,18 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 				}
 			});
 		bmb.addBuilder(mess);
+	}
+	private void showBmobTap()
+	{
+		TapTargetView.showFor(this,                 
+			TapTarget.forView(findViewById(R.id.bmb), "This is a target", "We have the best targets, believe me"));
+			new TapTargetView.Listener() {  
+				@Override
+				public void onTargetClick(TapTargetView view) {
+					super.onTargetClick(view);
+					
+				}
+			};
 	}
 	public void replaceFragment(Fragment fragment)
 	{
@@ -242,152 +279,6 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 	public void onCloseAnimationEnd()
 	{
 		// TODO: Implement this method
-	}
-	private void initUser()
-	{
-		name = u.getUsername();
-		email = u.getEmail();
-		id = u.getObjectId();
-		new AlertDialog.Builder(MainActivity.this)
-			.setTitle(R.string.edit_email)
-			.setMessage(getResources().getString(R.string.user_name) + name + "\n" + getResources().getString(R.string.user_email) + email)
-			.setPositiveButton(R.string.user_email, new
-			DialogInterface.OnClickListener()
-			{
-				@Override
-				public void onClick(DialogInterface dialog, int which)
-				{
-					LayoutInflater lay_1 = getLayoutInflater();
-					final View modification_email_layout = lay_1.inflate(R.layout.dialog_modification_email, null);
-					new AlertDialog.Builder(MainActivity.this)
-						.setTitle(R.string.email_title)
-						.setView(modification_email_layout) 
-						.setPositiveButton(R.string.dia_yes, new
-						DialogInterface.OnClickListener()
-						{
-							@Override
-							public void onClick(DialogInterface dialog, int which)
-							{
-								EditText 修改邮箱_原邮箱=(EditText)modification_email_layout.findViewById(R.id.修改邮箱_原邮箱);
-								EditText 修改邮箱_新邮箱=(EditText)modification_email_layout.findViewById(R.id.修改邮箱_新邮箱);
-								String edit_原邮箱=修改邮箱_原邮箱.getText().toString();
-								String edit_新邮箱=修改邮箱_新邮箱.getText().toString();
-								if (edit_原邮箱.isEmpty() || edit_新邮箱.isEmpty())
-								{
-									Toast.makeText(MainActivity.this, R.string.is_null, Toast.LENGTH_SHORT).show();
-								}
-								else
-								{
-									if (email.equals(edit_原邮箱))
-									{
-										MyUser 邮箱=new MyUser();
-										邮箱.setEmail(edit_新邮箱);
-										邮箱.update(id, new UpdateListener() {
-
-												@Override
-												public void done(BmobException e)
-												{
-													if (e == null)
-													{
-														Toast.makeText(MainActivity.this, R.string.edit_true, Toast.LENGTH_SHORT).show();
-														u.logOut();
-														open();
-													}
-													else
-													{
-														Toast.makeText(MainActivity.this, R.string.edit_false + e.getMessage(), Toast.LENGTH_SHORT).show();
-													}
-												}
-
-											});
-									}
-									else
-									{
-										Toast.makeText(MainActivity.this, R.string.email_false, Toast.LENGTH_SHORT).show();
-									}
-								}
-							}
-						}
-					)					
-						.setNegativeButton(R.string.dia_cancel, null)
-						.show();
-				}
-			}
-		)
-			.setNegativeButton(R.string.edit_password, new DialogInterface.OnClickListener()
-			{
-				@Override
-				public void onClick(DialogInterface dialog, int which)
-				{
-					LayoutInflater lay_2 = getLayoutInflater();
-					final View modification_password_layout = lay_2.inflate(R.layout.dialog_modification_password, null);
-					new AlertDialog.Builder(MainActivity.this)
-						.setTitle(R.string.password_title)
-						.setView(modification_password_layout) 
-						.setPositiveButton(R.string.dia_yes, new
-						DialogInterface.OnClickListener()
-						{
-
-							private int text;
-							@Override
-							public void onClick(DialogInterface dialog, int which)
-							{
-								EditText 修改密码_原密码=(EditText)modification_password_layout.findViewById(R.id.修改密码_原密码);
-								EditText 修改密码_新密码=(EditText)modification_password_layout.findViewById(R.id.修改密码_新密码);
-								EditText 修改密码_验证=(EditText)modification_password_layout.findViewById(R.id.修改密码_验证);
-								String edit_原密码=修改密码_原密码.getText().toString();
-								String edit_新密码=修改密码_新密码.getText().toString();
-								String edit_验证=修改密码_验证.getText().toString();
-								if (edit_原密码.isEmpty() || edit_新密码.isEmpty() || edit_验证.isEmpty())
-								{
-									Toast.makeText(MainActivity.this, R.string.is_null, Toast.LENGTH_SHORT).show();
-								}
-								else
-								{
-									if (edit_新密码.equals(edit_验证))
-									{
-										final MyUser pas = new MyUser();
-										pas.updateCurrentUserPassword(edit_原密码, edit_新密码, new UpdateListener(){
-												@Override
-												public void done(BmobException e)
-												{
-													if (e == null)
-													{
-														Toast.makeText(MainActivity.this, R.string.edit_true, Toast.LENGTH_SHORT).show();
-														u.logOut();
-														open();
-													}
-													else
-													{
-														Toast.makeText(MainActivity.this, R.string.edit_false + e.getMessage(), Toast.LENGTH_SHORT).show();
-													}
-												}
-											});
-									}
-									else
-									{
-										Toast.makeText(MainActivity.this, R.string.password_false, Toast.LENGTH_SHORT).show();
-									}
-								}
-							}
-						}
-					)					
-						.setNegativeButton(R.string.dia_cancel, null)
-						.show();
-				}
-			}
-		)
-			.setNeutralButton(R.string.user_logout, new DialogInterface.OnClickListener()
-			{
-				@Override
-				public void onClick(DialogInterface dialog, int which)
-				{
-					u.logOut();
-					Toast.makeText(MainActivity.this, R.string.logout_true, Toast.LENGTH_SHORT).show();
-					open();
-				}
-			}
-		).show();
 	}
 	@Override
 	//获取toolbar菜单id执行事件
@@ -519,8 +410,7 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 					{
 						progressDialog.dismiss();
 						Toast.makeText(MainActivity.this, getResources().getString(R.string.download_susses) + savePath, Toast.LENGTH_SHORT).show();
-						File file=new File(savePath);
-						installAppApk(file);
+						Install.installApk(MainActivity.this,savePath);
 					}
 					else
 					{
@@ -534,13 +424,6 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 					progressDialog.setProgress(value);
 				}
 			});
-	}
-	protected void installAppApk(File file)
-	{
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);       
-		intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");       
-        startActivity(intent);
 	}
 	public void theDownload(Context con, String game_name)
 	{
@@ -682,8 +565,7 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 					{
 						progressDialog.dismiss();
 						Toast.makeText(gameContext, gameContext.getString(R.string.download_susses) + savePath, Toast.LENGTH_SHORT).show();
-						File file=new File(savePath);
-						installMoniqiApk(file);
+						Install.installApk(gameContext,savePath);
 					}
 					else
 					{
@@ -714,13 +596,6 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 				}			
 			}
 		);dialog.show();
-	}
-	protected void installMoniqiApk(File file)
-	{
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);       
-		intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");       
-        gameContext.startActivity(intent);
 	}
 	public void showDownloadDialog(String name, int mess, Integer pos, Integer neg, Integer neu, final String pos_url, final String neg_url, final String neu_url)
 	{

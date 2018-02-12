@@ -17,11 +17,10 @@ import com.kirby.runanjing.bmob.*;
 import com.kirby.runanjing.untils.*;
 
 import com.kirby.runanjing.R;
-import com.kirby.runanjing.fragment.intro.*;
+import android.graphics.Color;
 
 public class KirbyIntroActivity extends AppIntro2
 {
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
@@ -36,25 +35,21 @@ public class KirbyIntroActivity extends AppIntro2
         sliderPage1.setTitle(getResources().getString(R.string.intro_welcome_title));
         sliderPage1.setDescription(getResources().getString(R.string.intro_welcome_text));
         sliderPage1.setImageDrawable(R.mipmap.ic_launcher);
-        sliderPage1.setBgColor(0xff9E9E9E);
+        sliderPage1.setBgColor(0xff1976d2);
         addSlide(AppIntroFragment.newInstance(sliderPage1));
 		
 		SliderPage sliderPage2 = new SliderPage();
         sliderPage2.setTitle(getResources().getString(R.string.intro_permission_title));
         sliderPage2.setDescription(getResources().getString(R.string.intro_permission_text)+"\n"+getResources().getString(R.string.intro_permission_sd));
-        sliderPage2.setBgColor(0xff9E9E9E);
+        sliderPage2.setBgColor(0xff1976d2);
         addSlide(AppIntroFragment.newInstance(sliderPage2));
 		
 		askForPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2);
-        //setBarColor(Color.parseColor("#3F51B5"));
-        //setSeparatorColor(Color.parseColor("#2196F3"));
-
-		addSlide(new IntroLoginFragment());
 		
 		SliderPage sliderPage3 = new SliderPage();
         sliderPage3.setTitle(getResources().getString(R.string.intro_finish_title));
         sliderPage3.setDescription(getResources().getString(R.string.intro_finish_text));
-        sliderPage3.setBgColor(0xff9E9E9E);
+        sliderPage3.setBgColor(0xff1976d2);
         addSlide(AppIntroFragment.newInstance(sliderPage3));
 		
         showSkipButton(false);

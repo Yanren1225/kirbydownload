@@ -6,6 +6,7 @@
 	<uses-permission android:name="android.permission.INTERNET"/>
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+	<uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 	<application
 		android:name=".Kirby"
@@ -28,7 +29,8 @@
 		<activity android:name=".activity.KirbyIntroActivity"/>
 		<activity android:name=".activity.KirbyWebActivity"/>
 		<activity android:name=".activity.DownloadActivity"/>
-		<activity android:name=".activity.PayActivity"
+		<activity
+			android:name=".activity.PayActivity"
 			android:label="@string/pay_title"/>
 		<activity android:name=".activity.UserActivity"/>
 		<activity
@@ -50,5 +52,14 @@
 		<activity
 			android:name=".activity.MessActivity"
 			android:label="@string/mess_title"/>
+		<provider
+			android:name="android.support.v4.content.FileProvider"
+			android:authorities="com.kirby.runanjing.fileprovider"
+            android:exported="false"
+			android:grantUriPermissions="true">
+			<meta-data
+				android:name="android.support.FILE_PROVIDER_PATHS"
+				android:resource="@xml/file_paths" />
+		</provider>
 	</application>
 </manifest>
