@@ -100,16 +100,16 @@ public class MainVideoFragment extends Fragment
 						//从获取的数据中提取需要的数据
 						String video_url=m.getAv();
 						String video_title=m.getName();
+						try{
 						OkHttpClient client=new OkHttpClient();
 						Request request=new Request.Builder()
 							.url(video_url)
 							.build();
-						try{
 							Response response=client.newCall(request).execute();
 							bilibili=response.body().string();
 						}catch(Exception e){}
-						String jpg= bilibili.substring(bilibili.indexOf("/bfs/archive/")+1, bilibili.lastIndexOf(".jpg"));
-						String video_image_url="http://i0.hdslb.com/bfs/archive/" + jpg + ".jpg";	
+						String img=bilibili.substring(bilibili.indexOf("/bfs/archive/"),bilibili.indexOf(".jpg"));
+						String video_image_url="http://i0.hdslb.com/bfs/archive/"+img+".jpg";
 						Toast.makeText(getActivity(),video_image_url,Toast.LENGTH_SHORT).show();
 						
 						//将查询到的数据依次添加到列表

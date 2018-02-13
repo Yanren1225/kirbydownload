@@ -21,8 +21,8 @@ android {
 dependencies {
 	compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-	//应用内引导
-	compile 'com.getkeepsafe.taptargetview:taptargetview:1.11.0'
+	//第三方web
+	//compile 'com.just.agentweb:agentweb:3.1.0'
 	//支付服务-支付宝
 	compile 'com.github.didikee:AndroidDonate:0.1.0'
 	//菜单
@@ -31,8 +31,8 @@ dependencies {
 	compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.4-7'
 	compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.4-7'
 	//启动界面文字
-	compile "com.hanks:htextview-base:0.1.2"        // base library
-	compile "com.hanks:htextview-scale:0.1.2"       // optional
+	compile "com.hanks:htextview-base:0.1.2"   
+	compile "com.hanks:htextview-scale:0.1.2"  
    	//崩溃捕获
 	compile 'com.king.thread:nevercrash:1.0.0'
 	//http

@@ -9,7 +9,7 @@ import android.content.*;
 import com.kirby.runanjing.activity.*;
 import com.kirby.runanjing.untils.*;
 
-public class Kirby extends Application
+public class KirbyApp extends Application
 {
 	@Override
     public void onCreate()
@@ -26,13 +26,13 @@ public class Kirby extends Application
 			});
     }
 	
-    private void toCrashActivity(final Throwable crash)
+    public void toCrashActivity(final Throwable crash)
 	{
         new Handler(Looper.getMainLooper()).post(new Runnable() {
 				@Override
 				public void run()
 				{
-					Intent crash_=new Intent(Kirby.this, KirbyCrashActivity.class);
+					Intent crash_=new Intent(KirbyApp.this, KirbyCrashActivity.class);
 					crash_.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					crash_.putExtra("crash",crash);
 					startActivity(crash_);	

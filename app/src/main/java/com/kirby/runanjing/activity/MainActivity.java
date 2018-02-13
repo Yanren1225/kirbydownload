@@ -30,8 +30,6 @@ import cn.bmob.v3.listener.DownloadFileListener;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
 import com.allattentionhere.fabulousfilter.AAH_FabulousFragment;
-import com.getkeepsafe.taptargetview.TapTarget;
-import com.getkeepsafe.taptargetview.TapTargetView;
 import com.kirby.runanjing.BaseActivity;
 import com.kirby.runanjing.R;
 import com.kirby.runanjing.activity.MainActivity;
@@ -82,7 +80,6 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 		bmb = (BoomMenuButton) findViewById(R.id.bmb);
         assert bmb != null;
 		initBmb();
-		theFirst();
 	}
 	private void theFirst()
 	{
@@ -175,15 +172,7 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 	}
 	private void showBmobTap()
 	{
-		TapTargetView.showFor(this,                 
-			TapTarget.forView(findViewById(R.id.bmb), "This is a target", "We have the best targets, believe me"));
-			new TapTargetView.Listener() {  
-				@Override
-				public void onTargetClick(TapTargetView view) {
-					super.onTargetClick(view);
-					
-				}
-			};
+		
 	}
 	public void replaceFragment(Fragment fragment)
 	{
@@ -609,9 +598,6 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 				@Override
 				public void onClick(DialogInterface dialog, int which)
 				{
-					/*Intent kirby_web=new Intent(gameContext,KirbyWebActivity.class);
-					 kirby_web.putExtra("url",pos_url);
-					 gameContext.startActivity(kirby_web);*/
 					Intent web = new Intent();        
 					web.setAction("android.intent.action.VIEW");    
 					Uri content_url = Uri.parse(pos_url);   

@@ -62,9 +62,6 @@ public class KirbyWebActivity extends BaseActivity
 					Intent startApp=new Intent(Intent.ACTION_VIEW);
 					startApp.setDataAndType(Uri.parse(dlurl),"void/*");
 					startActivity(startApp);
-												//Intent i=new Intent(KirbyWebActivity.this,DownloadActivity.class);
-										//i.putExtra("Download_url",dlurl);
-										//startActivity(i);
 				}
 
 				});
