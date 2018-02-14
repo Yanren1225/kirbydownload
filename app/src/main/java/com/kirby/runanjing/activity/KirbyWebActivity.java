@@ -15,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.webkit.DownloadListener;
 import com.kirby.runanjing.R;
 import android.net.*;
+import com.just.agentweb.*;
 
 @ParallaxBack
 public class KirbyWebActivity extends BaseActivity
@@ -23,9 +24,9 @@ public class KirbyWebActivity extends BaseActivity
 
 	private Toolbar toolbar;
 
-	private WebView mWebView;
+	private LinearLayout webLin;
 
-	private ProgressBar mProgressBar;
+	private AgentWeb mAgentWeb;
 
 	@Override
     protected void onCreate(Bundle savedInstanceState)
@@ -40,47 +41,25 @@ public class KirbyWebActivity extends BaseActivity
 		setSupportActionBar(toolbar);
 		toolbar.setTitle(R.string.web_loading);
 		toolbar.setSubtitle(url);
-		mProgressBar=(ProgressBar)findViewById(R.id.progressBar);
-		mWebView=(WebView)findViewById(R.id.web_main);
-		WebSettings settings = mWebView.getSettings();
-// 设置是够支持js脚本
-		settings.setJavaScriptEnabled(true);
-		settings.setUseWideViewPort(true);
-		settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-		settings.setLoadWithOverviewMode(true);
-		mWebView.setWebViewClient(new WebViewClient(){
-				public boolean shouldOverrideUrlLoading(WebView view, String url) { 
-					view.loadUrl(url);
-					return true;
-				}
-		});
-		mWebView.setDownloadListener(new DownloadListener() {
-				@Override
-				public void onDownloadStart(String dlurl, String userAgent, String contentDisposition,
-											String mimetype, long contentLength) {
-												Toast.makeText(KirbyWebActivity.this,dlurl,Toast.LENGTH_SHORT).show();
-					Intent startApp=new Intent(Intent.ACTION_VIEW);
-					startApp.setDataAndType(Uri.parse(dlurl),"void/*");
-					startActivity(startApp);
-				}
-
-				});
-				mWebView.setWebChromeClient(new WebChromeClient() {
-				@Override
-				public void onProgressChanged(WebView view, int newProgress) {
-					super.onProgressChanged(view, newProgress);
-					if (newProgress != 100) {
-						mProgressBar.setProgress(newProgress);
-					} else {
-						mProgressBar.setVisibility(View.GONE);
-					}
-				}
-				@Override
-				public void onReceivedTitle(WebView view, String title) {
-					super.onReceivedTitle(view, title);
-					toolbar.setTitle(title);
-				}
-			});
-			mWebView.loadUrl(url);
+		webLin=(LinearLayout)findViewById(R.id.web);
+		mAgentWeb = AgentWeb.with(this)//传入Activity or Fragment
+			.setAgentWebParent(webLin, new LinearLayout.LayoutParams(-1, -1))
+			.useDefaultIndicator()
+			.setWebChromeClient(mWebChromeClient)
+			.createAgentWeb()
+			.ready()
+			.go(url);
 	}
+	private WebChromeClient mWebChromeClient = new WebChromeClient() {
+        @Override
+        public void onProgressChanged(WebView view, int newProgress) {
+        }
+
+        @Override
+        public void onReceivedTitle(WebView view, String title) {
+            super.onReceivedTitle(view, title);
+			toolbar.setTitle(title);
+            }
+    };
+	
 }

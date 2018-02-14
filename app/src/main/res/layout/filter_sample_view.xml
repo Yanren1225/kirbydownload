@@ -37,14 +37,13 @@
 			android:textSize="18sp"
 			android:layout_marginTop="4dp"/>
 
-		<com.rengwuxian.materialedittext.MaterialEditText
+		<EditText
 			android:layout_below="@id/发送"
 			android:layout_height="wrap_content"
 			android:layout_width="match_parent"
 			android:hint="@string/edit_ny"
-			app:met_hideUnderline="true"
-			app:met_maxCharacters="1000"
-			android:id="@+id/内容_编辑"/>
+			android:id="@+id/内容_编辑"
+			android:maxEms="1000"/>
 
 		<TextView
 			android:layout_height="wrap_content"

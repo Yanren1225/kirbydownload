@@ -5,35 +5,31 @@
 	android:layout_width="fill_parent"
 	android:layout_height="wrap_content"
 	android:orientation="vertical">
-	<com.rengwuxian.materialedittext.MaterialEditText
+	<EditText
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		app:met_floatingLabel="highlight"
 		android:ems="10"
 		android:hint="@string/dia_username"
 		android:id="@+id/注册_用户名"
 		android:inputType="text"/>
 
-	<com.rengwuxian.materialedittext.MaterialEditText
+	<EditText
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		app:met_floatingLabel="highlight"
 		android:hint="@string/dia_email"
 		android:id="@+id/邮箱"/>
 	
-	<com.rengwuxian.materialedittext.MaterialEditText
+	<EditText
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		app:met_floatingLabel="highlight"
 		android:ems="10"
 		android:hint="@string/dia_password"
 		android:id="@+id/注册_密码"
 		android:inputType="textPassword"/>
 	
-	<com.rengwuxian.materialedittext.MaterialEditText
+	<EditText
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		app:met_floatingLabel="highlight"
 		android:ems="10"
 		android:hint="@string/dia_a_password"
 		android:id="@+id/重复密码"

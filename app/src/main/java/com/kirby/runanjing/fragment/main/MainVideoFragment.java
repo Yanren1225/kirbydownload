@@ -18,8 +18,10 @@ import com.scwang.smartrefresh.layout.listener.*;
 import java.util.*;
 import okhttp3.*;
 import android.widget.*;
+import java.io.*;
+import com.kirby.runanjing.untils.*;
 
-public class MainVideoFragment extends Fragment
+public class MainVideoFragment extends Fragment 
 {
 	private View view;
 	private MainActivity m;
@@ -27,8 +29,6 @@ public class MainVideoFragment extends Fragment
 	private VideoAdapter adapter;
 	private RefreshLayout 刷新;
 	private List<Video> videolist = new ArrayList<>();
-
-	private String bilibili;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
@@ -99,21 +99,10 @@ public class MainVideoFragment extends Fragment
 					{
 						//从获取的数据中提取需要的数据
 						String video_url=m.getAv();
-						String video_title=m.getName();
-						try{
-						OkHttpClient client=new OkHttpClient();
-						Request request=new Request.Builder()
-							.url(video_url)
-							.build();
-							Response response=client.newCall(request).execute();
-							bilibili=response.body().string();
-						}catch(Exception e){}
-						String img=bilibili.substring(bilibili.indexOf("/bfs/archive/"),bilibili.indexOf(".jpg"));
-						String video_image_url="http://i0.hdslb.com/bfs/archive/"+img+".jpg";
-						Toast.makeText(getActivity(),video_image_url,Toast.LENGTH_SHORT).show();
-						
+						String video_title=m.getName();	
+						String video_image_url=m.getImageUrl();
 						//将查询到的数据依次添加到列表
-						Video video=new Video(video_title, video_image_url, video_url);
+						Video video=new Video(video_title, video_image_url , video_url);
 						videolist.add(video);
 						//设置适配器
 						re.setAdapter(adapter);
@@ -125,4 +114,3 @@ public class MainVideoFragment extends Fragment
 		}
 	};
 }
-

@@ -5,6 +5,7 @@ public class BmobVideo extends BmobObject
 {
     private String name;
 	private String av;
+	private String imageUrl;
     public String getName()
 	{
         return name;
@@ -21,4 +22,10 @@ public class BmobVideo extends BmobObject
 	{
         this.av = av;
     }
+	public String getImageUrl(){
+		return imageUrl;
+	}
+	public void setImageUrl(String imageUrl){
+		this.imageUrl=imageUrl;
+	}
 }

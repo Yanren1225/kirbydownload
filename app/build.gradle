@@ -22,7 +22,7 @@ dependencies {
 	compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
 	//第三方web
-	//compile 'com.just.agentweb:agentweb:3.1.0'
+    compile 'com.just.agentweb:agentweb:4.0.0-alpha-3'
 	//支付服务-支付宝
 	compile 'com.github.didikee:AndroidDonate:0.1.0'
 	//菜单
@@ -37,8 +37,6 @@ dependencies {
 	compile 'com.king.thread:nevercrash:1.0.0'
 	//http
 	compile 'com.squareup.okhttp3:okhttp:3.9.1'
-	//编辑框
-	compile 'com.rengwuxian.materialedittext:library:2.1.4'
 	//欢迎界面Intro
 	compile 'com.github.apl-devs:appintro:v4.2.2'
 	//滑动返回
@@ -52,7 +50,5 @@ dependencies {
 	compile 'com.android.support:cardview-v7:+'
 	compile 'com.android.support:design:+'
 	compile 'com.android.support:appcompat-v7:+'
-    //图片加载
-	compile 'com.github.bumptech.glide:glide:3.6.1'
     compile fileTree(dir: 'libs', include: ['*.jar'])
 }
