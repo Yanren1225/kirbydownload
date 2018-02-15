@@ -26,7 +26,8 @@ public class Launcher extends AppCompatActivity
 		//隐藏状态栏
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 							 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		Theme.setClassTheme(this);
+		getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+							 Theme.setClassTheme(this);
 		super.onCreate(savedInstanceState);
 		setLanguage();
 		setContentView(R.layout.activity_welcome);

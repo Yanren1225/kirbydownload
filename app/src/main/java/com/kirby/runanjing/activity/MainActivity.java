@@ -1,6 +1,5 @@
 package com.kirby.runanjing.activity;
 
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -50,6 +49,7 @@ import com.nightonke.boommenu.BoomMenuButton;
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
+import android.app.*;
 
 public class MainActivity extends BaseActivity implements AAH_FabulousFragment.AnimationListener 
 {
@@ -80,14 +80,19 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 		bmb = (BoomMenuButton) findViewById(R.id.bmb);
         assert bmb != null;
 		initBmb();
+		thePay();
 	}
-	private void theFirst()
+	private void thePay()
 	{
 		SharedPreferences 状态=getSharedPreferences("boolean", 0);
 		boolean 状态_ = 状态.getBoolean("thefirst_main", false);
 		if (状态_ == false)
 		{
-			showBmobTap();
+			int pay_code=(int)(1+Math.random()*(10-1+1));
+			if(pay_code==1||pay_code==3||pay_code==7||pay_code==10)
+			{
+			showPay();
+			}
 		}
 	}
 	private void initBmb()
@@ -170,9 +175,36 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 			});
 		bmb.addBuilder(mess);
 	}
-	private void showBmobTap()
+	private void showPay()
 	{
-		
+		AlertDialog.Builder dialog = new
+			AlertDialog.Builder(this)
+			.setTitle("捐赠")
+			.setMessage("你好，我是kirby  download的开发者,感谢你使用我开发的app\n这个app从开发到服务器一直都是我自费的，作为一个学生，实在是坚持不住。所以，请求各位大佬投喂，或者点击免费捐赠也可以的哦，谢谢٩(๑•◡-๑)۶")
+			.setPositiveButton("捐赠", new
+			DialogInterface.OnClickListener()
+			{
+				@Override
+				public void onClick(DialogInterface dialog, int which)
+				{
+					Intent pay=new Intent(MainActivity.this, PayActivity.class);
+					startActivity(pay);
+				}
+			}
+		)
+			.setNegativeButton("取消", null)
+			.setNeutralButton("不再提醒", new DialogInterface.OnClickListener()
+			{
+				@Override
+				public void onClick(DialogInterface dialog, int which)
+				{
+					SharedPreferences.Editor t=getSharedPreferences("boolean", 0).edit();
+					t.putBoolean("thefirst_main", true);
+					t.apply();
+				}
+			}
+		);
+		dialog.show();
 	}
 	public void replaceFragment(Fragment fragment)
 	{

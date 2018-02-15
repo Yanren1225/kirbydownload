@@ -9,13 +9,12 @@ import android.content.*;
 import com.kirby.runanjing.activity.*;
 import com.kirby.runanjing.untils.*;
 
-public class KirbyApp extends Application
+public class Kirby extends Application
 {
 	@Override
     public void onCreate()
 	{
         super.onCreate();
-		//MultiDex.install(this);
         registerActivityLifecycleCallbacks(ParallaxHelper.getInstance());
 	    NeverCrash.init(new NeverCrash.CrashHandler() {
 				@Override
@@ -32,7 +31,7 @@ public class KirbyApp extends Application
 				@Override
 				public void run()
 				{
-					Intent crash_=new Intent(KirbyApp.this, KirbyCrashActivity.class);
+					Intent crash_=new Intent(Kirby.this, KirbyCrashActivity.class);
 					crash_.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					crash_.putExtra("crash",crash);
 					startActivity(crash_);	

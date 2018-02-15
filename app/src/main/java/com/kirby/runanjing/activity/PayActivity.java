@@ -58,7 +58,6 @@ public class PayActivity extends BaseActivity
 				@Override
 				public void onClick(View p1)
 				{
-					Toast.makeText(PayActivity.this,"hshbb",Toast.LENGTH_SHORT).show();
 					// 自定义价格
 					if (currentMoney == 1)
 					{

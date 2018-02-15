@@ -9,7 +9,6 @@ import cn.bmob.v3.*;
 
 public class BaseActivity extends AppCompatActivity
 {
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -25,10 +24,11 @@ public class BaseActivity extends AppCompatActivity
 
     protected void setStatusBar() {
 		StatusBarUtil.setColor(this, getDarkColorPrimary(),0);
+		getWindow().setNavigationBarColor(getDarkColorPrimary());
     }
 	public int getDarkColorPrimary(){
 		TypedValue typedValue = new  TypedValue();
-		getTheme().resolveAttribute(R.attr.colorPrimaryDark, typedValue, true);
+		getTheme().resolveAttribute(R.attr.colorPrimaryDark,typedValue,true);
 		return typedValue.data;
 	}
 }
