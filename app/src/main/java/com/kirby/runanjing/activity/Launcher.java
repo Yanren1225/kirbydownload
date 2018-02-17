@@ -60,7 +60,7 @@ public class Launcher extends AppCompatActivity
 		{
 			Intent intent=new Intent(Launcher.this, KirbyIntroActivity.class);
 			intent.setClass(Launcher.this, KirbyIntroActivity.class);
-			startActivity(intent);
+			IntentUtil.startActivityWithAnim(intent,this);
 			finish();
 		}
 		else
@@ -68,7 +68,7 @@ public class Launcher extends AppCompatActivity
 			//跳转
 			Intent intent=new Intent(Launcher.this, MainActivity.class);
 			intent.setClass(Launcher.this, MainActivity.class);
-			startActivity(intent);
+			IntentUtil.startActivityWithAnim(intent,this);
 			finish();
 			overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
 		}

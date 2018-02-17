@@ -6,9 +6,9 @@ android {
     useLibrary 'org.apache.http.legacy'
     defaultConfig {
         applicationId "com.kirby.runanjing"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 27
-        versionCode 20180215
+        versionCode 20180217
         versionName "3.0"
     }
     buildTypes {

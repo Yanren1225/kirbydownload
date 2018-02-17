@@ -11,6 +11,7 @@ import com.kirby.runanjing.*;
 import com.kirby.runanjing.activity.*;
 import android.content.pm.PackageManager.*;
 import java.util.*;
+import com.kirby.runanjing.untils.IntentUtil;
 
 public  class AboutPreferenceFragment extends PreferenceFragment
 {
@@ -75,8 +76,6 @@ public  class AboutPreferenceFragment extends PreferenceFragment
 							intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 							getActivity().startActivity(intent);
 							android.os.Process.killProcess(android.os.Process.myPid()); 
-		//Intent re=new Intent(getActivity(), MainActivity.class);
-							//getActivity().startActivity(re);
 							dialog.dismiss();
 						}
 					}).create();

@@ -67,7 +67,7 @@ public class KirbyIntroActivity extends AppIntro2
         super.onDonePressed(currentFragment);
         // Do something when users tap on Done button.
 		Intent in=new Intent(KirbyIntroActivity.this,MainActivity.class);
-		startActivity(in);
+		IntentUtil.startActivityWithAnim(in,KirbyIntroActivity.this);
 		SharedPreferences.Editor y=getSharedPreferences("boolean", 0).edit().putBoolean("thefirst_状态", true);
 		y.apply();
 		finish();

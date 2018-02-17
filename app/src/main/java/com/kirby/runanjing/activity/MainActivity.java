@@ -1,55 +1,38 @@
 package com.kirby.runanjing.activity;
 
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.net.Uri;
-import android.os.Bundle;
+import android.app.*;
+import android.content.*;
+import android.net.*;
+import android.os.*;
+import android.support.v4.app.*;
+import android.support.v4.view.*;
+import android.support.v4.widget.*;
+import android.support.v7.app.*;
+import android.support.v7.widget.*;
+import android.transition.*;
+import android.view.*;
+import android.widget.*;
+import cn.bmob.v3.*;
+import cn.bmob.v3.datatype.*;
+import cn.bmob.v3.exception.*;
+import cn.bmob.v3.listener.*;
+import com.allattentionhere.fabulousfilter.*;
+import com.kirby.runanjing.*;
+import com.kirby.runanjing.adapter.*;
+import com.kirby.runanjing.bmob.*;
+import com.kirby.runanjing.fragment.main.*;
+import com.kirby.runanjing.untils.*;
+import com.nightonke.boommenu.*;
+import com.nightonke.boommenu.BoomButtons.*;
+import java.io.*;
+import java.util.*;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.GridView;
-import android.widget.Toast;
-import cn.bmob.v3.BmobQuery;
-import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.datatype.BmobFile;
-import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.DownloadFileListener;
-import cn.bmob.v3.listener.FindListener;
-import cn.bmob.v3.listener.SaveListener;
-import com.allattentionhere.fabulousfilter.AAH_FabulousFragment;
-import com.kirby.runanjing.BaseActivity;
 import com.kirby.runanjing.R;
-import com.kirby.runanjing.activity.MainActivity;
-import com.kirby.runanjing.adapter.ColorListAdapter;
-import com.kirby.runanjing.bmob.MessageBmob;
-import com.kirby.runanjing.bmob.MyUser;
-import com.kirby.runanjing.bmob.moniqi;
-import com.kirby.runanjing.fragment.main.MainGameFragment;
-import com.kirby.runanjing.fragment.main.MainJszFragment;
-import com.kirby.runanjing.fragment.main.MainLoginFragment;
-import com.kirby.runanjing.fragment.main.MainMessFragment;
-import com.kirby.runanjing.fragment.main.MainVideoFragment;
-import com.kirby.runanjing.untils.Install;
-import com.kirby.runanjing.untils.Theme;
-import com.nightonke.boommenu.BoomButtons.HamButton;
-import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
-import com.nightonke.boommenu.BoomMenuButton;
-import java.io.File;
-import java.util.Arrays;
-import java.util.List;
-import android.app.*;
 
 public class MainActivity extends BaseActivity implements AAH_FabulousFragment.AnimationListener 
 {
@@ -67,7 +50,7 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
     {
         super.onCreate(savedInstanceState);
 		Theme.setClassTheme(this);
-        setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_main);
 		//跳转GameListActivity要用的数据
 		setApply();	
 		//配置toolbar
@@ -123,7 +106,7 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 					public void onBoomButtonClick(int p1)
 					{
 						Intent user=new Intent(MainActivity.this, UserActivity.class);
-						startActivity(user);
+						IntentUtil.startActivityWithAnim(user,MainActivity.this);
 					}
 				});
 			bmb.addBuilder(user);
@@ -188,7 +171,7 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 				public void onClick(DialogInterface dialog, int which)
 				{
 					Intent pay=new Intent(MainActivity.this, PayActivity.class);
-					startActivity(pay);
+					IntentUtil.startActivityWithAnim(pay,MainActivity.this);
 				}
 			}
 		)
@@ -244,8 +227,7 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 		overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);//假装没退出过...
 		intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 		finish();
-		overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-		startActivity(intent);
+		IntentUtil.startActivityWithAnim(intent,MainActivity.this);
 	}
 	//初始化toolbar菜单
 	public boolean onCreateOptionsMenu(Menu menu)
@@ -356,7 +338,7 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 			case R.id.about:
 				//跳转AboutActivity
 				Intent about=new Intent(MainActivity.this, AboutActivity.class);
-				startActivity(about);
+				IntentUtil.startActivityWithAnim(about,MainActivity.this);
 				break;
 			case R.id.app:
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -379,7 +361,7 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 				break;
 			case R.id.pay:
 				Intent pay=new Intent(MainActivity.this, PayActivity.class);
-				startActivity(pay);
+				IntentUtil.startActivityWithAnim(pay,MainActivity.this);
 				break;
 			default:
 		}

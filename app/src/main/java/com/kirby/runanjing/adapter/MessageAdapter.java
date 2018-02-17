@@ -56,7 +56,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 					intent.putExtra(MessActivity.TIME, mess.getTime());
 					intent.putExtra(MessActivity.MESS, mess.getFullMessage());
 					mContext.startActivity(intent);
-				}
+					}
 			});
 		return holder;
 	}
