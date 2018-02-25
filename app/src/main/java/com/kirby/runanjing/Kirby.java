@@ -8,7 +8,6 @@ import android.util.*;
 import android.content.*;
 import com.kirby.runanjing.activity.*;
 import com.kirby.runanjing.untils.*;
-
 public class Kirby extends Application
 {
 	@Override

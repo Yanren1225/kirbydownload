@@ -542,7 +542,7 @@ public class MainActivity extends BaseActivity implements AAH_FabulousFragment.A
 						{
 							moniqiApk = apk.getApk();
 						}
-						moniqiFileDownload(moniqiApk, game_name);
+						moniqiFileDownload(moniqiApk, game_name);		
 					}
 					else
 					{
